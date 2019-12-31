@@ -1,6 +1,6 @@
 <div class="navbar-fixed">
     <nav class="nav-wrapper indigo">
-        <a href="#" class="brand-logo center">AccountX</a>
+        <a routerLink="/" class="brand-logo center">AccountX</a>
         <a href="#" class="sidenav-trigger" data-target="mobileNav">
             <i class="material-icons">view_module</i>
         </a>
@@ -12,18 +12,10 @@
             <li><a href="#"><i class="material-icons left">exit_to_app</i>Logout</a></li>
         </ul>
 
-
-
         <ul class="right">
             <li><a class="dropdown-trigger" href="#" data-target="dropdown"><i
                         class="material-icons right">more_vert</i></a></li>
         </ul>
-
-        <!-- <ul class="right hide-on-med-and-down">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul> -->
     </nav>
 </div>
 
@@ -46,22 +38,52 @@
         <div class="divider"></div>
     </li>
 
-    <li><a class="subheader">Main</a></li>
+    <li><a class="subheader"><i class="material-icons">account_balance_wallet</i>Einnahmen</a></li>
 
-    <li><a class="waves-effect" href="#">Link 1</a></li>
-    <li><a class="waves-effect" href="#">Link 2</a></li>
+    <li><a class="waves-effect" href="#">Übersicht</a></li>
+    <li><a class="waves-effect" href="#">Erstellen</a></li>
 
     <li>
         <div class="divider"></div>
     </li>
 
-    <li><a class="subheader">Sub</a></li>
+    <li><a class="subheader"><i class="material-icons">attach_money</i>Ausgaben</a></li>
 
-    <li><a class="waves-effect" href="#">Link 3</a></li>
-    <li><a class="waves-effect" href="#">Link 4</a></li>
+    <li><a class="waves-effect" href="#">Übersicht</a></li>
+    <li><a class="waves-effect" href="#">Erstellen</a></li>
+
+    <li>
+        <div class="divider"></div>
+    </li>
+
+    <li><a class="subheader"><i class="material-icons">account_balance</i>Ust. Abgabe</a></li>
+
+    <li><a class="waves-effect" href="#">Übersicht</a></li>
 </ul>
 
-<router-outlet></router-outlet>
+<section>
+    <div class="row">
+        <div class="col s12 nav-tabs">
+            <ul class="tabs">
+                <li class="tab col s4"><a class="active" routerLink="einnahmen">Einnahmen</a></li>
+                <li class="tab col s4"><a routerLink="ausgaben">Ausgaben</a></li>
+                <li class="tab col s4"><a routerLink="ust">Ust. Abgabe</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section>
+    <router-outlet></router-outlet>
+</section>
+
+<section>
+    <div class="row">
+        <div class="col s12">
+            <br>
+        </div>
+    </div>
+</section>
 
 <footer class="footer">
     <div class="container">
