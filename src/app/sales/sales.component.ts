@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 // makes jquery usable
 declare var $: any;
@@ -10,9 +11,11 @@ declare var $: any;
 })
 export class SalesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    console.log(this.router.url);
+
     $('.fixed-action-btn').floatingActionButton();
   }
 

@@ -7,13 +7,17 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SalesComponent } from './sales/sales.component';
 import { PurchasesComponent } from './purchases/purchases.component';
 import { VatComponent } from './vat/vat.component';
+import { PurchasesFormComponent } from './purchases-form/purchases-form.component';
+import { SalesFormComponent } from './sales-form/sales-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SalesComponent,
     PurchasesComponent,
-    VatComponent
+    VatComponent,
+    PurchasesFormComponent,
+    SalesFormComponent
   ],
   imports: [
     BrowserModule,
