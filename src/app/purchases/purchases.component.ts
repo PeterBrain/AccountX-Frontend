@@ -31,7 +31,7 @@ export class PurchasesComponent implements OnInit {
         });
     }
 
-    deleteBooking(booking: any) {
+    deletePurchase(booking: any) {
         this.bookingService.deleteBooking(booking).subscribe(() => {
             this.ngOnInit();
         });

@@ -14,14 +14,14 @@ export class BookingService {
     }
 
     createBooking(booking) {
-        return this.http.post('/api/bookings/create', booking);
+        return this.http.post('/api/bookings/', booking);
     }
 
     updateBooking(booking) {
-        return this.http.put('/api/bookings/' + booking.id + '/update', booking);
+        return this.http.put('/api/bookings/' + booking.id, booking);
     }
 
     deleteBooking(booking) {
-        return this.http.delete('/api/bookings/' + booking.id + '/delete', booking);
+        return this.http.delete('/api/bookings/' + booking.id, booking);
     }
 }

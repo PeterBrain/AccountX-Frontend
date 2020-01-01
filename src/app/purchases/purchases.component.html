@@ -35,9 +35,9 @@
         <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef>Actions</th>
             <td mat-cell *matCellDef="let booking">
-                <button mat-button [routerLink]="'/purchases-form/' + booking.id">Edit</button>
+                <button mat-button [routerLink]="'/ausgaben-form/' + booking.id">Edit</button>
                 &nbsp;
-                <button mat-button (click)="deleteBooking(booking)">Delete</button>
+                <button mat-button (click)="deletePurchase(booking)">Delete</button>
             </td>
         </ng-container>
 
@@ -179,5 +179,5 @@
 </div>-->
 
 <div class="fixed-action-btn">
-    <a class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">add</i></a>
+    <a class="btn-floating btn-large waves-effect waves-light green" routerLink="/ausgaben-form"><i class="material-icons">add</i></a>
 </div>

@@ -1,17 +1,22 @@
-import {VatComponent} from './vat/vat.component';
-import {PurchasesComponent} from './purchases/purchases.component';
-import {SalesComponent} from './sales/sales.component';
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './auth.guard';
-
+import {LoginComponent} from './login/login.component';
+import {SalesComponent} from './sales/sales.component';
+import {SalesFormComponent} from './sales-form/sales-form.component';
+import {PurchasesComponent} from './purchases/purchases.component';
+import {PurchasesFormComponent} from './purchases-form/purchases-form.component';
+import {VatComponent} from './vat/vat.component';
 
 const routes: Routes = [
-    {path: '', redirectTo: 'einnahmen', pathMatch: 'full'},
+    {path: '', redirectTo: 'sales', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
     {path: 'einnahmen', component: SalesComponent, canActivate: [AuthGuard]},
+    {path: 'einnahmen-form', component: SalesFormComponent, canActivate: [AuthGuard]},
+    {path: 'einnahmen-form/:id', component: SalesFormComponent, canActivate: [AuthGuard]},
     {path: 'ausgaben', component: PurchasesComponent, canActivate: [AuthGuard]},
+    {path: 'ausgaben-form', component: PurchasesFormComponent, canActivate: [AuthGuard]},
+    {path: 'ausgaben-form/:id', component: PurchasesFormComponent, canActivate: [AuthGuard]},
     {path: 'ust', component: VatComponent, canActivate: [AuthGuard]}
 ];
 
