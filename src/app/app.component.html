@@ -1,7 +1,7 @@
 <div class="navbar-fixed">
     <nav class="nav-wrapper indigo">
         <a routerLink="/" class="brand-logo center">AccountX</a>
-        <a href="#" class="sidenav-trigger" data-target="mobileNav" *ngIf="isLoggedIn">
+        <a href="" class="sidenav-trigger" data-target="mobileNav" *ngIf="isLoggedIn">
             <i class="material-icons">view_module</i>
         </a>
 
@@ -9,13 +9,13 @@
             <li><a href="#"><i class="material-icons left">account_circle</i>Profil</a></li>
             <li><a href="#"><i class="material-icons left">settings_applications</i>Einstellungen</a></li>
             <li class="divider"></li>
-            <li><a href="#"><i class="material-icons left">exit_to_app</i>Logout</a></li>
-            <app-logout></app-logout>
+            <li><a (click)="logout()"><i class="material-icons left">exit_to_app</i>Logout</a></li>
         </ul>
 
         <ul class="right" *ngIf="isLoggedIn">
-            <li><a class="dropdown-trigger" href="#" data-target="dropdown"><i
-                        class="material-icons right">more_vert</i></a></li>
+            <li><a href="#" class="dropdown-trigger" data-target="dropdown"><i
+                        class="material-icons right">more_vert</i></a>
+            </li>
         </ul>
     </nav>
 </div>
@@ -88,6 +88,5 @@
         <p>
             &copy; {{ currentYear }} Copyright: AccountX
         </p>
-        <app-logout *ngIf="isLoggedIn"></app-logout>
     </div>
 </footer>

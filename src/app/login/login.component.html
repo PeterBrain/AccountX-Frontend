@@ -1,4 +1,4 @@
-<form [formGroup]="loginFormGroup" (ngSubmit)="login()">
+<!-- <form [formGroup]="loginFormGroup" (ngSubmit)="login()">
     <mat-card class="login-card">
         <mat-card-header>
             <mat-card-title>Login</mat-card-title>
@@ -16,4 +16,45 @@
             <button mat-raised-button type="submit" color="primary">Login</button>
         </mat-card-actions>
     </mat-card>
-</form>
+</form> -->
+
+<section>
+    <div class="row">
+        <div class="col s12 center">
+            <h2>Login</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <form [formGroup]="loginFormGroup" (ngSubmit)="login()" class="col s12">
+            <div class="row">
+                <div class="col s3"></div>
+                <div class="input-field col s6">
+                    <input id="username" type="text" class="validate" formControlName="username" autofocus required>
+                    <label for="username">Username</label>
+                </div>
+                <div class="col s3"></div>
+            </div>
+            <div class="row">
+                <div class="col s3"></div>
+
+                <div class="input-field col s6">
+                    <input id="password" type="password" class="validate" formControlName="password" required>
+                    <label for="password">Password</label>
+                </div>
+
+                <div class="col s3"></div>
+            </div>
+
+            <div class="row">
+                <div class="col s3"></div>
+
+                <div class="input-field col s6 center">
+                    <button class="btn btn-large waves-effect indigo" type="submit">Login</button>
+                </div>
+
+                <div class="col s3"></div>
+            </div>
+        </form>
+    </div>
+</section>

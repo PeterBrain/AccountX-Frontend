@@ -35,7 +35,7 @@
                     <td>0</td>
                     <td>
                         <div class="fixed-action-btn custom-action-btn">
-                            <a class="btn-floating btn-small">
+                            <a class="btn-floating btn-small" routerLink="/einnahmen-form">
                                 <i class="large material-icons">mode_edit</i>
                             </a>
                             <ul>
@@ -59,7 +59,7 @@
                     <td>0</td>
                     <td>
                         <div class="fixed-action-btn custom-action-btn">
-                            <a class="btn-floating btn-small">
+                            <a class="btn-floating btn-small" routerLink="/einnahmen-form">
                                 <i class="large material-icons">mode_edit</i>
                             </a>
                             <ul>
@@ -83,7 +83,7 @@
                     <td>0</td>
                     <td>
                         <div class="fixed-action-btn custom-action-btn">
-                            <a class="btn-floating btn-small">
+                            <a class="btn-floating btn-small" routerLink="/einnahmen-form">
                                 <i class="large material-icons">mode_edit</i>
                             </a>
                             <ul>
@@ -99,5 +99,13 @@
 </div>
 
 <div class="fixed-action-btn">
-    <a class="btn-floating btn-large waves-effect waves-light green" routerLink="/einnahmen-form"><i class="material-icons">add</i></a>
+    <a class="btn-floating btn-large waves-effect waves-light green" routerLink="/einnahmen-form"><i
+            class="material-icons">add</i></a>
 </div>
+
+<p class="container">
+    Soweit mir aufgefallen ist, geht der Hover Effekt nicht mehr sobald man die Daten dynamisch ladet. Entweder wir
+    lassen den weg, weil
+    er auch nicht wirklich notwendig ist, oder wir laden alles gleichzeitig, also warten bis alle Daten da sind und dann
+    könnte es theoretisch funktionieren.
+</p>

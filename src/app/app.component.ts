@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
-import {UserService} from './service/user.service';
+import { UserService } from './service/user.service';
 
 @Component({
   selector: 'app-root',
@@ -8,20 +8,28 @@ import {UserService} from './service/user.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
+
   title = 'AccountX';
   currentYear;
   isLoggedIn = false;
 
-  constructor(public router: Router, private userService: UserService) {
+  constructor(
+    public router: Router,
+    private userService: UserService
+  ) {
   }
 
   ngOnInit() {
-    console.log(this.router.url);
-
     this.currentYear = new Date().getFullYear().toString();
 
-    this.userService.isLoggedIn.subscribe((isLoggedIn) => {
-      this.isLoggedIn = isLoggedIn;
-    });
+    this.userService.isLoggedIn.subscribe(
+      (isLoggedIn) => {
+        this.isLoggedIn = isLoggedIn;
+      });
+  }
+
+  logout() {
+    this.userService.logout();
   }
 }
