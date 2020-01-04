@@ -27,8 +27,8 @@
                 <img src="../assets/images/bg/sidenav-bg.jpg">
             </div>
             <a href="#"><img class="circle" src="../assets/images/people/example-portrait.jpg"></a>
-            <a href="#"><span class="white-text name">Jane Doe</span></a>
-            <a href="#"><span class="white-text email">jane.doe@accountx.com</span></a>
+            <a href="#"><span class="white-text name">{{ currentUser }}</span></a>
+            <a href="#"><span class="white-text email">{{ currentUser }}@accountx.com</span></a>
         </div>
     </li>
 
@@ -36,19 +36,19 @@
         <div class="divider"></div>
     </li>
 
-    <li><a class="subheader"><i class="material-icons">account_balance_wallet</i>Einnahmen</a></li>
+    <li><a class="subheader"><i class="material-icons">account_balance_wallet</i>Ausgangsrechnungen</a></li>
 
-    <li><a class="waves-effect" href="#">Übersicht</a></li>
-    <li><a class="waves-effect" href="#">Erstellen</a></li>
+    <li><a class="waves-effect sidenav-close" routerLink="/einnahmen">Übersicht</a></li>
+    <li><a class="waves-effect sidenav-close" routerLink="/einnahmen-form">Erstellen</a></li>
 
     <li>
         <div class="divider"></div>
     </li>
 
-    <li><a class="subheader"><i class="material-icons">attach_money</i>Ausgaben</a></li>
+    <li><a class="subheader"><i class="material-icons">payment</i>Eingangsrechnungen</a></li>
 
-    <li><a class="waves-effect" href="#">Übersicht</a></li>
-    <li><a class="waves-effect" href="#">Erstellen</a></li>
+    <li><a class="waves-effect sidenav-close" routerLink="/ausgaben">Übersicht</a></li>
+    <li><a class="waves-effect sidenav-close" routerLink="/ausgaben-form">Erstellen</a></li>
 
     <li>
         <div class="divider"></div>
@@ -56,7 +56,7 @@
 
     <li><a class="subheader"><i class="material-icons">account_balance</i>Ust. Abgabe</a></li>
 
-    <li><a class="waves-effect" href="#">Übersicht</a></li>
+    <li><a class="waves-effect sidenav-close" routerLink="/ust">Übersicht</a></li>
 </ul>
 
 <section *ngIf="isLoggedIn">

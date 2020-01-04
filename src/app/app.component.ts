@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
 
 
   title = 'AccountX';
+  currentUser;
   currentYear;
   isLoggedIn = false;
 
@@ -21,6 +22,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.currentUser = this.userService.getUsername();
     this.currentYear = new Date().getFullYear().toString();
 
     this.userService.isLoggedIn.subscribe(

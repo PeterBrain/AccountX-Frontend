@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
-import {Router} from '@angular/router';
-import {JwtHelperService} from '@auth0/angular-jwt';
+import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class UserService {
 
@@ -36,5 +36,11 @@ export class UserService {
         localStorage.removeItem(this.accessTokenLocalStorageKey);
         this.isLoggedIn.next(false);
         this.router.navigate(['/login']);
+    }
+
+    getUsername() {
+        const token = localStorage.getItem(this.accessTokenLocalStorageKey);
+        const decodedToken = this.jwtHelperService.decodeToken(token);
+        return decodedToken.username;
     }
 }

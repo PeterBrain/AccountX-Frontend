@@ -15,21 +15,16 @@ export class PurchasesComponent implements OnInit, AfterViewInit {
     paginationPages = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     activePage = this.paginationPages !== undefined ? this.paginationPages[0] : null;
 
-    // displayedColumns = ['company', 'booking_type', 'name', 'is_negative', 'cashflowdate', 'amount', 'id'];
-
-    // bookings: MatTableDataSource<any>;
-    // @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-
     constructor(private http: HttpClient, public bookingService: BookingService) {
     }
 
     ngOnInit() {
-        this.bookingService.getBookings().subscribe(
-            (response) => {
-                this.bookingsData = response;
-                // console.log(this.bookingsData);
-            }
-        );
+        // this.bookingService.getBookings().subscribe(
+        //     (response) => {
+        //         this.bookingsData = response;
+        //         // console.log(this.bookingsData);
+        //     }
+        // );
 
         // for pagination we need getBookings(paginationRange)
         // so only booking of the current pagination are returned

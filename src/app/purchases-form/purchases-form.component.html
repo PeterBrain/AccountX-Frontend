@@ -1,1 +1,140 @@
-<p>purchases-form works!</p>
+<section>
+    <div class="row">
+        <div class="col s12 center">
+            <h2>Eingangsrechnung erstellen/bearbeiten</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <form [formGroup]="purchaseFormGroup" (ngSubmit)="saveForm()" class="col s12">
+            <div class="row">
+                <div class="col s3"></div>
+
+                <div class="input-field col s6">
+                    <input id="invNumber" type="number" min="0" class="validate" formControlName="invNumber" required>
+                    <label for="invNumber">Rechnungsnummer</label>
+                </div>
+
+                <div class="col s3"></div>
+            </div>
+
+            <div class="row">
+                <div class="col s3"></div>
+                <div class="input-field col s6">
+                    <input id="invDate" type="text" class="datepicker validate" formControlName="invDate" required>
+                    <label for="invDate">Rechnungsdatum</label>
+                </div>
+                <div class="col s3"></div>
+            </div>
+
+            <div class="row">
+                <div class="col s3"></div>
+
+                <div class="input-field col s6">
+                    <input id="vendorCompany" type="text" class="validate" formControlName="vendorCompany" required>
+                    <label for="vendorCompany">Rechnungsaussteller</label>
+                </div>
+
+                <div class="col s3"></div>
+            </div>
+
+            <div class="row">
+                <div class="col s3"></div>
+
+                <div class="input-field col s6">
+                    <select id="vat" formControlName='vat'>
+                        <optgroup label="Österreich">
+                            <option value="20">20%</option>
+                            <option value="13">13%</option>
+                            <option value="10">10%</option>
+                            <option value="0">0%</option>
+                        </optgroup>
+                        <optgroup label="Deutschland">
+                            <option value="19">19%</option>
+                            <option value="7">7%</option>
+                            <option value="0">0%</option>
+                        </optgroup>
+                    </select>
+                    <label for="vat">Umsatzsteuer</label>
+                </div>
+
+                <div class="col s3"></div>
+            </div>
+
+            <div class="row">
+                <div class="col s3"></div>
+
+                <div class="input-field col s6">
+                    <input id="net" type="number" min="0" class="validate" formControlName="net" required>
+                    <label for="net">Netto</label>
+                </div>
+
+                <div class="col s3"></div>
+            </div>
+
+            <div class="row">
+                <div class="col s3"></div>
+                <div class="input-field col s6">
+                    <input id="cashFlowDate" type="text" class="datepicker validate" formControlName="cashFlowDate"
+                        required>
+                    <label for="cashFlowDate">Geldflussdatum</label>
+                </div>
+                <div class="col s3"></div>
+            </div>
+
+            <div class="row">
+                <div class="col s3"></div>
+                <div class="input-field col s6">
+                    <select id="company" formControlName="company">
+                        <option value="" disabled selected></option>
+                        <option value="">Firma 1</option>
+                        <option value="">Firma 2</option>
+                        <option value="">Firma 3</option>
+                    </select>
+                    <label for="company">Firma</label>
+                </div>
+                <div class="col s3"></div>
+            </div>
+
+            <div class="row">
+                <div class="col s3"></div>
+                <div class="input-field col s6">
+                    <select id="bookingType" formControlName="bookingType">
+                        <option value="" disabled selected></option>
+                        <option value="">7 - Afa</option>
+                        <option value="">26 - GWG</option>
+                        <option value="">19 - SVA</option>
+                        <option value="">21 - Kommunikationsaufwand (Internet, Telefon)</option>
+                    </select>
+                    <label for="bookingType">Buchungskonto</label>
+                </div>
+                <div class="col s3"></div>
+            </div>
+
+            <div class="row">
+                <div class="col s3"></div>
+
+                <div class="file-field input-field col s6">
+                    <div class="btn">
+                        <span>Datei</span>
+                        <input formControlName="invoice" type="file" multiple>
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" placeholder="Rechnung(en) hochladen">
+                    </div>
+                </div>
+                <div class="col s3"></div>
+            </div>
+
+            <div class="row">
+                <div class="col s3"></div>
+
+                <div class="input-field col s6 center">
+                    <button class="btn btn-large waves-effect" type="submit">Speichern</button>
+                </div>
+
+                <div class="col s3"></div>
+            </div>
+        </form>
+    </div>
+</section>

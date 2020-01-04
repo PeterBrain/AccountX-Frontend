@@ -1,5 +1,4 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { Router } from '@angular/router';
 import * as M from 'materialize-css';
 
 @Component({
@@ -9,7 +8,7 @@ import * as M from 'materialize-css';
 })
 export class SalesComponent implements OnInit, AfterViewInit {
 
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit() {
   }
