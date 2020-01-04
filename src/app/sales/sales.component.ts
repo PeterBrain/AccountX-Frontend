@@ -1,3 +1,4 @@
+import { SaleService } from './../service/sale.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as M from 'materialize-css';
 
@@ -8,9 +9,20 @@ import * as M from 'materialize-css';
 })
 export class SalesComponent implements OnInit, AfterViewInit {
 
-  constructor() { }
+  sales;
+
+  constructor(
+    private saleService: SaleService
+  ) { }
 
   ngOnInit() {
+    this.saleService.getSales().subscribe(
+      (response) => {
+        this.sales = response;
+        console.log(this.sales);
+
+      }
+    );
   }
 
   ngAfterViewInit() {

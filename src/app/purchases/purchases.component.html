@@ -1,87 +1,35 @@
-<!-- <div class="mat-elevation-z8">
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-    <table mat-table [dataSource]="bookings" class="table-list">
-        <ng-container matColumnDef="company">
-            <th mat-header-cell *matHeaderCellDef>Company</th>
-            <td mat-cell *matCellDef="let booking">{{booking.company}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="booking_type">
-            <th mat-header-cell *matHeaderCellDef>Booking Type</th>
-            <td mat-cell *matCellDef="let booking">{{booking.bookingType}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef>Name</th>
-            <td mat-cell *matCellDef="let booking">{{booking.name}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="is_negative">
-            <th mat-header-cell *matHeaderCellDef>isNegative</th>
-            <td mat-cell *matCellDef="let booking">{{booking.isNegative}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="cashflowdate">
-            <th mat-header-cell *matHeaderCellDef>Cashflowdate</th>
-            <td mat-cell *matCellDef="let booking">{{booking.cashflowdate}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="amount">
-            <th mat-header-cell *matHeaderCellDef>Amount</th>
-            <td mat-cell *matCellDef="let booking">{{booking.amount}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef>Actions</th>
-            <td mat-cell *matCellDef="let booking">
-                <button mat-button [routerLink]="'/ausgaben-form/' + booking.id">Edit</button>
-                &nbsp;
-                <button mat-button (click)="deletePurchase(booking)">Delete</button>
-            </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-</div>
-
-<br>
-<br>
-<hr>
-<br>
-<br> -->
-
-
-
 <div class="row">
     <div class="col s12">
         <table class="striped responsive-table">
             <thead>
                 <tr>
-                    <th>Text</th>
-                    <th>Datum Geldfluss</th>
-                    <th>Netto</th>
-                    <th></th>
-                    <!-- <th>ReNr.</th>
+                    <th>ReNr.</th>
                     <th>Belegdatum</th>
-                    <th>Datum Geldfluss</th>
                     <th>Rechnungsaussteller</th>
                     <th>Text</th>
                     <th>Ust.</th>
                     <th>Netto</th>
                     <th>Brutto</th>
-                    <th></th> -->
+                    <th>Datum Geldfluss</th>
+                    <th>Buchungskonto</th>
+                    <th></th>
                 </tr>
             </thead>
 
             <tbody>
-                <tr *ngFor="let booking of bookingsData" class="hoverable">
-                    <td>{{ booking.name }}</td>
-                    <td>{{ booking.cashflowdate }}</td>
-                    <td>{{ booking.amount }}</td>
+                <tr *ngFor="let purchase of purchases" class="hoverable">
+                    <td>{{ purchase.invNo }}</td>
+                    <td>{{ purchase.invDate }}</td>
+                    <td>{{ purchase.biller }}</td>
+                    <td>some text</td>
+                    <td>{{ purchase.ust }}</td>
+                    <td>{{ purchase.net }}</td>
+                    <td>{{ purchase.net * (1 + purchase.ust) }}</td>
+                    <td>{{ purchase.cashflowdate }}</td>
+                    <td>{{ purchase.bookingType }}</td>
                     <td>
                         <div class="fixed-action-btn custom-action-btn">
-                            <a class="btn-floating btn-small" [routerLink]="['/ausgaben-form/' + booking.id]">
+                            <a class="btn-floating btn-small" [routerLink]="['/ausgaben-form/' + purchase.id]">
                                 <i class="large material-icons">mode_edit</i>
                             </a>
                             <ul>
@@ -91,79 +39,6 @@
                         </div>
                     </td>
                 </tr>
-
-                <!-- <tr class="hoverable">
-                    <td>02</td>
-                    <td>06-02-2019</td>
-                    <td>10-02-2019</td>
-                    <td>ÖH</td>
-                    <td>Studienbeitrag</td>
-                    <td>
-                        <div class="input-field col s12">
-                            <select>
-                                <optgroup label="Österreich">
-                                    <option value="20">20%</option>
-                                    <option value="13">13%</option>
-                                    <option value="10">10%</option>
-                                    <option value="0">0%</option>
-                                </optgroup>
-                                <optgroup label="Deutschland">
-                                    <option value="19">19%</option>
-                                    <option value="7">7%</option>
-                                    <option value="0">0%</option>
-                                </optgroup>
-                            </select>
-                        </div>
-                    </td>
-                    <td>20</td>
-                    <td>24</td>
-                    <td>
-                        <div class="fixed-action-btn custom-action-btn">
-                            <a class="btn-floating btn-small">
-                                <i class="large material-icons">mode_edit</i>
-                            </a>
-                            <ul>
-                                <li><a class="btn-floating"><i class="material-icons">save_alt</i></a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="hoverable">
-                    <td>03</td>
-                    <td>27-03-2019</td>
-                    <td>29-03-2019</td>
-                    <td>Kultus</td>
-                    <td>Div. Getränke</td>
-                    <td>
-                        <div class="input-field col s12">
-                            <select>
-                                <optgroup label="Österreich">
-                                    <option value="20">20%</option>
-                                    <option value="13">13%</option>
-                                    <option value="10">10%</option>
-                                    <option value="0">0%</option>
-                                </optgroup>
-                                <optgroup label="Deutschland">
-                                    <option value="19">19%</option>
-                                    <option value="7">7%</option>
-                                    <option value="0">0%</option>
-                                </optgroup>
-                            </select>
-                        </div>
-                    </td>
-                    <td>100</td>
-                    <td>120</td>
-                    <td>
-                        <div class="fixed-action-btn custom-action-btn">
-                            <a class="btn-floating btn-small">
-                                <i class="large material-icons">mode_edit</i>
-                            </a>
-                            <ul>
-                                <li><a class="btn-floating"><i class="material-icons">save_alt</i></a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr> -->
             </tbody>
         </table>
 

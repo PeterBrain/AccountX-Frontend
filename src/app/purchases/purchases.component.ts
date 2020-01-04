@@ -1,6 +1,6 @@
+import { PurchaseService } from './../service/purchase.service';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BookingService } from '../service/booking.service';
 import * as M from 'materialize-css';
 
 @Component({
@@ -10,34 +10,40 @@ import * as M from 'materialize-css';
 })
 export class PurchasesComponent implements OnInit, AfterViewInit {
 
-    bookingsData;
+    purchases;
 
     paginationPages = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     activePage = this.paginationPages !== undefined ? this.paginationPages[0] : null;
 
-    constructor(private http: HttpClient, public bookingService: BookingService) {
+    constructor(
+        private http: HttpClient,
+        public purchaseService: PurchaseService) {
     }
 
     ngOnInit() {
-        // this.bookingService.getBookings().subscribe(
-        //     (response) => {
-        //         this.bookingsData = response;
-        //         // console.log(this.bookingsData);
-        //     }
-        // );
+        this.purchaseService.getPurchases().subscribe(
+            (response) => {
+                this.purchases = response;
+                console.log(this.purchases);
+            }
+        );
 
         // for pagination we need getBookings(paginationRange)
         // so only booking of the current pagination are returned
         // at the beginning is defined how many bookings are there and how often are they split in to pages
         // eg. 15 bookings à 10 bookings per page equals 10 booking in range 1-10 and 5 booking in range 11-15
-
-        // this.bookingService.getBookings().subscribe((response: any[]) => {
-        //     this.bookings = new MatTableDataSource<any>(response);
-        //     this.bookings.paginator = this.paginator;
-        // });
     }
 
     ngAfterViewInit() {
+        const sidenav = document.querySelectorAll('.sidenav');
+        M.Sidenav.init(sidenav);
+
+        const elems = document.querySelectorAll('.dropdown-trigger');
+        M.Dropdown.init(elems, { hover: true, constrainWidth: false });
+
+        const tabs = document.querySelectorAll('.tabs');
+        M.Tabs.init(tabs);
+
         const actionBtn = document.querySelectorAll('.fixed-action-btn');
         M.FloatingActionButton.init(actionBtn);
     }

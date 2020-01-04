@@ -4,71 +4,42 @@
             <thead>
                 <tr>
                     <th>ReNr.</th>
-                    <th>Monat</th>
                     <th>Datum</th>
                     <th>Kunde</th>
                     <th>Projekt / Auftrag</th>
-                    <th>Netto</th>
                     <th>Ust.</th>
+                    <th>Netto</th>
                     <th>Brutto</th>
                     <th>Bezahlt Brutto</th>
-                    <th>Datum</th>
-                    <th>Zahlungsdauer</th>
-                    <th>Differenz</th>
+                    <th>Zahlungseingang</th>
+                    <!-- <th>Zahlungsdauer</th> -->
+                    <!-- <th>Differenz</th> -->
                     <th></th>
                 </tr>
             </thead>
 
             <tbody>
-                <tr class="hoverable">
-                    <td>01</td>
-                    <td>Jan</td>
-                    <td>24-01-2019</td>
-                    <td>Firma Mustermann</td>
-                    <td>Homepage</td>
-                    <td>1000</td>
-                    <td>200</td>
-                    <td>1200</td>
-                    <td>1200</td>
-                    <td>29-01-2019</td>
-                    <td>3</td>
-                    <td>0</td>
+                <tr *ngFor="let sale of sales" class="hoverable">
+                    <td>{{ sale.invNo }}</td>
+                    <td>{{ sale.invDate }}</td>
+                    <td>{{ sale.customer }}</td>
+                    <td>{{ sale.project }}</td>
+                    <td>{{ sale.ust }}</td>
+                    <td>{{ sale.net }}</td>
+                    <td>{{ sale.net * (1 + sale.ust) }}</td>
+                    <td>{{ sale.gross }}</td>
+                    <td>{{ sale.cashflowdate }}</td>
                     <td>
                         <div class="fixed-action-btn custom-action-btn">
-                            <a class="btn-floating btn-small" routerLink="/einnahmen-form">
+                            <a class="btn-floating btn-small" [routerLink]="['/einnahmen-form/' + sale.id]">
                                 <i class="large material-icons">mode_edit</i>
                             </a>
-                            <ul>
-                                <li><a class="btn-floating green"><i class="material-icons">save_alt</i></a></li>
-                            </ul>
                         </div>
                     </td>
                 </tr>
-                <tr class="hoverable">
-                    <td>02</td>
-                    <td>Feb</td>
-                    <td>04-02-2019</td>
-                    <td>IDaaS Corp</td>
-                    <td>Identity Management</td>
-                    <td>1600</td>
-                    <td>320</td>
-                    <td>1920</td>
-                    <td>1920</td>
-                    <td>10-02-2019</td>
-                    <td>8</td>
-                    <td>0</td>
-                    <td>
-                        <div class="fixed-action-btn custom-action-btn">
-                            <a class="btn-floating btn-small" routerLink="/einnahmen-form">
-                                <i class="large material-icons">mode_edit</i>
-                            </a>
-                            <ul>
-                                <li><a class="btn-floating green"><i class="material-icons">save_alt</i></a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="hoverable">
+
+
+                <!-- <tr class="hoverable">
                     <td>03</td>
                     <td>Mär</td>
                     <td>17-03-2019</td>
@@ -91,7 +62,7 @@
                             </ul>
                         </div>
                     </td>
-                </tr>
+                </tr> -->
             </tbody>
         </table>
 
@@ -108,4 +79,5 @@
     lassen den weg, weil
     er auch nicht wirklich notwendig ist, oder wir laden alles gleichzeitig, also warten bis alle Daten da sind und dann
     könnte es theoretisch funktionieren.
+    Sieht man wenn man den Beispieldatensatz wieder einkommentiert.
 </p>

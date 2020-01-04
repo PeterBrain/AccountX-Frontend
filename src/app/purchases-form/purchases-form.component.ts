@@ -1,3 +1,10 @@
+import {
+  datepickerMonths,
+  datepickerWeekdays,
+  datepickerWeekdaysShort,
+  datepickerWeekdaysAbbrev,
+  datepickerMonthsShort
+} from '../reuseables/datepicker/datepicker.config';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
@@ -11,62 +18,11 @@ import * as M from 'materialize-css';
 export class PurchasesFormComponent implements OnInit, AfterViewInit {
 
   purchaseFormGroup;
-
-  months =
-    [
-      'Jänner',
-      'Februar',
-      'März',
-      'April',
-      'Mai',
-      'Juni',
-      'Juli',
-      'August',
-      'September',
-      'Oktober',
-      'November',
-      'Dezember'
-    ];
-
-  monthsShort =
-    [
-      'Jän',
-      'Feb',
-      'Mär',
-      'Apr',
-      'Mai',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Okt',
-      'Nov',
-      'Dez'
-    ];
-
-  weekdays =
-    [
-      'Sonntag',
-      'Montag',
-      'Dienstag',
-      'Mittwoch',
-      'Donnerstag',
-      'Freitag',
-      'Samstag'
-    ];
-
-  weekdaysShort =
-    [
-      'So',
-      'Mo',
-      'Di',
-      'Mi',
-      'Do',
-      'Fr',
-      'Sa'
-    ];
-
-  weekdaysAbbrev = ['M', 'D', 'M', 'D', 'F', 'S', 'S'];
+  months = datepickerMonths;
+  monthsShort = datepickerMonthsShort;
+  weekdays = datepickerWeekdays;
+  weekdaysShort = datepickerWeekdaysShort;
+  weekdaysAbbrev = datepickerWeekdaysAbbrev;
 
   constructor(
     private fb: FormBuilder,
