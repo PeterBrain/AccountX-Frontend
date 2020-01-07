@@ -9,7 +9,7 @@ import { PurchasesFormComponent } from './purchases-form/purchases-form.componen
 import { VatComponent } from './vat/vat.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: 'sales', pathMatch: 'full' },
+    { path: '', redirectTo: 'ausgaben', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'einnahmen', component: SalesComponent, canActivate: [AuthGuard] },
     { path: 'einnahmen-form', component: SalesFormComponent, canActivate: [AuthGuard] },

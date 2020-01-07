@@ -31,6 +31,7 @@ export class SalesComponent implements OnInit, AfterViewInit {
 
     const elems = document.querySelectorAll('.dropdown-trigger');
     M.Dropdown.init(elems, { hover: true, constrainWidth: false });
+    //auf false
 
     const tabs = document.querySelectorAll('.tabs');
     M.Tabs.init(tabs);
