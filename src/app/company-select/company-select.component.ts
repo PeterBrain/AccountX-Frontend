@@ -1,3 +1,4 @@
+import { UserService } from './../service/user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompanySelectComponent implements OnInit {
 
-  constructor() { }
+  companies;
+
+  constructor(
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
+    this.userService.getCompanies().subscribe(
+      (response) => {
+        this.companies = response;
+        console.log(this.companies);
+
+      }
+    )
   }
 
 }

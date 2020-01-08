@@ -51,4 +51,8 @@ export class UserService {
             return decodedToken.username;
         }
     }
+
+    getCompanies() {
+        return this.http.get('/api/companies');
+    }
 }
