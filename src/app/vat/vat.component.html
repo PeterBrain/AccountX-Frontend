@@ -9,54 +9,10 @@
                 </tr>
             </thead>
 
-            <tbody>
+            <tbody *ngFor="let vatEntry of vatReport">
                 <tr class="hoverable">
-                    <td>Jän</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Feb</td>
-                    <td>€ 30</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Mär</td>
-                    <td>€ 4</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Apr</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Mai</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Jun</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Jul</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Aug</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Sep</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Okt</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Nov</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Dez</td>
-                    <td>€ -</td>
+                    <td>{{ vatEntry[0].month }}</td>
+                    <td>€ {{ vatEntry[0].ustOut | number:'1.2' }}</td>
                 </tr>
             </tbody>
         </table>
@@ -72,54 +28,10 @@
                 </tr>
             </thead>
 
-            <tbody>
+            <tbody *ngFor="let vatEntry of vatReport">
                 <tr class="hoverable">
-                    <td>Jän</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Feb</td>
-                    <td>€ 17</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Mär</td>
-                    <td>€ 6</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Apr</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Mai</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Jun</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Jul</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Aug</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Sep</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Okt</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Nov</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Dez</td>
-                    <td>€ -</td>
+                    <td>{{ vatEntry[0].month }}</td>
+                    <td>€ {{ vatEntry[0].ustIn | number:'1.2' }}</td>
                 </tr>
             </tbody>
         </table>
@@ -135,54 +47,10 @@
                 </tr>
             </thead>
 
-            <tbody>
+            <tbody *ngFor="let vatEntry of vatReport">
                 <tr class="hoverable">
-                    <td>Jän</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Feb</td>
-                    <td>€ 13</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Mär</td>
-                    <td>€ -2</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Apr</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Mai</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Jun</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Jul</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Aug</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Sep</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Okt</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Nov</td>
-                    <td>€ -</td>
-                </tr>
-                <tr class="hoverable">
-                    <td>Dez</td>
-                    <td>€ -</td>
+                    <td>{{ vatEntry[0].month }}</td>
+                    <td>€ {{ vatEntry[0].ustOut - vatEntry[0].ustIn | number:'1.2' }}</td>
                 </tr>
             </tbody>
         </table>

@@ -23,9 +23,9 @@
                     <td>{{ sale.invDate }}</td>
                     <td>{{ sale.customer }}</td>
                     <td>{{ sale.project }}</td>
-                    <td>{{ sale.ust }}</td>
-                    <td>{{ sale.net }}</td>
-                    <td>{{ sale.gross }}</td>
+                    <td>{{ sale.ust | number:'1.2' }}</td>
+                    <td>{{ sale.net | number:'1.2' }}</td>
+                    <td>{{ sale.gross | number:'1.2' }}</td>
                     <td>{{ sale.cashflowdate }}</td>
                     <td>
                         <div class="fixed-action-btn custom-action-btn">
