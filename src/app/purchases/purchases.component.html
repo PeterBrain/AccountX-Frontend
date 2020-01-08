@@ -6,7 +6,7 @@
                     <th>ReNr.</th>
                     <th>Belegdatum</th>
                     <th>Rechnungsaussteller</th>
-                    <th>Text</th>
+                    <th>Notiz</th>
                     <th>Ust.</th>
                     <th>Netto</th>
                     <th>Brutto</th>
@@ -21,7 +21,7 @@
                     <td>{{ purchase.invNo }}</td>
                     <td>{{ purchase.invDate }}</td>
                     <td>{{ purchase.biller }}</td>
-                    <td>some text</td>
+                    <td>{{ purchase.notes }}</td>
                     <td>{{ purchase.ust }}</td>
                     <td>{{ purchase.net }}</td>
                     <td>{{ purchase.net * (1 + purchase.ust) }}</td>
@@ -45,7 +45,7 @@
     </div>
 </div>
 
-<div class="row">
+<!--<div class="row">
     <div class="col s12">
         <ul class="pagination center">
             <li [ngClass]="{'disabled': activePage === 1, 'waves-effect': activePage !== 1}"
@@ -59,7 +59,7 @@
             </li>
         </ul>
     </div>
-</div>
+</div>-->
 
 <div class="fixed-action-btn">
     <a class="btn-floating btn-large waves-effect waves-light green" routerLink="/ausgaben-form"><i
