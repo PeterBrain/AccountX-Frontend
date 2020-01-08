@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   currentUser;
   currentYear;
   isLoggedIn = false;
+  company;
 
   constructor(
     public router: Router,

@@ -32,8 +32,6 @@ export class CompanySelectComponent implements OnInit, AfterViewInit {
   }
 
   setCompany(companyId) {
-    console.log(this.userService.getCompanyToken());
-
     this.userService.setCompanyToken(companyId);
   }
 }

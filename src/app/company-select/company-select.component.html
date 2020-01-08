@@ -1,26 +1,17 @@
-<p class="container" style="color: red;">
-    Sobald man immer die Company abfragen muss in der man sich gerade befindet,
-    kann man dann auch die anderen Elemente (Tabs) ausblenden. Momentan werde diese ja noch in der
-    Company Select (auf dieser Seite) angezeigt.
-</p>
+<div class="row">
 
-<section>
-    <div class="row">
-
-        <div *ngFor="let company of companies" routerLink="/einnahmen" (click)="setCompany(company.id)"
-            class="col s12 m4">
-            <div class="card custom-card">
-                <div class="card-image">
-                    <img src="../../assets/images/bg/sidenav-bg.jpg">
-                    <span class="card-title">{{ company.name }}</span>
-                </div>
-                <div *ngIf="company.description !== null" class="card-content">
-                    <p>
-                        {{ company.description }}
-                    </p>
-                </div>
+    <div *ngFor="let company of companies" routerLink="/einnahmen" (click)="setCompany(company.id)" class="col s12 m4">
+        <div class="card custom-card">
+            <div class="card-image">
+                <img src="../../assets/images/bg/sidenav-bg.jpg">
+                <span class="card-title">{{ company.name }}</span>
+            </div>
+            <div *ngIf="company.description !== null" class="card-content">
+                <p>
+                    {{ company.description }}
+                </p>
             </div>
         </div>
-
     </div>
-</section>
+
+</div>

@@ -29,22 +29,12 @@ export class UserService {
     }
 
     login(userData: { username: string, password: string }) {
-        // this.getCompanies().subscribe(
-        //     (response) => {
-        //         this.companies = response;
-        //     }
-        // );
-
-        // const companyCount = this.countProperties(this.companies);
-
         this.http.post('/api/api-token-auth/', userData)
             .subscribe((res: any) => {
                 this.isLoggedIn.next(true);
                 localStorage.setItem(this.accessTokenLocalStorageKey, res.token);
 
-                // console.log(companyCount);
-
-                // if more company are available, route to company selection
+                // if more companies are available, route to company selection
                 // if (companyCount > 1) {
                 //     this.router.navigate(['firmen']);
                 // } else {
@@ -60,8 +50,7 @@ export class UserService {
     logout() {
         localStorage.removeItem(this.accessTokenLocalStorageKey);
         this.isLoggedIn.next(false);
-        // resets the companies, can probably be removed when the company is fixed in localstorage
-        // this.companies = null;
+        this.companies = null;
         this.router.navigate(['/login']);
     }
 
