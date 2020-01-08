@@ -21,6 +21,11 @@ export class UserService {
         }
     }
 
+    register(user: { username: string, password: string }) {
+        console.log(user);
+        return this.http.post('/api/users/', user);
+    }
+
     login(userData: { username: string, password: string }) {
         this.http.post('/api/api-token-auth/', userData)
             .subscribe((res: any) => {
@@ -39,8 +44,11 @@ export class UserService {
     }
 
     getUsername() {
-        const token = localStorage.getItem(this.accessTokenLocalStorageKey);
-        const decodedToken = this.jwtHelperService.decodeToken(token);
-        return decodedToken.username;
+        // if token exists, retrieve username
+        if (localStorage.getItem(this.accessTokenLocalStorageKey)) {
+            const token = localStorage.getItem(this.accessTokenLocalStorageKey);
+            const decodedToken = this.jwtHelperService.decodeToken(token);
+            return decodedToken.username;
+        }
     }
 }

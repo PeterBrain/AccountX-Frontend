@@ -1,3 +1,6 @@
+import { CompanyRegistrationComponent } from './company-registration/company-registration.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { CompanySelectComponent } from './company-select/company-select.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth.guard';
@@ -11,6 +14,9 @@ import { VatComponent } from './vat/vat.component';
 const routes: Routes = [
     { path: '', redirectTo: 'ausgaben', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
+    { path: 'registration', component: RegistrationComponent },
+    { path: 'firma', component: CompanySelectComponent, canActivate: [AuthGuard] },
+    { path: 'firma-erstellen', component: CompanyRegistrationComponent },
     { path: 'einnahmen', component: SalesComponent, canActivate: [AuthGuard] },
     { path: 'einnahmen-form', component: SalesFormComponent, canActivate: [AuthGuard] },
     { path: 'einnahmen-form/:id', component: SalesFormComponent, canActivate: [AuthGuard] },

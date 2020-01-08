@@ -1,12 +1,13 @@
 <section>
     <div class="row">
         <div class="col s12 center">
-            <h2>Login</h2>
+            <h2>Konto erstellen</h2>
+            <p style="color: red;">Das funktioniert nur wenn ihr im Backend nicht angemeldet seid!</p>
         </div>
     </div>
 
     <div class="row">
-        <form [formGroup]="loginFormGroup" (ngSubmit)="login()" class="col s12">
+        <form [formGroup]="registrationFormGroup" (ngSubmit)="register()" class="col s12">
             <div class="row">
                 <div class="col s3"></div>
                 <div class="input-field col s6">
@@ -16,6 +17,7 @@
                 </div>
                 <div class="col s3"></div>
             </div>
+
             <div class="row">
                 <div class="col s3"></div>
 
@@ -23,6 +25,18 @@
                     <i class="material-icons prefix">lock</i>
                     <input id="password" type="password" class="validate" formControlName="password" required>
                     <label for="password">Password</label>
+                </div>
+                <div class="col s3"></div>
+            </div>
+
+            <div class="row">
+                <div class="col s3"></div>
+
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">done</i>
+                    <input id="passwordConfirm" type="password" class="validate" formControlName="passwordConfirm"
+                        required>
+                    <label for="passwordConfirm">Password bestätigen</label>
                 </div>
 
                 <div class="col s3"></div>
@@ -32,13 +46,7 @@
                 <div class="col s3"></div>
 
                 <div class="input-field col s6 center">
-                    <button class="btn btn-large waves-effect indigo" type="submit">Login</button>
-                    <br>
-                    <br>
-                    <div class="divider"></div>
-                    <p>
-                        Noch nicht registriert? <a href="#" routerLink="/registration">Erstellen</a> Sie ein Konto
-                    </p>
+                    <button class="btn btn-large waves-effect indigo" type="submit">erstellen</button>
                 </div>
 
                 <div class="col s3"></div>

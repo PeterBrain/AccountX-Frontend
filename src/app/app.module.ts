@@ -14,6 +14,9 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CompanySelectComponent } from './company-select/company-select.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { CompanyRegistrationComponent } from './company-registration/company-registration.component';
 
 export function tokenGetter() {
     return localStorage.getItem('access_token');
@@ -28,7 +31,10 @@ export function tokenGetter() {
         PurchasesFormComponent,
         SalesFormComponent,
         LoginComponent,
-        LogoutComponent
+        LogoutComponent,
+        CompanySelectComponent,
+        RegistrationComponent,
+        CompanyRegistrationComponent
     ],
     imports: [
         BrowserModule,
