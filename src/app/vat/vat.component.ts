@@ -32,7 +32,7 @@ export class VatComponent implements OnInit, AfterViewInit {
     M.Sidenav.init(sidenav);
 
     const elems = document.querySelectorAll('.dropdown-trigger');
-    M.Dropdown.init(elems, { hover: true, constrainWidth: false });
+    M.Dropdown.init(elems, { hover: false, constrainWidth: false });
 
     const tabs = document.querySelectorAll('.tabs');
     M.Tabs.init(tabs);
