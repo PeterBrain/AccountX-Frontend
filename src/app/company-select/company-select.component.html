@@ -6,26 +6,20 @@
 
 <section>
     <div class="row">
-        <div class="col s12 m4"></div>
 
-        <div class="col s12 m4">
+        <div *ngFor="let company of companies" routerLink="/einnahmen" class="col s12 m4">
             <div class="card custom-card">
                 <div class="card-image">
                     <img src="../../assets/images/bg/sidenav-bg.jpg">
-                    <span class="card-title">Company 1</span>
+                    <span class="card-title">{{ company.name }}</span>
                 </div>
-                <div class="card-content">
+                <div *ngIf="company.description !== null" class="card-content">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquam tortor ac gravida
-                        dapibus. Proin est ante, tincidunt et neque sodales, sollicitudin commodo justo.
+                        {{ company.description }}
                     </p>
-                </div>
-                <div class="card-action">
-                    <a href="#">www.company1.com</a>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="col s12 m4"></div>
+    </div>
 </section>

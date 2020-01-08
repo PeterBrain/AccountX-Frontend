@@ -53,6 +53,6 @@ export class UserService {
     }
 
     getCompanies() {
-        return this.http.get('/api/companies');
+        return this.http.get('/api/companies/');
     }
 }

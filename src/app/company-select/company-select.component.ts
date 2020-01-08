@@ -18,10 +18,7 @@ export class CompanySelectComponent implements OnInit {
     this.userService.getCompanies().subscribe(
       (response) => {
         this.companies = response;
-        console.log(this.companies);
-
       }
-    )
+    );
   }
-
 }
