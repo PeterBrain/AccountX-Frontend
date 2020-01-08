@@ -7,7 +7,8 @@
 <section>
     <div class="row">
 
-        <div *ngFor="let company of companies" routerLink="/einnahmen" class="col s12 m4">
+        <div *ngFor="let company of companies" routerLink="/einnahmen" (click)="setCompany(company.id)"
+            class="col s12 m4">
             <div class="card custom-card">
                 <div class="card-image">
                     <img src="../../assets/images/bg/sidenav-bg.jpg">

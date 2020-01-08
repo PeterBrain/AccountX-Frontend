@@ -15,7 +15,7 @@ const routes: Routes = [
     { path: '', redirectTo: 'ausgaben', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'registration', component: RegistrationComponent },
-    { path: 'firma', component: CompanySelectComponent, canActivate: [AuthGuard] },
+    { path: 'firmen', component: CompanySelectComponent, canActivate: [AuthGuard] },
     { path: 'firma-erstellen', component: CompanyRegistrationComponent },
     { path: 'einnahmen', component: SalesComponent, canActivate: [AuthGuard] },
     { path: 'einnahmen-form', component: SalesFormComponent, canActivate: [AuthGuard] },

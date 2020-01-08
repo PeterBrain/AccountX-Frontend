@@ -8,6 +8,9 @@ import { JwtHelperService } from '@auth0/angular-jwt';
     providedIn: 'root'
 })
 export class UserService {
+    companies;
+
+    readonly companyLocalStorageKey = 'company';
 
     readonly accessTokenLocalStorageKey = 'access_token';
     isLoggedIn = new BehaviorSubject(false);
@@ -22,19 +25,33 @@ export class UserService {
     }
 
     register(user: { username: string, password: string }) {
-        console.log(user);
         return this.http.post('/api/users/', user);
     }
 
     login(userData: { username: string, password: string }) {
+        // this.getCompanies().subscribe(
+        //     (response) => {
+        //         this.companies = response;
+        //     }
+        // );
+
+        // const companyCount = this.countProperties(this.companies);
+
         this.http.post('/api/api-token-auth/', userData)
             .subscribe((res: any) => {
                 this.isLoggedIn.next(true);
-                localStorage.setItem('access_token', res.token);
+                localStorage.setItem(this.accessTokenLocalStorageKey, res.token);
 
+                // console.log(companyCount);
 
+                // if more company are available, route to company selection
+                // if (companyCount > 1) {
+                //     this.router.navigate(['firmen']);
+                // } else {
+                //     this.router.navigate(['einnahmen']);
+                // }
 
-                this.router.navigate(['einnahmen']);
+                this.router.navigate(['firmen']);
             }, () => {
                 alert('Wrong username or password');
             });
@@ -43,6 +60,8 @@ export class UserService {
     logout() {
         localStorage.removeItem(this.accessTokenLocalStorageKey);
         this.isLoggedIn.next(false);
+        // resets the companies, can probably be removed when the company is fixed in localstorage
+        // this.companies = null;
         this.router.navigate(['/login']);
     }
 
@@ -57,5 +76,21 @@ export class UserService {
 
     getCompanies() {
         return this.http.get('/api/companies/');
+    }
+
+    setCompany(companyId) {
+        localStorage.setItem(this.companyLocalStorageKey, companyId);
+    }
+
+    countProperties(obj) {
+        let count = 0;
+
+        for (const prop in obj) {
+            if (obj.hasOwnProperty(prop)) {
+                ++count;
+            }
+        }
+
+        return count;
     }
 }
