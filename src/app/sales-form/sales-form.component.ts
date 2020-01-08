@@ -56,7 +56,8 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
 
     const datepicker = document.querySelectorAll('.datepicker');
     M.Datepicker.init(datepicker, {
-      format: 'dd-mm-yyyy',
+      format: 'yyyy-mm-dd',
+      autoClose: true,
       i18n: {
         cancel: 'Abbrechen',
         months: this.months,

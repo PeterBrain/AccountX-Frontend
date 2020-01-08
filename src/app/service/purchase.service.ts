@@ -9,12 +9,15 @@ export class PurchaseService {
 
     constructor(
         private http: HttpClient,
-        private userService: UserService) {
-    }
+        private userService: UserService) {}
 
     getPurchases() {
         const companyId = this.userService.getCompanyToken();
         return this.http.get('/api/purchases/?company=' + companyId);
+    }
+
+    getPurchase(id) {
+        return this.http.get('/api/purchases/' + id + '/');
     }
 
     createPurchase(purchase) {
@@ -22,10 +25,10 @@ export class PurchaseService {
     }
 
     updatePurchase(purchase) {
-        return this.http.put('/api/purchases/' + purchase.id, purchase);
+        return this.http.put('/api/purchases/' + purchase.id + '/', purchase);
     }
 
     deletePurchase(purchase) {
-        return this.http.delete('/api/purchases/' + purchase.id, purchase);
+        return this.http.delete('/api/purchases/' + purchase.id + '/', purchase);
     }
 }
