@@ -1,6 +1,7 @@
 import { VatService } from './../service/vat.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as M from 'materialize-css';
+import {UserService} from '../service/user.service';
 
 @Component({
   selector: 'app-vat',
@@ -12,7 +13,6 @@ export class VatComponent implements OnInit, AfterViewInit {
   vatReport = ["", "", "", "", "", "", "", "", "", "", "", ""]; // initialize array
   //months = ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"];
   thisYear = new Date().getFullYear().toString();
-  //nextYear = (new Date().getFullYear() + 1).toString();
   months = [
       ["Jan", this.thisYear + "-02-01", this.thisYear + "-01-01"],
       ["Feb", this.thisYear + "-03-01", this.thisYear + "-02-01"],
@@ -27,10 +27,11 @@ export class VatComponent implements OnInit, AfterViewInit {
       ["Nov", this.thisYear + "-12-01", this.thisYear + "-11-01"],
       ["Dez", this.thisYear + "-12-31", this.thisYear + "-12-01"]
   ];
-  companyId = 1; // should come from current logged in company (localstorage or cookie)
+  companyId = this.userService.getCompanyToken();
 
   constructor(
-    private vatService: VatService
+    private vatService: VatService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {

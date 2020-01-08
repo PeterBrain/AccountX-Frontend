@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CompanySelectComponent } from './company-select/company-select.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { CompanyRegistrationComponent } from './company-registration/company-registration.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 export function tokenGetter() {
     return localStorage.getItem('access_token');
@@ -34,7 +35,8 @@ export function tokenGetter() {
         LogoutComponent,
         CompanySelectComponent,
         RegistrationComponent,
-        CompanyRegistrationComponent
+        CompanyRegistrationComponent,
+        NotFoundComponent
     ],
     imports: [
         BrowserModule,
