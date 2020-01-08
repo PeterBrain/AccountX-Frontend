@@ -9,11 +9,25 @@ import * as M from 'materialize-css';
 })
 export class VatComponent implements OnInit, AfterViewInit {
 
-  vatReport = [];
-  months = ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"];
+  vatReport = ["", "", "", "", "", "", "", "", "", "", "", ""]; // initialize array
+  //months = ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"];
+  thisYear = new Date().getFullYear().toString();
+  //nextYear = (new Date().getFullYear() + 1).toString();
+  months = [
+      ["Jan", this.thisYear + "-02-01", this.thisYear + "-01-01"],
+      ["Feb", this.thisYear + "-03-01", this.thisYear + "-02-01"],
+      ["Mar", this.thisYear + "-04-01", this.thisYear + "-03-01"],
+      ["Apr", this.thisYear + "-05-01", this.thisYear + "-04-01"],
+      ["Mai", this.thisYear + "-06-01", this.thisYear + "-05-01"],
+      ["Jun", this.thisYear + "-07-01", this.thisYear + "-06-01"],
+      ["Jul", this.thisYear + "-08-01", this.thisYear + "-07-01"],
+      ["Aug", this.thisYear + "-09-01", this.thisYear + "-08-01"],
+      ["Sep", this.thisYear + "-10-01", this.thisYear + "-09-01"],
+      ["Okt", this.thisYear + "-11-01", this.thisYear + "-10-01"],
+      ["Nov", this.thisYear + "-12-01", this.thisYear + "-11-01"],
+      ["Dez", this.thisYear + "-12-31", this.thisYear + "-12-01"]
+  ];
   companyId = 1; // should come from current logged in company (localstorage or cookie)
-  beforeDate = '2020-01-01';
-  afterDate = '2019-12-01';
 
   constructor(
     private vatService: VatService
@@ -21,7 +35,6 @@ export class VatComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.getData();
-    this.vatReport.sort();
   }
 
   ngAfterViewInit() {
@@ -36,91 +49,14 @@ export class VatComponent implements OnInit, AfterViewInit {
   }
 
   getData() {
-      this.vatService.getVatReport(this.companyId, '2020-02-01', '2020-01-01').subscribe(
-          (response) => {
-              response[0]['month'] = this.months[0];
-              console.log(response);
-              this.vatReport.push(response);
-          }
-      );
-
-      this.vatService.getVatReport(this.companyId, '2020-03-01', '2020-02-01').subscribe(
-          (response) => {
-              response[0]['month'] = this.months[1];
-              this.vatReport.push(response);
-          }
-      );
-
-      this.vatService.getVatReport(this.companyId, '2020-04-01', '2020-03-01').subscribe(
-          (response) => {
-              response[0]['month'] = this.months[2];
-              this.vatReport.push(response);
-          }
-      );
-
-      this.vatService.getVatReport(this.companyId, '2020-05-01', '2020-04-01').subscribe(
-          (response) => {
-              response[0]['month'] = this.months[3];
-              this.vatReport.push(response);
-          }
-      );
-
-      this.vatService.getVatReport(this.companyId, '2020-06-01', '2020-05-01').subscribe(
-          (response) => {
-              response[0]['month'] = this.months[4];
-              this.vatReport.push(response);
-          }
-      );
-
-      this.vatService.getVatReport(this.companyId, '2020-07-01', '2020-06-01').subscribe(
-          (response) => {
-              response[0]['month'] = this.months[5];
-              this.vatReport.push(response);
-          }
-      );
-
-      this.vatService.getVatReport(this.companyId, '2020-08-01', '2020-07-01').subscribe(
-          (response) => {
-              response[0]['month'] = this.months[6];
-              this.vatReport.push(response);
-          }
-      );
-
-      this.vatService.getVatReport(this.companyId, '2020-09-01', '2020-08-01').subscribe(
-          (response) => {
-              response[0]['month'] = this.months[7];
-              this.vatReport.push(response);
-          }
-      );
-
-      this.vatService.getVatReport(this.companyId, '2020-10-01', '2020-09-01').subscribe(
-          (response) => {
-              response[0]['month'] = this.months[8];
-              this.vatReport.push(response);
-          }
-      );
-
-      this.vatService.getVatReport(this.companyId, '2020-11-01', '2020-10-01').subscribe(
-          (response) => {
-              response[0]['month'] = this.months[9];
-              this.vatReport.push(response);
-          }
-      );
-
-      this.vatService.getVatReport(this.companyId, '2020-12-01', '2020-11-01').subscribe(
-          (response) => {
-              response[0]['month'] = this.months[10];
-              this.vatReport.push(response);
-          }
-      );
-
-      this.vatService.getVatReport(this.companyId, this.beforeDate, this.afterDate).subscribe(
-          (response) => {
-              response[0]['month'] = this.months[11];
-              this.vatReport.push(response);
-              console.log(this.vatReport);
-          }
-      );
+      this.months.forEach((element, index) => {
+          this.vatService.getVatReport(this.companyId, element[1], element[2]).subscribe(
+              (response) => {
+                  response[0]['month'] = element[0];
+                  this.vatReport[index] = response[0];
+              }
+          );
+      });
   }
 
 }

@@ -4,7 +4,7 @@ import {
   datepickerWeekdaysShort,
   datepickerWeekdaysAbbrev,
   datepickerMonthsShort
-} from '../reuseables/datepicker/datepicker.config';
+} from '../reusables/datepicker/datepicker.config';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, AfterViewInit } from '@angular/core';

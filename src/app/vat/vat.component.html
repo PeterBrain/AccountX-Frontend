@@ -11,8 +11,8 @@
 
             <tbody *ngFor="let vatEntry of vatReport">
                 <tr class="hoverable">
-                    <td>{{ vatEntry[0].month }}</td>
-                    <td>€ {{ vatEntry[0].ustOut | number:'1.2' }}</td>
+                    <td>{{ vatEntry.month }}</td>
+                    <td>€ {{ vatEntry.ustOut | number:'1.2' }}</td>
                 </tr>
             </tbody>
         </table>
@@ -30,8 +30,8 @@
 
             <tbody *ngFor="let vatEntry of vatReport">
                 <tr class="hoverable">
-                    <td>{{ vatEntry[0].month }}</td>
-                    <td>€ {{ vatEntry[0].ustIn | number:'1.2' }}</td>
+                    <td>{{ vatEntry.month }}</td>
+                    <td>€ {{ vatEntry.ustIn | number:'1.2' }}</td>
                 </tr>
             </tbody>
         </table>
@@ -49,8 +49,8 @@
 
             <tbody *ngFor="let vatEntry of vatReport">
                 <tr class="hoverable">
-                    <td>{{ vatEntry[0].month }}</td>
-                    <td>€ {{ vatEntry[0].ustOut - vatEntry[0].ustIn | number:'1.2' }}</td>
+                    <td>{{ vatEntry.month }}</td>
+                    <td>€ {{ vatEntry.ustOut - vatEntry.ustIn | number:'1.2' }}</td>
                 </tr>
             </tbody>
         </table>

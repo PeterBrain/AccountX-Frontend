@@ -1,87 +1,75 @@
-<div class="navbar-fixed">
-    <nav class="nav-wrapper indigo">
-        <a routerLink="/" class="brand-logo center">AccountX</a>
-        <a href="" class="sidenav-trigger" data-target="mobileNav" *ngIf="isLoggedIn">
-            <i class="material-icons">view_module</i>
-        </a>
+<header>
+    <div class="navbar-fixed">
+        <nav class="nav-wrapper indigo">
+            <a routerLink="/" class="brand-logo center">AccountX</a>
+            <a href="" class="sidenav-trigger" data-target="mobileNav" *ngIf="isLoggedIn">
+                <i class="material-icons">view_module</i>
+            </a>
 
-        <ul id="dropdown" class="dropdown-content" *ngIf="isLoggedIn">
-            <li><a href="#"><i class="material-icons left">account_circle</i>Profil</a></li>
-            <li><a href="#"><i class="material-icons left">settings_applications</i>Einstellungen</a></li>
-            <li class="divider"></li>
-            <li><a (click)="logout()"><i class="material-icons left">exit_to_app</i>Logout</a></li>
-        </ul>
-
-        <ul class="right" *ngIf="isLoggedIn">
-            <li><a href="#" class="dropdown-trigger" data-target="dropdown"><i
-                        class="material-icons right">more_vert</i></a>
-            </li>
-        </ul>
-    </nav>
-</div>
-
-<ul id="mobileNav" class="sidenav" *ngIf="isLoggedIn">
-    <li>
-        <div class="user-view">
-            <div class="background">
-                <img src="../assets/images/bg/sidenav-bg.jpg">
-            </div>
-            <a href="#"><img class="circle" src="../assets/images/people/example-portrait.jpg"></a>
-            <a href="#"><span class="white-text name">{{ currentUser }}</span></a>
-            <a href="#"><span class="white-text email">{{ currentUser }}@accountx.com</span></a>
-        </div>
-    </li>
-
-    <li>
-        <div class="divider"></div>
-    </li>
-
-    <li><a class="subheader"><i class="material-icons">account_balance_wallet</i>Ausgangsrechnungen</a></li>
-
-    <li><a class="waves-effect sidenav-close" routerLink="/einnahmen">Übersicht</a></li>
-    <li><a class="waves-effect sidenav-close" routerLink="/einnahmen-form">Erstellen</a></li>
-
-    <li>
-        <div class="divider"></div>
-    </li>
-
-    <li><a class="subheader"><i class="material-icons">payment</i>Eingangsrechnungen</a></li>
-
-    <li><a class="waves-effect sidenav-close" routerLink="/ausgaben">Übersicht</a></li>
-    <li><a class="waves-effect sidenav-close" routerLink="/ausgaben-form">Erstellen</a></li>
-
-    <li>
-        <div class="divider"></div>
-    </li>
-
-    <li><a class="subheader"><i class="material-icons">account_balance</i>Ust. Abgabe</a></li>
-
-    <li><a class="waves-effect sidenav-close" routerLink="/ust">Übersicht</a></li>
-</ul>
-
-<section *ngIf="isLoggedIn">
-    <div class="row">
-        <div class="col s12 nav-tabs">
-            <ul class="tabs">
-                <li class="tab col s4"><a class="active" routerLink="einnahmen">Einnahmen</a></li>
-                <li class="tab col s4"><a routerLink="ausgaben">Ausgaben</a></li>
-                <li class="tab col s4"><a routerLink="ust">Ust. Abgabe</a></li>
+            <ul id="dropdown" class="dropdown-content" *ngIf="isLoggedIn">
+                <li><a href="#"><i class="material-icons left">account_circle</i>Profil</a></li>
+                <li><a href="#"><i class="material-icons left">settings_applications</i>Einstellungen</a></li>
+                <li class="divider"></li>
+                <li><a (click)="logout()"><i class="material-icons left">exit_to_app</i>Logout</a></li>
             </ul>
-        </div>
-    </div>
-</section>
 
-<section>
+            <ul class="right" *ngIf="isLoggedIn">
+                <li>
+                    <a href="#" class="dropdown-trigger" data-target="dropdown"><i
+                        class="material-icons right">more_vert</i></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <ul id="mobileNav" class="sidenav" *ngIf="isLoggedIn">
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img src="../assets/images/bg/sidenav-bg.jpg">
+                </div>
+                <a href="#"><img class="circle" src="../assets/images/people/example-portrait.jpg"></a>
+                <a href="#"><span class="white-text name">{{ currentUser }}</span></a>
+                <a href="#"><span class="white-text email">{{ currentUser }}@accountx.com</span></a>
+            </div>
+        </li>
+
+        <li><div class="divider"></div></li>
+
+        <li><a class="subheader"><i class="material-icons">account_balance_wallet</i>Ausgangsrechnungen</a></li>
+        <li><a class="waves-effect sidenav-close" routerLink="/einnahmen">Übersicht</a></li>
+        <li><a class="waves-effect sidenav-close" routerLink="/einnahmen-form">Erstellen</a></li>
+
+        <li><div class="divider"></div></li>
+
+        <li><a class="subheader"><i class="material-icons">payment</i>Eingangsrechnungen</a></li>
+        <li><a class="waves-effect sidenav-close" routerLink="/ausgaben">Übersicht</a></li>
+        <li><a class="waves-effect sidenav-close" routerLink="/ausgaben-form">Erstellen</a></li>
+
+        <li><div class="divider"></div></li>
+
+        <li><a class="subheader"><i class="material-icons">account_balance</i>Ust. Abgabe</a></li>
+        <li><a class="waves-effect sidenav-close" routerLink="/ust">Übersicht</a></li>
+    </ul>
+</header>
+
+<main>
+    <section *ngIf="isLoggedIn">
+        <div class="row">
+            <div class="col s12 nav-tabs">
+                <ul class="tabs">
+                    <li class="tab col s4"><a routerLink="einnahmen">Einnahmen</a></li>
+                    <li class="tab col s4"><a routerLink="ausgaben">Ausgaben</a></li>
+                    <li class="tab col s4"><a routerLink="ust">Ust. Abgabe</a></li>
+                </ul>
+                <p>Tabs sind in dem fall nicht richtig eingesetzt. Die werden zum Beispiel für Anchors auf einer Seite verwendet und nicht seitenübergreifend als Menü. Jetzt werden sie auf jeder Seite neu initialisiert und deswegen passt der Effekt auch gar nicht dazu.</p>
+                <p>The tabs structure consists of an unordered list of tabs that have hashes corresponding to tab ids. Then when you click on each tab, only the container with the corresponding tab id will become visible.</p>
+            </div>
+        </div>
+    </section>
+
     <router-outlet></router-outlet>
-</section>
-
-<section>
-    <div class="row">
-        <div class="col s12">
-            <br>
-        </div>
-    </div>
-</section>
+</main>
 
 <footer class="footer">
     <div class="container">

@@ -60,10 +60,10 @@ export class PurchasesComponent implements OnInit, AfterViewInit {
     // delete will only be possible in the forms component
     // prevents accidental deletings in list views
 
-    // deletePurchase(booking: any) {
-    //     this.bookingService.deleteBooking(booking).subscribe(() => {
-    //         this.ngOnInit();
-    //     });
-    // }
+    /*deletePurchase(booking: any) {
+        this.bookingService.deleteBooking(booking).subscribe(() => {
+            this.ngOnInit();
+        });
+    }*/
 
 }
