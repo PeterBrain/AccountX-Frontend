@@ -11,8 +11,8 @@ import * as M from 'materialize-css';
 export class PurchasesComponent implements OnInit, AfterViewInit {
 
     purchases;
-    paginationPages = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    activePage = this.paginationPages !== undefined ? this.paginationPages[0] : null;
+    /*paginationPages = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    activePage = this.paginationPages !== undefined ? this.paginationPages[0] : null;*/
 
     constructor(
         private http: HttpClient,
@@ -47,7 +47,7 @@ export class PurchasesComponent implements OnInit, AfterViewInit {
         M.FloatingActionButton.init(actionBtn);
     }
 
-    setActivePage(page) {
+    /*setActivePage(page) {
         if (page === 'next') {
             if (this.activePage < this.paginationPages.length) {
                 this.activePage += 1;
@@ -59,7 +59,7 @@ export class PurchasesComponent implements OnInit, AfterViewInit {
         } else {
             this.activePage = page + 1;
         }
-    }
+    }*/
 
     // delete will only be possible in the forms component
     // prevents accidental deletings in list views
