@@ -10,7 +10,6 @@ import * as M from 'materialize-css';
 export class SalesComponent implements OnInit, AfterViewInit {
 
   sales;
-  pagination;
 
   constructor(
     private saleService: SaleService
@@ -19,8 +18,7 @@ export class SalesComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.saleService.getSales().subscribe(
       (response) => {
-        this.pagination = response;
-        this.sales = this.pagination.results;
+        this.sales = response;
         console.log(this.sales);
       }
     );
