@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompanySelectComponent implements OnInit {
 
-  companiesObject;
+  // companiesObject;
   companies;
 
   constructor(
@@ -18,8 +18,9 @@ export class CompanySelectComponent implements OnInit {
   ngOnInit() {
     this.userService.getCompanies().subscribe(
       (response) => {
-        this.companiesObject = response;
-        this.companies = this.companiesObject.results;
+        // this.companiesObject = response;
+        // this.companies = this.companiesObject.results;
+        this.companies = response;
       }
     );
   }
