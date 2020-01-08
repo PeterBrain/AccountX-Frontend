@@ -31,6 +31,9 @@ export class UserService {
             .subscribe((res: any) => {
                 this.isLoggedIn.next(true);
                 localStorage.setItem('access_token', res.token);
+
+
+
                 this.router.navigate(['einnahmen']);
             }, () => {
                 alert('Wrong username or password');
