@@ -9,7 +9,6 @@ import * as M from 'materialize-css';
 })
 export class CompanySelectComponent implements OnInit, AfterViewInit {
 
-  // companiesObject;
   companies;
 
   constructor(
@@ -19,8 +18,6 @@ export class CompanySelectComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.userService.getCompanies().subscribe(
       (response) => {
-        // this.companiesObject = response;
-        // this.companies = this.companiesObject.results;
         this.companies = response;
       }
     );
@@ -35,7 +32,8 @@ export class CompanySelectComponent implements OnInit, AfterViewInit {
   }
 
   setCompany(companyId) {
-    console.log('company set: ' + companyId);
-    this.userService.setCompany(companyId);
+    console.log(this.userService.getCompanyToken());
+
+    this.userService.setCompanyToken(companyId);
   }
 }

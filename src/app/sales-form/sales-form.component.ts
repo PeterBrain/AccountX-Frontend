@@ -72,7 +72,7 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
   }
 
   saveForm() {
-    console.log('saved form');
+    alert('saved form');
     this.router.navigate(['/einnahmen']);
   }
 }

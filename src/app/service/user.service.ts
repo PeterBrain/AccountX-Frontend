@@ -78,7 +78,11 @@ export class UserService {
         return this.http.get('/api/companies/');
     }
 
-    setCompany(companyId) {
+    getCompanyToken() {
+        return localStorage.getItem(this.companyLocalStorageKey);
+    }
+
+    setCompanyToken(companyId) {
         localStorage.setItem(this.companyLocalStorageKey, companyId);
     }
 

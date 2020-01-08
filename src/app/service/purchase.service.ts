@@ -1,3 +1,4 @@
+import { UserService } from './user.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -6,11 +7,14 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PurchaseService {
 
-    constructor(private http: HttpClient) {
+    constructor(
+        private http: HttpClient,
+        private userService: UserService) {
     }
 
     getPurchases() {
-        return this.http.get('/api/purchases/');
+        const companyId = this.userService.getCompanyToken();
+        return this.http.get('/api/purchases/?company=' + companyId);
     }
 
     createPurchase(purchase) {

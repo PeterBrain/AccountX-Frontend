@@ -23,14 +23,10 @@ export class PurchasesComponent implements OnInit, AfterViewInit {
         this.purchaseService.getPurchases().subscribe(
             (response) => {
                 this.purchases = response;
+                console.log('Purchases object: ');
                 console.log(this.purchases);
             }
         );
-
-        // for pagination we need getBookings(paginationRange)
-        // so only booking of the current pagination are returned
-        // at the beginning is defined how many bookings are there and how often are they split in to pages
-        // eg. 15 bookings à 10 bookings per page equals 10 booking in range 1-10 and 5 booking in range 11-15
     }
 
     ngAfterViewInit() {
