@@ -10,6 +10,7 @@ import * as M from 'materialize-css';
 export class SalesComponent implements OnInit, AfterViewInit {
 
   sales;
+  pagination;
 
   constructor(
     private saleService: SaleService
@@ -18,7 +19,8 @@ export class SalesComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.saleService.getSales().subscribe(
       (response) => {
-        this.sales = response;
+        this.pagination = response;
+        this.sales = this.pagination.results;
         console.log(this.sales);
       }
     );
@@ -29,7 +31,7 @@ export class SalesComponent implements OnInit, AfterViewInit {
     M.Sidenav.init(sidenav);
 
     const elems = document.querySelectorAll('.dropdown-trigger');
-    M.Dropdown.init(elems, { hover: true, constrainWidth: false });
+    M.Dropdown.init(elems, { hover: false, constrainWidth: false });
     //auf false
 
     const tabs = document.querySelectorAll('.tabs');

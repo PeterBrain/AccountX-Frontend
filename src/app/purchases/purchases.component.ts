@@ -11,6 +11,7 @@ import * as M from 'materialize-css';
 export class PurchasesComponent implements OnInit, AfterViewInit {
 
     purchases;
+    pagination;
 
     paginationPages = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     activePage = this.paginationPages !== undefined ? this.paginationPages[0] : null;
@@ -23,7 +24,8 @@ export class PurchasesComponent implements OnInit, AfterViewInit {
     ngOnInit() {
         this.purchaseService.getPurchases().subscribe(
             (response) => {
-                this.purchases = response;
+                this.pagination = response;
+                this.purchases = this.pagination.results;
                 console.log(this.purchases);
             }
         );
@@ -39,7 +41,7 @@ export class PurchasesComponent implements OnInit, AfterViewInit {
         M.Sidenav.init(sidenav);
 
         const elems = document.querySelectorAll('.dropdown-trigger');
-        M.Dropdown.init(elems, { hover: true, constrainWidth: false });
+        M.Dropdown.init(elems, { hover: false, constrainWidth: false });
 
         const tabs = document.querySelectorAll('.tabs');
         M.Tabs.init(tabs);
