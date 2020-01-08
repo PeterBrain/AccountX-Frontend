@@ -1,3 +1,4 @@
+import { VatService } from './../service/vat.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as M from 'materialize-css';
 
@@ -8,9 +9,22 @@ import * as M from 'materialize-css';
 })
 export class VatComponent implements OnInit, AfterViewInit {
 
-  constructor() { }
+  vatReport;
+  companyId = 1; // should come from current logged in company (localstorage or cookie) 
+  startDate = '2022-02-01';
+  endDate = '2012-02-1';
+
+  constructor(
+    private vatService: VatService
+  ) { }
 
   ngOnInit() {
+    this.vatService.getVatReport(this.companyId, this.startDate, this.endDate).subscribe(
+      (response) => {
+        this.vatReport = response;
+        console.log(this.vatReport);
+      }
+    );
   }
 
   ngAfterViewInit() {

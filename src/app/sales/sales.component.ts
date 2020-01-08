@@ -20,7 +20,6 @@ export class SalesComponent implements OnInit, AfterViewInit {
       (response) => {
         this.sales = response;
         console.log(this.sales);
-
       }
     );
   }
