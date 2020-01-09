@@ -12,6 +12,7 @@ import * as M from 'materialize-css';
 import {HttpClient} from '@angular/common/http';
 import {PurchaseService} from '../service/purchase.service';
 import {UserService} from '../service/user.service';
+import {BookingTypeService} from '../service/booking-type.service';
 
 @Component({
   selector: 'app-purchases-form',
@@ -27,6 +28,7 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
   weekdaysShort = datepickerWeekdaysShort;
   weekdaysAbbrev = datepickerWeekdaysAbbrev;
   companyOptions;
+  bookingTypeOptions;
   ust;
   id;
 
@@ -36,6 +38,7 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
     private http: HttpClient,
     private route: ActivatedRoute,
     private purchaseService: PurchaseService,
+    private bookingTypeService: BookingTypeService,
     private userService: UserService
   ) { }
 
@@ -66,6 +69,10 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
 
     this.userService.getCompanies().subscribe((result) => {
       this.companyOptions = result;
+    });
+
+    this.bookingTypeService.getBookingTypes().subscribe((result) => {
+      this.bookingTypeOptions = result;
     });
   }
 
