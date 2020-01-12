@@ -16,7 +16,7 @@
             <ul class="right" *ngIf="isLoggedIn">
                 <li>
                     <a href="#" class="dropdown-trigger" data-target="dropdown"><i
-                        class="material-icons right">more_vert</i></a>
+                            class="material-icons right">more_vert</i></a>
                 </li>
             </ul>
         </nav>
@@ -34,25 +34,33 @@
             </div>
         </li>
 
-        <li><div class="divider"></div></li>
+        <li>
+            <div class="divider"></div>
+        </li>
 
         <li><a class="subheader"><i class="material-icons">business</i>Firmen</a></li>
         <li><a class="waves-effect sidenav-close" routerLink="/firmen">Übersicht</a></li>
         <!--<li><a class="waves-effect sidenav-close" routerLink="/firma-erstellen">Erstellen</a></li>-->
 
-        <li><div class="divider"></div></li>
+        <li>
+            <div class="divider"></div>
+        </li>
 
         <li><a class="subheader"><i class="material-icons">account_balance_wallet</i>Ausgangsrechnungen</a></li>
         <li><a class="waves-effect sidenav-close" routerLink="/einnahmen">Übersicht</a></li>
         <li><a class="waves-effect sidenav-close" routerLink="/einnahmen-form">Erstellen</a></li>
 
-        <li><div class="divider"></div></li>
+        <li>
+            <div class="divider"></div>
+        </li>
 
         <li><a class="subheader"><i class="material-icons">payment</i>Eingangsrechnungen</a></li>
         <li><a class="waves-effect sidenav-close" routerLink="/ausgaben">Übersicht</a></li>
         <li><a class="waves-effect sidenav-close" routerLink="/ausgaben-form">Erstellen</a></li>
 
-        <li><div class="divider"></div></li>
+        <li>
+            <div class="divider"></div>
+        </li>
 
         <li><a class="subheader"><i class="material-icons">account_balance</i>Ust. Abgabe</a></li>
         <li><a class="waves-effect sidenav-close" routerLink="/ust">Übersicht</a></li>
@@ -68,8 +76,17 @@
                     <li class="tab col s4"><a routerLink="ausgaben">Ausgaben</a></li>
                     <li class="tab col s4"><a routerLink="ust">Ust. Abgabe</a></li>
                 </ul>
-                <p>Tabs sind in dem fall nicht richtig eingesetzt. Die werden zum Beispiel für Anchors auf einer Seite verwendet und nicht seitenübergreifend als Menü. Jetzt werden sie auf jeder Seite neu initialisiert und deswegen passt der Effekt auch gar nicht dazu.</p>
-                <p>The tabs structure consists of an unordered list of tabs that have hashes corresponding to tab ids. Then when you click on each tab, only the container with the corresponding tab id will become visible.</p>
+                <p>Tabs sind in dem fall nicht richtig eingesetzt. Die werden zum Beispiel für Anchors auf einer Seite
+                    verwendet und nicht seitenübergreifend als Menü. Jetzt werden sie auf jeder Seite neu initialisiert
+                    und deswegen passt der Effekt auch gar nicht dazu.</p>
+                <p>
+                    Repl: Dann werden wir sie momentan mal entfernen, solange es nicht eine besser Lösung gibt. Das
+                    Sidenav Menü funktioniert ja in der Zwischenzeit mal gut.
+                </p>
+                <p><i>The tabs structure consists of an unordered list of tabs that have hashes corresponding to tab
+                        ids.
+                        Then when you click on each tab, only the container with the corresponding tab id will become
+                        visible.</i></p>
             </div>
         </div>
     </section>
