@@ -4,16 +4,16 @@
             <h4>Umsatzsteuer</h4>
             <table class="striped responsive-table">
                 <thead>
-                <tr>
-                    <th>Monat</th>
-                    <th>Summe</th>
-                </tr>
+                    <tr>
+                        <th>Monat</th>
+                        <th>Summe</th>
+                    </tr>
                 </thead>
                 <tbody *ngFor="let vatEntry of vatReport">
-                <tr class="hoverable">
-                    <td>{{ vatEntry.month }}</td>
-                    <td>€ {{ vatEntry.ustOut | number:'1.2' }}</td>
-                </tr>
+                    <tr class="hoverable">
+                        <td>{{ vatEntry.month }}</td>
+                        <td>€ {{ vatEntry.ustIn | number:'1.2' }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -22,16 +22,16 @@
             <h4>Vorsteuer</h4>
             <table class="striped responsive-table">
                 <thead>
-                <tr>
-                    <th>Monat</th>
-                    <th>Summe</th>
-                </tr>
+                    <tr>
+                        <th>Monat</th>
+                        <th>Summe</th>
+                    </tr>
                 </thead>
                 <tbody *ngFor="let vatEntry of vatReport">
-                <tr class="hoverable">
-                    <td>{{ vatEntry.month }}</td>
-                    <td>€ {{ vatEntry.ustIn | number:'1.2' }}</td>
-                </tr>
+                    <tr class="hoverable">
+                        <td>{{ vatEntry.month }}</td>
+                        <td>€ {{ vatEntry.ustOut | number:'1.2' }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -40,17 +40,18 @@
             <h4>Ust. Zahllast</h4>
             <table class="striped responsive-table">
                 <thead>
-                <tr>
-                    <th>Monat</th>
-                    <th>Betrag</th>
-                </tr>
+                    <tr>
+                        <th>Monat</th>
+                        <th>Betrag</th>
+                    </tr>
                 </thead>
                 <tbody *ngFor="let vatEntry of vatReport">
-                <tr class="hoverable">
-                    <td>{{ vatEntry.month }}</td>
-                    <td [ngClass]="{'green-text text-darken-2' : (vatEntry.ustOut - vatEntry.ustIn) < 0, 'red-text text-darken-2' : (vatEntry.ustOut - vatEntry.ustIn) > 0}"
-                    >€ {{ vatEntry.ustOut - vatEntry.ustIn | number:'1.2' }}</td>
-                </tr>
+                    <tr class="hoverable">
+                        <td>{{ vatEntry.month }}</td>
+                        <td
+                            [ngClass]="{'green-text text-darken-2' : (vatEntry.ustIn - vatEntry.ustOut) < 0, 'red-text text-darken-2' : (vatEntry.ustIn - vatEntry.ustOut) > 0}">
+                            € {{ vatEntry.ustIn - vatEntry.ustOut | number:'1.2' }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
