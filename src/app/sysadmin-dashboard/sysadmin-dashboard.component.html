@@ -1,0 +1,34 @@
+<section>
+    <div class="row">
+        <div class="col m6">
+            <ul class="collection with-header">
+                <li class="collection-header">
+                    <h4>Firmen:</h4>
+                </li>
+
+                <li *ngFor="let company of companies" class="collection-item avatar">
+                    <img src="../../assets/images/bg/sidenav-bg.jpg" alt="{{ company.name }}" class="circle">
+                    <span class="title">{{ company.name }}</span>
+                    <p *ngIf="company.description !== null">Description: <br>
+                        {{ company.description }}
+                    </p>
+                    <a (click)="getUsersOfCompany(company.id)" class="secondary-content"><i
+                            class="material-icons">keyboard_arrow_right</i></a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col m6">
+            <ul class="collection with-header">
+                <li class="collection-header">
+                    <h4>Mitarbeiter:</h4>
+                </li>
+
+                <li *ngFor="let user of usersOfCompany" class="collection-item">
+                    <div>{{ user.username }}<a href="#" class="secondary-content"><i
+                                class="material-icons">mode_edit</i></a></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>

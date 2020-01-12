@@ -54,6 +54,10 @@ export class UserService {
         this.router.navigate(['/login']);
     }
 
+    getUsersOfCompany(companyId) {
+        return this.http.get('/api/users/?cid=' + companyId);
+    }
+
     getUsername() {
         // if token exists, retrieve username
         if (localStorage.getItem(this.accessTokenLocalStorageKey)) {
@@ -75,15 +79,16 @@ export class UserService {
         localStorage.setItem(this.companyLocalStorageKey, companyId);
     }
 
-    countProperties(obj) {
-        let count = 0;
+    // counts object properties of object and return amount
+    // countProperties(obj) {
+    //     let count = 0;
 
-        for (const prop in obj) {
-            if (obj.hasOwnProperty(prop)) {
-                ++count;
-            }
-        }
+    //     for (const prop in obj) {
+    //         if (obj.hasOwnProperty(prop)) {
+    //             ++count;
+    //         }
+    //     }
 
-        return count;
-    }
+    //     return count;
+    // }
 }

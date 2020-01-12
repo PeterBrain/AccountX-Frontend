@@ -18,6 +18,7 @@ import { CompanySelectComponent } from './company-select/company-select.componen
 import { RegistrationComponent } from './registration/registration.component';
 import { CompanyRegistrationComponent } from './company-registration/company-registration.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { SysadminDashboardComponent } from './sysadmin-dashboard/sysadmin-dashboard.component';
 
 export function tokenGetter() {
     return localStorage.getItem('access_token');
@@ -36,7 +37,8 @@ export function tokenGetter() {
         CompanySelectComponent,
         RegistrationComponent,
         CompanyRegistrationComponent,
-        NotFoundComponent
+        NotFoundComponent,
+        SysadminDashboardComponent
     ],
     imports: [
         BrowserModule,

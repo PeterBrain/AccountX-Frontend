@@ -3,13 +3,13 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as M from 'materialize-css';
 
 @Component({
-  selector: 'app-company-select',
-  templateUrl: './company-select.component.html',
-  styleUrls: ['./company-select.component.scss']
+  selector: 'app-sysadmin-dashboard',
+  templateUrl: './sysadmin-dashboard.component.html',
+  styleUrls: ['./sysadmin-dashboard.component.scss']
 })
-export class CompanySelectComponent implements OnInit, AfterViewInit {
-
+export class SysadminDashboardComponent implements OnInit, AfterViewInit {
   companies;
+  usersOfCompany;
 
   constructor(
     private userService: UserService
@@ -17,6 +17,9 @@ export class CompanySelectComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.getCompanies();
+    this.getUsersOfCompany(1);
+    this.getUsersOfCompany(2);
+    this.getUsersOfCompany(3);
   }
 
   ngAfterViewInit() {
@@ -35,7 +38,14 @@ export class CompanySelectComponent implements OnInit, AfterViewInit {
     );
   }
 
-  setCompany(companyId) {
-    this.userService.setCompanyToken(companyId);
+  getUsersOfCompany(companyId) {
+    this.userService.getUsersOfCompany(companyId).subscribe(
+      (response) => {
+        this.usersOfCompany = response;
+        console.log(this.usersOfCompany);
+
+      }
+    );
   }
+
 }
