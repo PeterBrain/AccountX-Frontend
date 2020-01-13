@@ -1,4 +1,4 @@
-import { SysadminDashboardComponent } from './sysadmin-dashboard/sysadmin-dashboard.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth.guard';
@@ -26,7 +26,7 @@ const routes: Routes = [
     { path: 'ausgaben-form', component: PurchasesFormComponent, canActivate: [AuthGuard] },
     { path: 'ausgaben-form/:id', component: PurchasesFormComponent, canActivate: [AuthGuard] },
     { path: 'ust', component: VatComponent, canActivate: [AuthGuard] },
-    { path: 'sysadmin-dashboard', component: SysadminDashboardComponent, canActivate: [AuthGuard] },
+    { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard] },
 
     { path: '**', component: NotFoundComponent }, // last line (everything else -> 404)
 ];
