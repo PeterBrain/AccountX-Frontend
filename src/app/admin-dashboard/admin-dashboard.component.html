@@ -4,6 +4,9 @@
             <ul class="collection with-header">
                 <li class="collection-header">
                     <h4>Firmen:</h4>
+                    <a href="#" routerLink="/firma-form"
+                        class="secondary-content btn-floating waves-effect waves-light green"><i
+                            class="material-icons">add</i></a>
                 </li>
 
                 <li *ngFor="let company of companies" class="collection-item avatar">
@@ -23,6 +26,9 @@
             <ul class="collection with-header">
                 <li class="collection-header">
                     <h4>Mitarbeiter:</h4>
+                    <a *ngIf="companyId" href="#" routerLink="/mitarbeiter-form"
+                        class="secondary-content btn-floating waves-effect waves-light green"><i
+                            class="material-icons">add</i></a>
                 </li>
 
                 <li *ngFor="let user of usersOfCompany" class="collection-item">

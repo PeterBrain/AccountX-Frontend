@@ -76,18 +76,15 @@ export class UserService {
     }
 
     createUser(user: any) {
-        return this.http.post('/api/companies/', user);
+        return this.http.post('/api/users/', user);
     }
 
     updateUser(user: { id: string; }) {
-        const id = user.id;
-        // console.log(company);
-        // console.log(id);
-        return this.http.put('/api/companies/' + id + '/', user);
+        return this.http.put('/api/users/' + user.id + '/', user);
     }
 
     deleteUser(userId: string) {
-        return this.http.delete('/api/companies/' + userId + '/');
+        return this.http.delete('/api/users/' + userId + '/');
     }
 
     // counts object properties of object and return amount

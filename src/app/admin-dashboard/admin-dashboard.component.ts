@@ -10,6 +10,7 @@ import { CompanyService } from '../service/company.service';
 })
 export class AdminDashboardComponent implements OnInit, AfterViewInit {
   companies;
+  companyId;
   usersOfCompany;
 
   constructor(
@@ -19,8 +20,6 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.getCompanies();
-    console.log(this.usersOfCompany);
-
   }
 
   ngAfterViewInit() {
@@ -40,10 +39,11 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
   }
 
   getUsersOfCompany(companyId) {
+    this.companyId = companyId;
+
     this.userService.getUsersOfCompany(companyId).subscribe(
       (response) => {
         this.usersOfCompany = response;
-        console.log(this.usersOfCompany);
       }
     );
   }

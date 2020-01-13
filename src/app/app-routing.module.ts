@@ -1,3 +1,4 @@
+import { CompanyOptionsResolver } from './resolver/company-options-resolver';
 import { UserResolver } from './resolver/user-resolver';
 import { UserFormComponent } from './user-form/user-form.component';
 import { CompanyResolver } from './resolver/company-resolver';
@@ -28,7 +29,12 @@ const routes: Routes = [
             company: CompanyResolver
         }
     },
-    { path: 'mitarbeiter-form', component: UserFormComponent, canActivate: [AuthGuard] },
+    {
+        path: 'mitarbeiter-form', component: UserFormComponent, canActivate: [AuthGuard],
+        resolve: {
+            companyOptions: CompanyOptionsResolver
+        }
+    },
     {
         path: 'mitarbeiter-form/:id', component: UserFormComponent, canActivate: [AuthGuard],
         resolve: {

@@ -12,6 +12,7 @@ import * as M from 'materialize-css';
 export class UserFormComponent implements OnInit, AfterViewInit {
   userFormGroup;
   isData;
+  companyOptions;
 
   constructor(
     private fb: FormBuilder,
@@ -23,12 +24,18 @@ export class UserFormComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.userFormGroup = this.fb.group({
       id: [null],
-      name: ['', Validators.required],
-      description: [null]
+      username: ['', Validators.required],
+      company: ['', Validators.required]
+      // password: ['', Validators.required],
+      // passwordConfirm: ['', Validators.required]
     });
 
-
     const data = this.route.snapshot.data;
+    // TODO: implement company options resolver
+    this.companyOptions = data.companyOptions;
+    console.log(data);
+    console.log(data.companyOptions);
+
 
     // check if there is actual data in the data object
     if (Object.keys(data).length === 0 && data.constructor === Object) {
@@ -41,6 +48,7 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     if (data.user) {
       this.userFormGroup.patchValue(data.user);
     }
+
   }
 
   ngAfterViewInit() {
@@ -49,6 +57,9 @@ export class UserFormComponent implements OnInit, AfterViewInit {
 
     const elems = document.querySelectorAll('.dropdown-trigger');
     M.Dropdown.init(elems, { hover: false, constrainWidth: false });
+
+    const select = document.querySelectorAll('select');
+    M.FormSelect.init(select);
 
     const modal = document.querySelectorAll('.modal');
     M.Modal.init(modal);
