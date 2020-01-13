@@ -13,16 +13,16 @@
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">business</i>
                         <input id="name" type="text" class="validate" formControlName="name" required>
-                        <label for="name" [ngClass]="{'active': isData}">Firmenname</label>
+                        <label [ngClass]="{'active': isData}" for="name">Firmenname</label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">note</i>
-                        <textarea id="description" class="materialize-textarea validate" formControlName="description"
-                            required></textarea>
-                        <label for="description">Beschreibung</label>
+                        <textarea id="description" class="materialize-textarea validate"
+                            formControlName="description"></textarea>
+                        <label [ngClass]="{'active': isData}" for="description">Beschreibung</label>
                     </div>
                 </div>
 
@@ -30,7 +30,8 @@
                     <div class="col s12 l6 offset-l3 center">
                         <button *ngIf="isData" class="btn btn-large waves-effect modal-trigger"
                             data-target="deleteModal">Löschen</button>
-                        <button (click)="saveForm()" class="btn btn-large waves-effect">Speichern</button>
+                        <button (click)="saveForm()" [disabled]="!companyFormGroup.valid"
+                            class="btn btn-large waves-effect" type="submit">Speichern</button>
 
                         <!-- Modal Structure -->
                         <div id="deleteModal" class="modal col s12 l4 center">
@@ -41,7 +42,7 @@
                             <div class="modal-footer">
                                 <a class="modal-close waves-effect waves-red btn-flat">Abbrechen</a>
                                 <a class="modal-close waves-effect waves-green btn-flat"
-                                    (click)="deleteCompany(companyFormGroup.value)">Löschen</a>
+                                    (click)="deleteCompany()">Löschen</a>
                             </div>
                         </div>
                     </div>

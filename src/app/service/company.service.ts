@@ -19,6 +19,17 @@ export class CompanyService {
     return this.http.get('/api/companies/' + companyId + '/');
   }
 
+  createCompany(company: any) {
+    return this.http.post('/api/companies/', company);
+  }
+
+  updateCompany(company: { id: string; }) {
+    const id = company.id;
+    // console.log(company);
+    // console.log(id);
+    return this.http.put('/api/companies/' + id + '/', company);
+  }
+
   deleteCompany(companyId: string) {
     return this.http.delete('/api/companies/' + companyId + '/');
   }

@@ -1,5 +1,5 @@
-import { ActivatedRoute } from '@angular/router';
-import { UserService } from './../service/user.service';
+import { CompanyService } from './../service/company.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as M from 'materialize-css';
@@ -16,7 +16,8 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private userService: UserService
+    private router: Router,
+    private companyService: CompanyService
   ) { }
 
   ngOnInit() {
@@ -47,17 +48,36 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
 
     const elems = document.querySelectorAll('.dropdown-trigger');
     M.Dropdown.init(elems, { hover: false, constrainWidth: false });
+
+    const modal = document.querySelectorAll('.modal');
+    M.Modal.init(modal);
   }
 
   saveForm() {
-    console.log(this.companyFormGroup.value.id);
+    const company = this.companyFormGroup.value;
+
+    if (this.isData) {
+      this.companyService.updateCompany(company).subscribe(
+        (response) => {
+          return response;
+        }
+      );
+    } else {
+      this.companyService.createCompany(company).subscribe(
+        (response) => {
+          return response;
+        }
+      );
+    }
   }
 
-  deleteCompany(company) {
-    const companyId = company.id;
-    console.log(companyId);
-
-    // this.userService.deleteCompany(companyId);
-    // TODO: delete Company
+  deleteCompany() {
+    if (this.isData) {
+      this.companyService.deleteCompany(this.companyFormGroup.value.id).subscribe(
+        (response) => {
+          this.router.navigate(['/admin-dashboard']);
+        }
+      );
+    }
   }
 }
