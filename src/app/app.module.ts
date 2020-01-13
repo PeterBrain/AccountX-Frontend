@@ -16,10 +16,10 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CompanySelectComponent } from './company-select/company-select.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { CompanyRegistrationComponent } from './company-registration/company-registration.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { CompanyFormComponent } from './company-form/company-form.component';
+import { UserFormComponent } from './user-form/user-form.component';
 
 export function tokenGetter() {
     return localStorage.getItem('access_token');
@@ -37,10 +37,10 @@ export function tokenGetter() {
         LogoutComponent,
         CompanySelectComponent,
         RegistrationComponent,
-        CompanyRegistrationComponent,
         NotFoundComponent,
         AdminDashboardComponent,
-        CompanyFormComponent
+        CompanyFormComponent,
+        UserFormComponent
     ],
     imports: [
         BrowserModule,

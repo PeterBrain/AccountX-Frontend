@@ -13,7 +13,7 @@
                     <p *ngIf="company.description !== null"><br>
                         {{ company.description }}
                     </p>
-                    <a href="#" (click)="getUsersOfCompany(company.id)" class="secondary-content"><i
+                    <a (click)="getUsersOfCompany(company.id)" class="secondary-content"><i
                             class="material-icons">keyboard_arrow_right</i></a>
                 </li>
             </ul>
@@ -26,7 +26,7 @@
                 </li>
 
                 <li *ngFor="let user of usersOfCompany" class="collection-item">
-                    <div>{{ user.username }}<a href="#" [routerLink]="['/user-form/' + user.id]"
+                    <div>{{ user.username }}<a href="#" [routerLink]="['/mitarbeiter-form/' + user.id]"
                             class="secondary-content"><i class="material-icons">mode_edit</i></a></div>
                 </li>
             </ul>

@@ -30,7 +30,7 @@ export class RegistrationComponent implements OnInit {
     const user = this.registrationFormGroup.value;
     this.userService.register(user).subscribe(
       (result) => {
-        this.router.navigate(['/firma-erstellen']);
+        this.router.navigate(['/firma-form']);
         return result;
       }
     );

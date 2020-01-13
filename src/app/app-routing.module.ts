@@ -1,3 +1,5 @@
+import { UserResolver } from './resolver/user-resolver';
+import { UserFormComponent } from './user-form/user-form.component';
 import { CompanyResolver } from './resolver/company-resolver';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { NgModule } from '@angular/core';
@@ -5,7 +7,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
-import { CompanyRegistrationComponent } from './company-registration/company-registration.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { CompanySelectComponent } from './company-select/company-select.component';
 import { SalesComponent } from './sales/sales.component';
@@ -20,12 +21,18 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'registration', component: RegistrationComponent },
     { path: 'firmen', component: CompanySelectComponent, canActivate: [AuthGuard] },
-    { path: 'firma-erstellen', component: CompanyRegistrationComponent },
-    { path: 'firma-form', component: CompanyFormComponent },
+    { path: 'firma-form', component: CompanyFormComponent, canActivate: [AuthGuard] },
     {
         path: 'firma-form/:id', component: CompanyFormComponent,
         resolve: {
             company: CompanyResolver
+        }
+    },
+    { path: 'mitarbeiter-form', component: UserFormComponent, canActivate: [AuthGuard] },
+    {
+        path: 'mitarbeiter-form/:id', component: UserFormComponent, canActivate: [AuthGuard],
+        resolve: {
+            user: UserResolver
         }
     },
     { path: 'einnahmen', component: SalesComponent, canActivate: [AuthGuard] },

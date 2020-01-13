@@ -19,9 +19,8 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.getCompanies();
-    this.getUsersOfCompany(1);
-    this.getUsersOfCompany(2);
-    this.getUsersOfCompany(3);
+    console.log(this.usersOfCompany);
+
   }
 
   ngAfterViewInit() {
@@ -45,7 +44,6 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
       (response) => {
         this.usersOfCompany = response;
         console.log(this.usersOfCompany);
-
       }
     );
   }
