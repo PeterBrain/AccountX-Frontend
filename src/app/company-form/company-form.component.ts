@@ -55,20 +55,36 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
 
   saveForm() {
     const company = this.companyFormGroup.value;
+    let message;
 
     if (this.isData) {
       this.companyService.updateCompany(company).subscribe(
         (response) => {
+          message = 'Firma upgedatet.';
+          // cannot call name of response?! works but linter doesnt like it
+          // console.log(response.name);
+
+          // alert shows twice, why?
+          alert('Firma upgedated.');
           return response;
         }
       );
     } else {
       this.companyService.createCompany(company).subscribe(
         (response) => {
+          message = 'Firma erstellt.';
+          alert('Firma erstellt.');
           return response;
         }
       );
     }
+
+    this.router.navigate(['/admin-dashboard']);
+
+    // does not return message, why?
+    console.log(message);
+
+    this.showToast(message);
   }
 
   deleteCompany() {
@@ -79,5 +95,11 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
         }
       );
     }
+  }
+
+  showToast(message) {
+    // still no message
+    console.log(message);
+    M.toast({ html: 'I am a toast!' });
   }
 }
