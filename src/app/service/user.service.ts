@@ -71,6 +71,10 @@ export class UserService {
         return this.http.get('/api/companies/');
     }
 
+    deleteCompany(companyId) {
+        return this.http.delete('/api/companies/' + companyId);
+    }
+
     getCompanyToken() {
         return localStorage.getItem(this.companyLocalStorageKey);
     }

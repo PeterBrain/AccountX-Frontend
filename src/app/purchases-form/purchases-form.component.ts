@@ -5,14 +5,14 @@ import {
   datepickerWeekdaysAbbrev,
   datepickerMonthsShort
 } from '../reusables/datepicker/datepicker.config';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as M from 'materialize-css';
-import {HttpClient} from '@angular/common/http';
-import {PurchaseService} from '../service/purchase.service';
-import {UserService} from '../service/user.service';
-import {BookingTypeService} from '../service/booking-type.service';
+import { HttpClient } from '@angular/common/http';
+import { PurchaseService } from '../service/purchase.service';
+import { UserService } from '../service/user.service';
+import { BookingTypeService } from '../service/booking-type.service';
 
 @Component({
   selector: 'app-purchases-form',
@@ -61,7 +61,8 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
 
     if (this.id) {
       this.purchaseService.getPurchase(this.id).subscribe((response) => {
-        this.purchaseFormGroup.patchValue(response, {emitEvent: false});
+        this.purchaseFormGroup.patchValue(response, { emitEvent: false });
+        console.log(response);
         this.ust = response['ust'];
         document.querySelectorAll('label').forEach(elem => elem.classList.add('active'));
       });

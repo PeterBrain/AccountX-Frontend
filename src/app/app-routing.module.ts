@@ -12,6 +12,7 @@ import { SalesFormComponent } from './sales-form/sales-form.component';
 import { PurchasesComponent } from './purchases/purchases.component';
 import { PurchasesFormComponent } from './purchases-form/purchases-form.component';
 import { VatComponent } from './vat/vat.component';
+import { CompanyFormComponent } from './company-form/company-form.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'ausgaben', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path: 'registration', component: RegistrationComponent },
     { path: 'firmen', component: CompanySelectComponent, canActivate: [AuthGuard] },
     { path: 'firma-erstellen', component: CompanyRegistrationComponent },
+    { path: 'firma-form', component: CompanyFormComponent },
     { path: 'einnahmen', component: SalesComponent, canActivate: [AuthGuard] },
     { path: 'einnahmen-form', component: SalesFormComponent, canActivate: [AuthGuard] },
     { path: 'einnahmen-form/:id', component: SalesFormComponent, canActivate: [AuthGuard] },

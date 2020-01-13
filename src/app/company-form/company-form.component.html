@@ -1,0 +1,52 @@
+<section>
+    <div class="row">
+        <div class="col s12 center">
+            <h2>Firma <span *ngIf="!id">erstellen</span><span *ngIf="id">bearbeiten</span></h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="container">
+            <form [formGroup]="companyFormGroup" (ngSubmit)="saveForm()" class="col s12">
+
+                <div class="row">
+                    <div class="input-field col s12 l6 offset-l3">
+                        <i class="material-icons prefix">business</i>
+                        <input id="name" type="text" class="validate" formControlName="name" required>
+                        <label for="name">Firmenname</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12 l6 offset-l3">
+                        <i class="material-icons prefix">note</i>
+                        <textarea id="description" class="materialize-textarea validate" formControlName="description"
+                            required></textarea>
+                        <label for="description">Beschreibung</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12 l6 offset-l3 center">
+                        <button *ngIf="id" class="btn btn-large waves-effect modal-trigger"
+                            data-target="deleteModal">Löschen</button>
+                        <button class="btn btn-large waves-effect" type="submit">Speichern</button>
+
+                        <!-- Modal Structure -->
+                        <div id="deleteModal" class="modal col s12 l4 center">
+                            <div class="modal-content">
+                                <h4>Eintrag löschen</h4>
+                                <p>Sind sie sich sicher, dass der Eintrag gelöscht werden soll?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a class="modal-close waves-effect waves-red btn-flat">Abbrechen</a>
+                                <a class="modal-close waves-effect waves-green btn-flat"
+                                    (click)="deleteCompany(companyFormGroup.value)">Löschen</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

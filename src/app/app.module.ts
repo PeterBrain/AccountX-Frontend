@@ -19,6 +19,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { CompanyRegistrationComponent } from './company-registration/company-registration.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { CompanyFormComponent } from './company-form/company-form.component';
 
 export function tokenGetter() {
     return localStorage.getItem('access_token');
@@ -38,7 +39,8 @@ export function tokenGetter() {
         RegistrationComponent,
         CompanyRegistrationComponent,
         NotFoundComponent,
-        AdminDashboardComponent
+        AdminDashboardComponent,
+        CompanyFormComponent
     ],
     imports: [
         BrowserModule,

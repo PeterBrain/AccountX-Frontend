@@ -59,7 +59,7 @@
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">calendar_today</i>
                         <input id="cashflowdate" type="text" class="datepicker validate" formControlName="cashflowdate"
-                               required>
+                            required>
                         <label for="cashflowdate">Geldflussdatum</label>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">note</i>
                         <textarea id="notes" class="materialize-textarea validate" formControlName="notes"
-                              required></textarea>
+                            required></textarea>
                         <label for="notes">Notizen</label>
                     </div>
                 </div>
@@ -90,7 +90,8 @@
                         <i class="material-icons prefix">category</i>
                         <select id="bookingType" formControlName="bookingType">
                             <option value="" disabled>Wähle eine Option</option>
-                            <option *ngFor="let bookingTypeOption of bookingTypeOptions" [value]="bookingTypeOptions.id">
+                            <option *ngFor="let bookingTypeOption of bookingTypeOptions"
+                                [value]="bookingTypeOptions.id">
                                 {{bookingTypeOption.name}}</option>
                         </select>
                         <label for="bookingType">Buchungskonto</label>
@@ -111,6 +112,10 @@
 
                 <div class="row">
                     <div class="col s12 l6 offset-l3 center">
+                        <button *ngIf="id" class="btn btn-large waves-effect modal-trigger"
+                            data-target="deleteModal">Löschen</button>
+                        <button class="btn btn-large waves-effect" type="submit">Speichern</button>
+
                         <!-- Modal Structure -->
                         <div id="deleteModal" class="modal col s12 l4 center">
                             <div class="modal-content">
@@ -119,11 +124,11 @@
                             </div>
                             <div class="modal-footer">
                                 <a class="modal-close waves-effect waves-red btn-flat">Abbrechen</a>
-                                <a class="modal-close waves-effect waves-green btn-flat" (click)="deletePurchase(purchaseFormGroup.value)">Löschen</a>
+                                <a class="modal-close waves-effect waves-green btn-flat"
+                                    (click)="deletePurchase(purchaseFormGroup.value)">Löschen</a>
                             </div>
                         </div>
-                        <button class="btn btn-large waves-effect modal-trigger" data-target="deleteModal">Löschen</button>
-                        <button class="btn btn-large waves-effect" type="submit">Speichern</button>
+
                     </div>
                 </div>
             </form>
