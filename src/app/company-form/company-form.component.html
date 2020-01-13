@@ -1,7 +1,7 @@
 <section>
     <div class="row">
         <div class="col s12 center">
-            <h2>Firma <span *ngIf="!id">erstellen</span><span *ngIf="id">bearbeiten</span></h2>
+            <h2>Firma <span *ngIf="!isData">erstellen</span><span *ngIf="isData">bearbeiten</span></h2>
         </div>
     </div>
 
@@ -13,7 +13,7 @@
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">business</i>
                         <input id="name" type="text" class="validate" formControlName="name" required>
-                        <label for="name">Firmenname</label>
+                        <label for="name" [ngClass]="{'active': isData}">Firmenname</label>
                     </div>
                 </div>
 
@@ -28,9 +28,9 @@
 
                 <div class="row">
                     <div class="col s12 l6 offset-l3 center">
-                        <button *ngIf="id" class="btn btn-large waves-effect modal-trigger"
+                        <button *ngIf="isData" class="btn btn-large waves-effect modal-trigger"
                             data-target="deleteModal">Löschen</button>
-                        <button class="btn btn-large waves-effect" type="submit">Speichern</button>
+                        <button (click)="saveForm()" class="btn btn-large waves-effect">Speichern</button>
 
                         <!-- Modal Structure -->
                         <div id="deleteModal" class="modal col s12 l4 center">

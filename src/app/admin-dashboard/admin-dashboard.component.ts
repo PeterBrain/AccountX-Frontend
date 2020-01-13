@@ -1,6 +1,7 @@
-import { UserService } from '../service/user.service';
+import { UserService } from './../service/user.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as M from 'materialize-css';
+import { CompanyService } from '../service/company.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -12,7 +13,8 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
   usersOfCompany;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private companyService: CompanyService
   ) { }
 
   ngOnInit() {
@@ -31,7 +33,7 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
   }
 
   getCompanies() {
-    this.userService.getCompanies().subscribe(
+    this.companyService.getCompanies().subscribe(
       (response) => {
         this.companies = response;
       }

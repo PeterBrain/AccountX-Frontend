@@ -1,6 +1,7 @@
 import { UserService } from './../service/user.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as M from 'materialize-css';
+import { CompanyService } from '../service/company.service';
 
 @Component({
   selector: 'app-company-select',
@@ -12,7 +13,8 @@ export class CompanySelectComponent implements OnInit, AfterViewInit {
   companies;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private companyService: CompanyService
   ) { }
 
   ngOnInit() {
@@ -28,7 +30,7 @@ export class CompanySelectComponent implements OnInit, AfterViewInit {
   }
 
   getCompanies() {
-    this.userService.getCompanies().subscribe(
+    this.companyService.getCompanies().subscribe(
       (response) => {
         this.companies = response;
       }
@@ -36,6 +38,6 @@ export class CompanySelectComponent implements OnInit, AfterViewInit {
   }
 
   setCompany(companyId) {
-    this.userService.setCompanyToken(companyId);
+    this.companyService.setCompanyToken(companyId);
   }
 }

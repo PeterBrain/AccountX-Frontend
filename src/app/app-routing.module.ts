@@ -1,3 +1,4 @@
+import { CompanyResolver } from './resolver/company-resolver';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -21,6 +22,12 @@ const routes: Routes = [
     { path: 'firmen', component: CompanySelectComponent, canActivate: [AuthGuard] },
     { path: 'firma-erstellen', component: CompanyRegistrationComponent },
     { path: 'firma-form', component: CompanyFormComponent },
+    {
+        path: 'firma-form/:id', component: CompanyFormComponent,
+        resolve: {
+            company: CompanyResolver
+        }
+    },
     { path: 'einnahmen', component: SalesComponent, canActivate: [AuthGuard] },
     { path: 'einnahmen-form', component: SalesFormComponent, canActivate: [AuthGuard] },
     { path: 'einnahmen-form/:id', component: SalesFormComponent, canActivate: [AuthGuard] },

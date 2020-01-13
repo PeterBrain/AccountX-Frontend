@@ -11,7 +11,7 @@ import * as M from 'materialize-css';
 })
 export class CompanyFormComponent implements OnInit, AfterViewInit {
   companyFormGroup;
-  id;
+  isData;
 
   constructor(
     private fb: FormBuilder,
@@ -27,9 +27,15 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
     });
 
     const data = this.route.snapshot.data;
-    // this.ownerOptions = data.ownerOptions;
-    // this.categoryOptions = data.categoryOptions;
 
+    // check if there is actual data in the data object
+    if (Object.keys(data).length === 0 && data.constructor === Object) {
+      this.isData = false;
+    } else {
+      this.isData = true;
+    }
+
+    // fill form if there is data
     if (data.company) {
       this.companyFormGroup.patchValue(data.company);
     }
@@ -43,8 +49,12 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
     M.Dropdown.init(elems, { hover: false, constrainWidth: false });
   }
 
+  saveForm() {
+    console.log(this.companyFormGroup.value.id);
+  }
+
   deleteCompany(company) {
-    const companyId = company.value.id;
+    const companyId = company.id;
     console.log(companyId);
 
     // this.userService.deleteCompany(companyId);

@@ -1,6 +1,7 @@
 import { UserService } from './user.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
+import { CompanyService } from './company.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +10,11 @@ export class SaleService {
 
   constructor(
     private http: HttpClient,
-    private userService: UserService
+    private companyService: CompanyService
   ) { }
 
   getSales() {
-    const companyId = this.userService.getCompanyToken();
+    const companyId = this.companyService.getCompanyToken();
     return this.http.get('/api/sales/?company=' + companyId);
   }
 

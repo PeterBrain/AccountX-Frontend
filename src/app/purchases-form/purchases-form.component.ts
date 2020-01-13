@@ -13,6 +13,7 @@ import { HttpClient } from '@angular/common/http';
 import { PurchaseService } from '../service/purchase.service';
 import { UserService } from '../service/user.service';
 import { BookingTypeService } from '../service/booking-type.service';
+import { CompanyService } from '../service/company.service';
 
 @Component({
   selector: 'app-purchases-form',
@@ -39,7 +40,8 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private purchaseService: PurchaseService,
     private bookingTypeService: BookingTypeService,
-    private userService: UserService
+    private userService: UserService,
+    private companyService: CompanyService
   ) { }
 
   ngOnInit() {
@@ -68,7 +70,7 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
       });
     }
 
-    this.userService.getCompanies().subscribe((result) => {
+    this.companyService.getCompanies().subscribe((result) => {
       this.companyOptions = result;
     });
 

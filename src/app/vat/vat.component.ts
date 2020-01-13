@@ -1,7 +1,7 @@
 import { VatService } from './../service/vat.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as M from 'materialize-css';
-import { UserService } from '../service/user.service';
+import { CompanyService } from '../service/company.service';
 
 @Component({
   selector: 'app-vat',
@@ -27,11 +27,11 @@ export class VatComponent implements OnInit, AfterViewInit {
     ['Nov', this.currentYear + '-12-01', this.currentYear + '-11-01'],
     ['Dez', this.currentYear + '-12-31', this.currentYear + '-12-01']
   ];
-  companyId = this.userService.getCompanyToken();
+  companyId = this.companyService.getCompanyToken();
 
   constructor(
     private vatService: VatService,
-    private userService: UserService
+    private companyService: CompanyService
   ) { }
 
   ngOnInit() {

@@ -8,14 +8,18 @@ import { JwtHelperService } from '@auth0/angular-jwt';
     providedIn: 'root'
 })
 export class UserService {
-    companies;
+    // companies;
 
     readonly companyLocalStorageKey = 'company';
 
     readonly accessTokenLocalStorageKey = 'access_token';
     isLoggedIn = new BehaviorSubject(false);
 
-    constructor(private http: HttpClient, private router: Router, private jwtHelperService: JwtHelperService) {
+    constructor(
+        private http: HttpClient,
+        private router: Router,
+        private jwtHelperService: JwtHelperService
+    ) {
         const token = localStorage.getItem(this.accessTokenLocalStorageKey);
         if (token) {
             console.log('Token expiration date: ' + this.jwtHelperService.getTokenExpirationDate(token));
@@ -50,7 +54,7 @@ export class UserService {
     logout() {
         localStorage.removeItem(this.accessTokenLocalStorageKey);
         this.isLoggedIn.next(false);
-        this.companies = null;
+        // this.companies = null;
         this.router.navigate(['/login']);
     }
 
@@ -65,22 +69,6 @@ export class UserService {
             const decodedToken = this.jwtHelperService.decodeToken(token);
             return decodedToken.username;
         }
-    }
-
-    getCompanies() {
-        return this.http.get('/api/companies/');
-    }
-
-    deleteCompany(companyId) {
-        return this.http.delete('/api/companies/' + companyId);
-    }
-
-    getCompanyToken() {
-        return localStorage.getItem(this.companyLocalStorageKey);
-    }
-
-    setCompanyToken(companyId) {
-        localStorage.setItem(this.companyLocalStorageKey, companyId);
     }
 
     // counts object properties of object and return amount
