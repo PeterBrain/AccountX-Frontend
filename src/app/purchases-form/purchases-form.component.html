@@ -12,7 +12,7 @@
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">receipt</i>
                         <input id="invNo" type="number" min="0" class="validate" formControlName="invNo" required>
-                        <label for="invNo">Rechnungsnummer</label>
+                        <label [ngClass]="{'active': isData}" for="invNo">Rechnungsnummer</label>
                     </div>
                 </div>
 
@@ -20,7 +20,7 @@
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">calendar_today</i>
                         <input id="invDate" type="text" class="datepicker validate" formControlName="invDate" required>
-                        <label for="invDate">Rechnungsdatum</label>
+                        <label [ngClass]="{'active': isData}" for="invDate">Rechnungsdatum</label>
                     </div>
                 </div>
 
@@ -28,7 +28,7 @@
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">person</i>
                         <input id="biller" type="text" class="validate" formControlName="biller" required>
-                        <label for="biller">Rechnungsaussteller</label>
+                        <label [ngClass]="{'active': isData}" for="biller">Rechnungsaussteller</label>
                     </div>
                 </div>
 
@@ -51,7 +51,7 @@
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">attach_money</i>
                         <input id="net" type="number" min="0" class="validate" formControlName="net" required>
-                        <label for="net">Netto</label>
+                        <label [ngClass]="{'active': isData}" for="net">Netto</label>
                     </div>
                 </div>
 
@@ -60,7 +60,7 @@
                         <i class="material-icons prefix">calendar_today</i>
                         <input id="cashflowdate" type="text" class="datepicker validate" formControlName="cashflowdate"
                             required>
-                        <label for="cashflowdate">Geldflussdatum</label>
+                        <label [ngClass]="{'active': isData}" for="cashflowdate">Geldflussdatum</label>
                     </div>
                 </div>
 
@@ -69,19 +69,19 @@
                         <i class="material-icons prefix">note</i>
                         <textarea id="notes" class="materialize-textarea validate" formControlName="notes"
                             required></textarea>
-                        <label for="notes">Notizen</label>
+                        <label [ngClass]="{'active': isData}" for="notes">Notizen</label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">business</i>
-                        <select id="company" formControlName="company">
-                            <option value="" disabled>Wähle eine Option</option>
+                        <select id="companies" formControlName="companies">
+                            <option value="" disabled>Wählen Sie eine Option</option>
                             <option *ngFor="let companyOption of companyOptions" [value]="companyOptions.id">
-                                {{companyOption.name + " - " + companyOption.description}}</option>
+                                {{ companyOption.name }}</option>
                         </select>
-                        <label for="company">Firma</label>
+                        <label for="companies">Firma</label>
                     </div>
                 </div>
 
@@ -89,10 +89,9 @@
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">category</i>
                         <select id="bookingType" formControlName="bookingType">
-                            <option value="" disabled>Wähle eine Option</option>
-                            <option *ngFor="let bookingTypeOption of bookingTypeOptions"
-                                [value]="bookingTypeOptions.id">
-                                {{bookingTypeOption.name}}</option>
+                            <option value="" disabled>Wählen Sie eine Option</option>
+                            <option *ngFor="let bookingType of bookingTypes" [value]="bookingType.id">
+                                {{ bookingType.name }}</option>
                         </select>
                         <label for="bookingType">Buchungskonto</label>
                     </div>

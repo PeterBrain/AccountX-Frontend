@@ -23,15 +23,17 @@ import { CompanyService } from '../service/company.service';
 export class PurchasesFormComponent implements OnInit, AfterViewInit {
 
   purchaseFormGroup;
+  companyOptions;
+  bookingTypes;
+  isData;
+  ust;
+  id;
+
   months = datepickerMonths;
   monthsShort = datepickerMonthsShort;
   weekdays = datepickerWeekdays;
   weekdaysShort = datepickerWeekdaysShort;
   weekdaysAbbrev = datepickerWeekdaysAbbrev;
-  companyOptions;
-  bookingTypeOptions;
-  ust;
-  id;
 
   constructor(
     private fb: FormBuilder,
@@ -53,30 +55,28 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
       ust: ['', Validators.required],
       net: ['', [Validators.required, Validators.min(0)]],
       cashflowdate: ['', Validators.required],
-      company: [null, Validators.required],
+      companies: [[null], Validators.required],
       bookingType: [null, Validators.required],
       invoice: [null, Validators.required],
       notes: [null]
     });
 
-    this.id = this.route.snapshot.paramMap.get('id');
+    // get resolver data
+    const data = this.route.snapshot.data;
+    this.companyOptions = data.companyOptions;
+    this.bookingTypes = data.bookingTypes;
 
-    if (this.id) {
-      this.purchaseService.getPurchase(this.id).subscribe((response) => {
-        this.purchaseFormGroup.patchValue(response, { emitEvent: false });
-        console.log(response);
-        this.ust = response['ust'];
-        document.querySelectorAll('label').forEach(elem => elem.classList.add('active'));
-      });
+    // check if there is actual data in the data object
+    if (data.purchase) {
+      this.isData = true;
+    } else {
+      this.isData = false;
     }
 
-    this.companyService.getCompanies().subscribe((result) => {
-      this.companyOptions = result;
-    });
-
-    this.bookingTypeService.getBookingTypes().subscribe((result) => {
-      this.bookingTypeOptions = result;
-    });
+    // fill form if there is data
+    if (data.purchase) {
+      this.purchaseFormGroup.patchValue(data.purchase);
+    }
   }
 
   ngAfterViewInit() {
@@ -84,7 +84,7 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
     M.Sidenav.init(sidenav);
 
     const elems = document.querySelectorAll('.dropdown-trigger');
-    M.Dropdown.init(elems, { hover: true, constrainWidth: false });
+    M.Dropdown.init(elems, { hover: false, constrainWidth: false });
 
     const tabs = document.querySelectorAll('.tabs');
     M.Tabs.init(tabs);

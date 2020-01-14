@@ -17,8 +17,8 @@ export class PurchaseService {
         return this.http.get('/api/purchases/?company=' + companyId);
     }
 
-    getPurchase(id) {
-        return this.http.get('/api/purchases/' + id + '/');
+    getPurchase(purchaseId: string) {
+        return this.http.get('/api/purchases/' + purchaseId + '/');
     }
 
     createPurchase(purchase) {

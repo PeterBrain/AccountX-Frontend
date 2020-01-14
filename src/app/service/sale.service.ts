@@ -18,8 +18,8 @@ export class SaleService {
     return this.http.get('/api/sales/?company=' + companyId);
   }
 
-  getSale(id) {
-    return this.http.get('/api/sales/' + id + '/');
+  getSale(saleId: string) {
+    return this.http.get('/api/sales/' + saleId + '/');
   }
 
   createSale(sale) {

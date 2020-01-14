@@ -29,7 +29,6 @@ export class AppComponent implements OnInit {
     this.userService.getCurrentUser().subscribe(
       (response) => {
         this.currentUser = response;
-        console.log(this.currentUser);
       }
     );
 

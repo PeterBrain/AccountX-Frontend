@@ -1,7 +1,7 @@
 <section>
     <div class="row">
         <div class="col s12 center">
-            <h2>Ausgangsrechung erstellen/bearbeiten</h2>
+            <h2>Ausgangsrechung <span *ngIf="!isData">erstellen</span><span *ngIf="isData">bearbeiten</span></h2>
         </div>
     </div>
 
@@ -11,7 +11,7 @@
                 <div class="col s3"></div>
                 <div class="input-field col s6">
                     <input id="invDate" type="text" class="datepicker validate" formControlName="invDate" required>
-                    <label for="invDate">Rechnungsdatum</label>
+                    <label [ngClass]="{'active': isData}" for="invDate">Rechnungsdatum</label>
                 </div>
                 <div class="col s3"></div>
             </div>
@@ -21,7 +21,7 @@
 
                 <div class="input-field col s6">
                     <input id="customer" type="text" class="validate" formControlName="customer" required>
-                    <label for="customer">Kunde</label>
+                    <label [ngClass]="{'active': isData}" for="customer">Kunde</label>
                 </div>
 
                 <div class="col s3"></div>
@@ -32,7 +32,7 @@
 
                 <div class="input-field col s6">
                     <input id="project" type="text" class="validate" formControlName="project" required>
-                    <label for="project">Projekt / Auftrag</label>
+                    <label [ngClass]="{'active': isData}" for="project">Projekt / Auftrag</label>
                 </div>
 
                 <div class="col s3"></div>
@@ -43,7 +43,7 @@
 
                 <div class="input-field col s6">
                     <input id="net" type="number" min="0" class="validate" formControlName="net" required>
-                    <label for="net">Netto</label>
+                    <label [ngClass]="{'active': isData}" for="net">Netto</label>
                 </div>
 
                 <div class="col s3"></div>
@@ -70,9 +70,9 @@
             <div class="row">
                 <div class="col s3"></div>
                 <div class="input-field col s6">
-                    <input id="cashFlowDate" type="text" class="datepicker validate" formControlName="cashFlowDate"
+                    <input id="cashflowdate" type="text" class="datepicker validate" formControlName="cashflowdate"
                         required>
-                    <label for="cashFlowDate">Geldflussdatum</label>
+                    <label [ngClass]="{'active': isData}" for="cashflowdate">Geldflussdatum</label>
                 </div>
                 <div class="col s3"></div>
             </div>

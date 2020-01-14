@@ -21,6 +21,7 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
   saleFormGroup;
   companyOptions;
   bookingTypes;
+  isData;
 
   months = datepickerMonths;
   monthsShort = datepickerMonthsShort;
@@ -41,7 +42,7 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
       project: ['', Validators.required],
       net: ['', [Validators.required, Validators.min(0)]],
       vat: ['', Validators.required],
-      cashFlowDate: ['', Validators.required],
+      cashflowdate: ['', Validators.required],
       companies: [[''], Validators.required],
       bookingType: ['', Validators.required],
       invoice: ['', Validators.required]
@@ -51,6 +52,18 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
     const data = this.route.snapshot.data;
     this.companyOptions = data.companyOptions;
     this.bookingTypes = data.bookingTypes;
+
+    // check if there is actual data in the data object
+    if (data.sale) {
+      this.isData = true;
+    } else {
+      this.isData = false;
+    }
+
+    // fill form if there is data
+    if (data.sale) {
+      this.saleFormGroup.patchValue(data.sale);
+    }
   }
 
   ngAfterViewInit() {

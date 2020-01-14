@@ -1,3 +1,4 @@
+import { SaleFormResolver } from './resolver/sale-form-resolver';
 import { BookingTypesResolver } from './resolver/booking-types-resolver';
 import { CompanyOptionsResolver } from './resolver/company-options-resolver';
 import { UserResolver } from './resolver/user-resolver';
@@ -17,6 +18,7 @@ import { PurchasesComponent } from './purchases/purchases.component';
 import { PurchasesFormComponent } from './purchases-form/purchases-form.component';
 import { VatComponent } from './vat/vat.component';
 import { CompanyFormComponent } from './company-form/company-form.component';
+import { PurchaseFormResolver } from './resolver/purchase-form-resolver';
 
 const routes: Routes = [
     { path: '', redirectTo: 'einnahmen', pathMatch: 'full' },
@@ -50,10 +52,30 @@ const routes: Routes = [
             bookingTypes: BookingTypesResolver
         }
     },
-    { path: 'einnahmen-form/:id', component: SalesFormComponent, canActivate: [AuthGuard] },
+    {
+        path: 'einnahmen-form/:id', component: SalesFormComponent, canActivate: [AuthGuard],
+        resolve: {
+            sale: SaleFormResolver,
+            companyOptions: CompanyOptionsResolver,
+            bookingTypes: BookingTypesResolver
+        }
+    },
     { path: 'ausgaben', component: PurchasesComponent, canActivate: [AuthGuard] },
-    { path: 'ausgaben-form', component: PurchasesFormComponent, canActivate: [AuthGuard] },
-    { path: 'ausgaben-form/:id', component: PurchasesFormComponent, canActivate: [AuthGuard] },
+    {
+        path: 'ausgaben-form', component: PurchasesFormComponent, canActivate: [AuthGuard],
+        resolve: {
+            companyOptions: CompanyOptionsResolver,
+            bookingTypes: BookingTypesResolver
+        }
+    },
+    {
+        path: 'ausgaben-form/:id', component: PurchasesFormComponent, canActivate: [AuthGuard],
+        resolve: {
+            purchase: PurchaseFormResolver,
+            companyOptions: CompanyOptionsResolver,
+            bookingTypes: BookingTypesResolver
+        }
+    },
     { path: 'ust', component: VatComponent, canActivate: [AuthGuard] },
     { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard] },
 
