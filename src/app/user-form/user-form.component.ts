@@ -1,3 +1,4 @@
+import { GroupService } from './../service/group.service';
 import { UserService } from './../service/user.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -13,12 +14,14 @@ export class UserFormComponent implements OnInit, AfterViewInit {
   userFormGroup;
   isData;
   companyOptions;
+  companyGroups;
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private groupService: GroupService
   ) { }
 
   ngOnInit() {
@@ -27,7 +30,7 @@ export class UserFormComponent implements OnInit, AfterViewInit {
       username: ['', Validators.required],
       firstname: [''],
       lastname: [''],
-      // groups: [[''], Validators.required],
+      groups: [[''], Validators.required],
       user_rights: ['', Validators.required]
     });
 
@@ -114,6 +117,15 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     // still no message
     console.log(message);
     M.toast({ html: 'I am a toast!' });
+  }
+
+  getGroupsOfCompany(companyId) {
+    this.groupService.getGroups(companyId).subscribe(
+      (response) => {
+        this.companyGroups = response;
+        console.log(this.companyGroups);
+      }
+    );
   }
 
 }

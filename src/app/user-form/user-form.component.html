@@ -33,17 +33,17 @@
                     </div>
                 </div>
 
-                <!-- <div *ngIf="!isData" class="row">
+                <div *ngIf="!isData" class="row">
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">business</i>
-                        <select id="company" formControlName="groups">
+                        <select (change)=getGroupsOfCompany($event.target.value) id="company" formControlName="groups">
                             <option value="" disabled>Wählen Sie eine Option</option>
                             <option *ngFor="let companyOption of companyOptions" [value]="companyOption.id">
                                 {{ companyOption.name }}</option>
                         </select>
                         <label for="company">Firma</label>
                     </div>
-                </div> -->
+                </div>
 
                 <div *ngIf="!isData" class="row">
                     <div class="input-field col s12 l6 offset-l3">
