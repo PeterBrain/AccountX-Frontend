@@ -40,9 +40,10 @@ export class AppComponent implements OnInit {
       });
 
     // TODO: check if user is admin, then set boolean
+    // only then show admin menu in dropdown
     this.isAdmin = true;
 
-  }
+  } z
 
   logout() {
     this.userService.logout();

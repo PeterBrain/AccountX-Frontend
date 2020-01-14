@@ -8,51 +8,42 @@
     <div class="row">
         <form [formGroup]="saleFormGroup" (ngSubmit)="saveForm()" class="col s12">
             <div class="row">
-                <div class="col s3"></div>
-                <div class="input-field col s6">
+                <div class="input-field col s12 l6 offset-l3">
                     <input id="invDate" type="text" class="datepicker validate" formControlName="invDate" required>
                     <label [ngClass]="{'active': isData}" for="invDate">Rechnungsdatum</label>
                 </div>
-                <div class="col s3"></div>
             </div>
 
             <div class="row">
-                <div class="col s3"></div>
-
-                <div class="input-field col s6">
+                <div class="input-field col s12 l6 offset-l3">
                     <input id="customer" type="text" class="validate" formControlName="customer" required>
                     <label [ngClass]="{'active': isData}" for="customer">Kunde</label>
                 </div>
-
-                <div class="col s3"></div>
             </div>
 
             <div class="row">
-                <div class="col s3"></div>
-
-                <div class="input-field col s6">
+                <div class="input-field col s12 l6 offset-l3">
                     <input id="project" type="text" class="validate" formControlName="project" required>
                     <label [ngClass]="{'active': isData}" for="project">Projekt / Auftrag</label>
                 </div>
-
-                <div class="col s3"></div>
             </div>
 
             <div class="row">
-                <div class="col s3"></div>
-
-                <div class="input-field col s6">
+                <div class="input-field col s12 l6 offset-l3">
                     <input id="net" type="number" min="0" class="validate" formControlName="net" required>
                     <label [ngClass]="{'active': isData}" for="net">Netto</label>
                 </div>
-
-                <div class="col s3"></div>
             </div>
 
             <div class="row">
-                <div class="col s3"></div>
+                <div class="input-field col s12 l6 offset-l3">
+                    <input id="vat" type="text" min="0" class="validate" formControlName="vat" required>
+                    <label [ngClass]="{'active': isData}" for="vat">Temp</label>
+                </div>
+            </div>
 
-                <div class="input-field col s6">
+            <!-- <div class="row">
+                <div class="input-field col s12 l6 offset-l3">
                     <select id="vat" formControlName='vat'>
                         <optgroup label="Österreich">
                             <option value="20">20%</option>
@@ -63,37 +54,18 @@
                     </select>
                     <label for="vat">Umsatzsteuer</label>
                 </div>
-
-                <div class="col s3"></div>
-            </div>
+            </div> -->
 
             <div class="row">
-                <div class="col s3"></div>
-                <div class="input-field col s6">
+                <div class="input-field col s12 l6 offset-l3">
                     <input id="cashflowdate" type="text" class="datepicker validate" formControlName="cashflowdate"
                         required>
                     <label [ngClass]="{'active': isData}" for="cashflowdate">Geldflussdatum</label>
                 </div>
-                <div class="col s3"></div>
             </div>
 
             <div class="row">
-                <div class="col s3"></div>
-                <div class="input-field col s6">
-                    <!-- form control name not correct either groups or companies -->
-                    <select id="company" formControlName="companies">
-                        <option value="" disabled>Wählen Sie eine Option</option>
-                        <option *ngFor="let companyOption of companyOptions" [value]="companyOption.id">
-                            {{ companyOption.name }}</option>
-                    </select>
-                    <label for="company">Firma</label>
-                </div>
-                <div class="col s3"></div>
-            </div>
-
-            <div class="row">
-                <div class="col s3"></div>
-                <div class="input-field col s6">
+                <div class="input-field col s12 l6 offset-l3">
                     <select id="bookingType" formControlName="bookingType">
                         <option value="" disabled>Wählen Sie eine Option</option>
                         <option *ngFor="let bookingType of bookingTypes" [value]="bookingType.id">
@@ -101,13 +73,10 @@
                     </select>
                     <label for="bookingType">Buchungskonto</label>
                 </div>
-                <div class="col s3"></div>
             </div>
 
             <div class="row">
-                <div class="col s3"></div>
-
-                <div class="file-field input-field col s6">
+                <div class="file-field input-field col s12 l6 offset-l3">
                     <div class="btn">
                         <span>Datei</span>
                         <input formControlName="invoice" type="file" multiple>
@@ -116,17 +85,12 @@
                         <input class="file-path validate" type="text" placeholder="Rechnung(en) hochladen">
                     </div>
                 </div>
-                <div class="col s3"></div>
             </div>
 
             <div class="row">
-                <div class="col s3"></div>
-
-                <div class="input-field col s6 center">
+                <div class="input-field col s12 l6 offset-l3 center">
                     <button class="btn btn-large waves-effect" type="submit">Speichern</button>
                 </div>
-
-                <div class="col s3"></div>
             </div>
         </form>
     </div>

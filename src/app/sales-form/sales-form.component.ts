@@ -19,7 +19,6 @@ import * as M from 'materialize-css';
 export class SalesFormComponent implements OnInit, AfterViewInit {
 
   saleFormGroup;
-  companyOptions;
   bookingTypes;
   isData;
 
@@ -43,14 +42,12 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
       net: ['', [Validators.required, Validators.min(0)]],
       vat: ['', Validators.required],
       cashflowdate: ['', Validators.required],
-      companies: [[''], Validators.required],
       bookingType: ['', Validators.required],
       invoice: ['', Validators.required]
     });
 
     // get resolver data
     const data = this.route.snapshot.data;
-    this.companyOptions = data.companyOptions;
     this.bookingTypes = data.bookingTypes;
 
     // check if there is actual data in the data object
@@ -91,6 +88,9 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
 
     const select = document.querySelectorAll('select');
     M.FormSelect.init(select);
+
+    const modal = document.querySelectorAll('.modal');
+    M.Modal.init(modal);
 
   }
 

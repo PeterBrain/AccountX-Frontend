@@ -7,8 +7,21 @@
             </a>
 
             <ul id="dropdown" class="dropdown-content" *ngIf="isLoggedIn">
-                <li><a href="#"><i class="material-icons left">account_circle</i>Profil</a></li>
-                <li><a href="#"><i class="material-icons left">settings_applications</i>Einstellungen</a></li>
+                <!-- <li><a href="#"><i class="material-icons left">account_circle</i>Profil</a></li> -->
+                <!-- <li><a href="#"><i class="material-icons left">settings_applications</i>Einstellungen</a></li> -->
+                <li><a href="#"><i class="material-icons left">save_alt</i>Export</a></li>
+
+                <!-- Export Modal Structure -->
+                <div id="export-modal" class="modal">
+                    <div class="modal-content">
+                        <h4>Export Settings</h4>
+                        <p>A bunch of text</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                    </div>
+                </div>
+
                 <li class="divider"></li>
                 <li *ngIf="isAdmin"><a href="#" routerLink="admin-dashboard"><i
                             class="material-icons left">supervised_user_circle</i>Admin</a></li>

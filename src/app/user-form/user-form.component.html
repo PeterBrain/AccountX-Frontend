@@ -33,25 +33,7 @@
                     </div>
                 </div>
 
-                <!-- <div class="row">
-                    <div class="input-field col s12 l6 offset-l3">
-                        <i class="material-icons prefix">lock</i>
-                        <textarea id="password" class="materialize-textarea validate"
-                            formControlName="password"></textarea>
-                        <label [ngClass]="{'active': isData}" for="password">Passwort</label>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-field col s12 l6 offset-l3">
-                        <i class="material-icons prefix">done</i>
-                        <textarea id="passwordConfirm" class="materialize-textarea validate"
-                            formControlName="passwordConfirm"></textarea>
-                        <label [ngClass]="{'active': isData}" for="passwordConfirm">Passwort bestätigen</label>
-                    </div>
-                </div> -->
-
-                <div *ngIf="!isData" class="row">
+                <!-- <div *ngIf="!isData" class="row">
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">business</i>
                         <select id="company" formControlName="groups">
@@ -60,6 +42,18 @@
                                 {{ companyOption.name }}</option>
                         </select>
                         <label for="company">Firma</label>
+                    </div>
+                </div> -->
+
+                <div *ngIf="!isData" class="row">
+                    <div class="input-field col s12 l6 offset-l3">
+                        <i class="material-icons prefix">group</i>
+                        <select id="user_rights" formControlName="user_rights" required>
+                            <option value="" disabled>Wählen Sie eine Option</option>
+                            <option value="">Admin</option>
+                            <option value="">Buchhaltung</option>
+                        </select>
+                        <label for="user_rights">Berechtigung</label>
                     </div>
                 </div>
 

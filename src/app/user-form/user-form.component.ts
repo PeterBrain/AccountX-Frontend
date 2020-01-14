@@ -27,9 +27,8 @@ export class UserFormComponent implements OnInit, AfterViewInit {
       username: ['', Validators.required],
       firstname: [''],
       lastname: [''],
-      groups: [[null], Validators.required]
-      // password: ['', Validators.required],
-      // passwordConfirm: ['', Validators.required]
+      // groups: [[''], Validators.required],
+      user_rights: ['', Validators.required]
     });
 
     const data = this.route.snapshot.data;
@@ -84,13 +83,13 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     } else {
       console.log(user);
 
-      this.userService.createUser(user).subscribe(
-        (response) => {
-          message = 'Mitarbeiter erstellt.';
-          alert('Mitarbeiter erstellt.');
-          return response;
-        }
-      );
+      // this.userService.createUser(user).subscribe(
+      //   (response) => {
+      //     message = 'Mitarbeiter erstellt.';
+      //     alert('Mitarbeiter erstellt.');
+      //     return response;
+      //   }
+      // );
     }
 
     this.router.navigate(['/admin-dashboard']);

@@ -23,11 +23,9 @@ import { CompanyService } from '../service/company.service';
 export class PurchasesFormComponent implements OnInit, AfterViewInit {
 
   purchaseFormGroup;
-  companyOptions;
   bookingTypes;
   isData;
   ust;
-  id;
 
   months = datepickerMonths;
   monthsShort = datepickerMonthsShort;
@@ -55,7 +53,6 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
       ust: ['', Validators.required],
       net: ['', [Validators.required, Validators.min(0)]],
       cashflowdate: ['', Validators.required],
-      companies: [[null], Validators.required],
       bookingType: [null, Validators.required],
       invoice: [null, Validators.required],
       notes: [null]
@@ -63,7 +60,6 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
 
     // get resolver data
     const data = this.route.snapshot.data;
-    this.companyOptions = data.companyOptions;
     this.bookingTypes = data.bookingTypes;
 
     // check if there is actual data in the data object
