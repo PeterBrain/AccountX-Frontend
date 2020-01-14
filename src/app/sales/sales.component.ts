@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { SaleService } from './../service/sale.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as M from 'materialize-css';
@@ -12,7 +13,8 @@ export class SalesComponent implements OnInit, AfterViewInit {
   sales;
 
   constructor(
-    private saleService: SaleService
+    private saleService: SaleService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {

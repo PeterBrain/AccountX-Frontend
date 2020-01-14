@@ -18,7 +18,7 @@ import { VatComponent } from './vat/vat.component';
 import { CompanyFormComponent } from './company-form/company-form.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: 'ausgaben', pathMatch: 'full' },
+    { path: '', redirectTo: 'einnahmen', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'registration', component: RegistrationComponent },
     { path: 'firmen', component: CompanySelectComponent, canActivate: [AuthGuard] },

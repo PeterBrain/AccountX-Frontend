@@ -17,6 +17,22 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="input-field col s12 l6 offset-l3">
+                        <i class="material-icons prefix">person</i>
+                        <input id="firstname" type="text" class="validate" formControlName="firstname">
+                        <label [ngClass]="{'active': isData}" for="firstname">Vorname</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12 l6 offset-l3">
+                        <i class="material-icons prefix">person</i>
+                        <input id="lastname" type="text" class="validate" formControlName="lastname">
+                        <label [ngClass]="{'active': isData}" for="lastname">Nachname</label>
+                    </div>
+                </div>
+
                 <!-- <div class="row">
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">lock</i>
@@ -35,20 +51,13 @@
                     </div>
                 </div> -->
 
-                <p style="color: red;">
-                    die daten des company options resolver müssen noch eingefügt werden
-                </p>
-                <br>
-                <br>
-                <br>
-
-                <div class="row">
+                <div *ngIf="!isData" class="row">
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">business</i>
-                        <select id="company" formControlName="company">
+                        <select id="company" formControlName="groups">
                             <option value="" disabled>Wähle eine Option</option>
                             <option *ngFor="let companyOption of companyOptions" [value]="companyOption.id">
-                                {{companyOption.name + " - " + companyOption.description}}</option>
+                                {{companyOption.name}}</option>
                         </select>
                         <label for="company">Firma</label>
                     </div>

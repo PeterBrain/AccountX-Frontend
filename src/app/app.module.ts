@@ -40,7 +40,7 @@ export function tokenGetter() {
         NotFoundComponent,
         AdminDashboardComponent,
         CompanyFormComponent,
-        UserFormComponent
+        UserFormComponent,
     ],
     imports: [
         BrowserModule,

@@ -71,6 +71,16 @@ export class UserService {
         }
     }
 
+    getCurrentUser() {
+        // if token exists, retrieve user
+        if (localStorage.getItem(this.accessTokenLocalStorageKey)) {
+            const token = localStorage.getItem(this.accessTokenLocalStorageKey);
+            const decodedToken = this.jwtHelperService.decodeToken(token);
+            const user = this.getUser(decodedToken.user_id);
+            return user;
+        }
+    }
+
     getUser(userId: string) {
         return this.http.get('/api/users/' + userId + '/');
     }

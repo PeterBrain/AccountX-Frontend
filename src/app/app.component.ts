@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from './service/user.service';
 
 @Component({
@@ -18,12 +18,20 @@ export class AppComponent implements OnInit {
 
   constructor(
     public router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private route: ActivatedRoute
   ) {
   }
 
   ngOnInit() {
-    this.currentUser = this.userService.getUsername();
+    // needs typesafe ('?') parameter in html, because html renders faster then the name of the user is loaded
+    this.userService.getCurrentUser().subscribe(
+      (response) => {
+        this.currentUser = response;
+        console.log(this.currentUser);
+      }
+    );
+
     this.currentYear = new Date().getFullYear().toString();
 
     this.userService.isLoggedIn.subscribe(

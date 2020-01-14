@@ -25,23 +25,21 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     this.userFormGroup = this.fb.group({
       id: [null],
       username: ['', Validators.required],
-      company: ['', Validators.required]
+      firstname: [''],
+      lastname: [''],
+      groups: [[null], Validators.required]
       // password: ['', Validators.required],
       // passwordConfirm: ['', Validators.required]
     });
 
     const data = this.route.snapshot.data;
-    // TODO: implement company options resolver
     this.companyOptions = data.companyOptions;
-    console.log(data);
-    console.log(data.companyOptions);
-
 
     // check if there is actual data in the data object
-    if (Object.keys(data).length === 0 && data.constructor === Object) {
-      this.isData = false;
-    } else {
+    if (data.user) {
       this.isData = true;
+    } else {
+      this.isData = false;
     }
 
     // fill form if there is data
@@ -67,6 +65,8 @@ export class UserFormComponent implements OnInit, AfterViewInit {
 
   saveForm() {
     const user = this.userFormGroup.value;
+    console.log(user);
+
     let message;
 
     if (this.isData) {
@@ -82,6 +82,8 @@ export class UserFormComponent implements OnInit, AfterViewInit {
         }
       );
     } else {
+      console.log(user);
+
       this.userService.createUser(user).subscribe(
         (response) => {
           message = 'Mitarbeiter erstellt.';
