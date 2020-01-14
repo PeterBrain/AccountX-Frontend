@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
 
   title = 'AccountX';
   currentUser;
+  isAdmin;
   currentYear;
   isLoggedIn = false;
   company;
@@ -38,6 +39,10 @@ export class AppComponent implements OnInit {
       (isLoggedIn) => {
         this.isLoggedIn = isLoggedIn;
       });
+
+    // TODO: check if user is admin, then set boolean
+    this.isAdmin = true;
+
   }
 
   logout() {

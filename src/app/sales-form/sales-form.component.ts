@@ -7,7 +7,7 @@ import {
 } from '../reusables/datepicker/datepicker.config';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import * as M from 'materialize-css';
 
 
@@ -19,6 +19,9 @@ import * as M from 'materialize-css';
 export class SalesFormComponent implements OnInit, AfterViewInit {
 
   saleFormGroup;
+  companyOptions;
+  bookingTypes;
+
   months = datepickerMonths;
   monthsShort = datepickerMonthsShort;
   weekdays = datepickerWeekdays;
@@ -28,6 +31,7 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -38,10 +42,15 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
       net: ['', [Validators.required, Validators.min(0)]],
       vat: ['', Validators.required],
       cashFlowDate: ['', Validators.required],
-      company: ['', Validators.required],
+      companies: [[''], Validators.required],
       bookingType: ['', Validators.required],
       invoice: ['', Validators.required]
     });
+
+    // get resolver data
+    const data = this.route.snapshot.data;
+    this.companyOptions = data.companyOptions;
+    this.bookingTypes = data.bookingTypes;
   }
 
   ngAfterViewInit() {

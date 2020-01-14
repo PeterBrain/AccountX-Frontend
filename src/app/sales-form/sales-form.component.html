@@ -60,11 +60,6 @@
                             <option value="10">10%</option>
                             <option value="0">0%</option>
                         </optgroup>
-                        <optgroup label="Deutschland">
-                            <option value="19">19%</option>
-                            <option value="7">7%</option>
-                            <option value="0">0%</option>
-                        </optgroup>
                     </select>
                     <label for="vat">Umsatzsteuer</label>
                 </div>
@@ -85,11 +80,11 @@
             <div class="row">
                 <div class="col s3"></div>
                 <div class="input-field col s6">
-                    <select id="company" formControlName="company">
-                        <option value="" disabled selected></option>
-                        <option value="">Firma 1</option>
-                        <option value="">Firma 2</option>
-                        <option value="">Firma 3</option>
+                    <!-- form control name not correct either groups or companies -->
+                    <select id="company" formControlName="companies">
+                        <option value="" disabled>Wählen Sie eine Option</option>
+                        <option *ngFor="let companyOption of companyOptions" [value]="companyOption.id">
+                            {{ companyOption.name }}</option>
                     </select>
                     <label for="company">Firma</label>
                 </div>
@@ -100,9 +95,9 @@
                 <div class="col s3"></div>
                 <div class="input-field col s6">
                     <select id="bookingType" formControlName="bookingType">
-                        <option value="" disabled selected></option>
-                        <option value="">4 - Erlöse</option>
-                        <option value="">8 - Förderungen</option>
+                        <option value="" disabled>Wählen Sie eine Option</option>
+                        <option *ngFor="let bookingType of bookingTypes" [value]="bookingType.id">
+                            {{ bookingType.name }}</option>
                     </select>
                     <label for="bookingType">Buchungskonto</label>
                 </div>
