@@ -12,12 +12,13 @@ import * as M from 'materialize-css';
 export class CompanyFormComponent implements OnInit, AfterViewInit {
   companyFormGroup;
   isData;
+  isToast = false;
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private companyService: CompanyService
+    private companyService: CompanyService,
   ) { }
 
   ngOnInit() {
@@ -56,33 +57,34 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
   saveForm() {
     const company = this.companyFormGroup.value;
     let message;
+    let companyName;
 
     if (this.isData) {
       this.companyService.updateCompany(company).subscribe(
         (response) => {
-          message = 'Firma upgedatet.';
-          // cannot call name of response?! works but linter doesnt like it
-          // console.log(response.name);
-
-          // alert shows twice, why?
-          alert('Firma upgedated.');
+          // same as: response.name but linter does not like it this way
+          console.log(JSON.parse(JSON.stringify(response)).name);
+          companyName = JSON.parse(JSON.stringify(response)).name;
           return response;
         }
       );
+
+      message = 'Firma upgedatet.';
     } else {
       this.companyService.createCompany(company).subscribe(
         (response) => {
-          message = 'Firma erstellt.';
-          alert('Firma erstellt.');
+          companyName = JSON.parse(JSON.stringify(response)).name;
           return response;
         }
       );
+
+      message = 'Firma erstellt.';
     }
 
     this.router.navigate(['/admin-dashboard']);
 
-    // does not return message, why?
-    console.log(message);
+    // does not log the company name only inside subscribe, why?
+    console.log(companyName);
 
     this.showToast(message);
   }
@@ -97,9 +99,11 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
     }
   }
 
-  showToast(message) {
-    // still no message
-    console.log(message);
-    M.toast({ html: 'I am a toast!' });
+  showToast(message: string) {
+    this.isToast = true;
+    M.toast({
+      html: message,
+      displayLength: 4000
+    });
   }
 }
