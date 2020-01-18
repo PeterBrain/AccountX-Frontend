@@ -96,6 +96,8 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
           this.router.navigate(['/admin-dashboard']);
         }
       );
+
+      this.showToast('Firma gelöscht.')
     }
   }
 
