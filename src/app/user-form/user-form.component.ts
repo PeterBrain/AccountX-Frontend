@@ -27,9 +27,11 @@ export class UserFormComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.userFormGroup = this.fb.group({
       id: [null],
-      username: [{value: '', disabled: false}, Validators.required],
+      username: [{ value: '', disabled: false }, Validators.required],
       first_name: [''],
       last_name: [''],
+      password: [''],
+      passwordConfirm: ['', Validators.required], // [Validators.required, passwordMatch()]]
       company: [null, Validators.required],
       groups: [null, Validators.required]
     });
@@ -84,12 +86,12 @@ export class UserFormComponent implements OnInit, AfterViewInit {
       console.log(user);
 
       this.userService.createUser(user).subscribe(
-         (response) => {
-           message = JSON.parse(JSON.stringify(response)).username + ' erstellt.';
-           M.toast({ html: message });
-           this.router.navigate(['/admin-dashboard']);
-           return response;
-         }
+        (response) => {
+          message = JSON.parse(JSON.stringify(response)).username + ' erstellt.';
+          M.toast({ html: message });
+          this.router.navigate(['/admin-dashboard']);
+          return response;
+        }
       );
     }
   }
