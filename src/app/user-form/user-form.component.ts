@@ -83,8 +83,6 @@ export class UserFormComponent implements OnInit, AfterViewInit {
         }
       );
     } else {
-      console.log(user);
-
       this.userService.createUser(user).subscribe(
         (response) => {
           const message = JSON.parse(JSON.stringify(response)).username + ' erstellt.';
