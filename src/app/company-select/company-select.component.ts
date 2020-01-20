@@ -2,6 +2,7 @@ import { UserService } from './../service/user.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as M from 'materialize-css';
 import { CompanyService } from '../service/company.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-company-select',
@@ -14,11 +15,14 @@ export class CompanySelectComponent implements OnInit, AfterViewInit {
 
   constructor(
     private userService: UserService,
-    private companyService: CompanyService
+    private companyService: CompanyService,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.getCompanies();
+
+
   }
 
   ngAfterViewInit() {
@@ -33,6 +37,10 @@ export class CompanySelectComponent implements OnInit, AfterViewInit {
     this.companyService.getCompanies().subscribe(
       (response) => {
         this.companies = response;
+
+        if (this.companies.length === 0) {
+          this.router.navigate(['firma-form']);
+        }
       }
     );
   }
