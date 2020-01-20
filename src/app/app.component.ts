@@ -41,12 +41,12 @@ export class AppComponent implements OnInit {
         this.isLoggedIn = isLoggedIn;
       });
 
+    //Todo
     // if (this.isLoggedIn) {
     this.checkIfUserIsAdmin();
     // }
   }
 
-  //Zuerst checken ob überhaupt angemeldet: sonst fehler auf login page
   checkIfUserIsAdmin() {
     this.userService.getCurrentUser().subscribe(
       (response) => {
