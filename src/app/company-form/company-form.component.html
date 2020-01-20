@@ -28,7 +28,9 @@
 
                 <div class="row">
                     <div class="col s12 l6 offset-l3 center">
-                        <button *ngIf="isData" class="btn btn-large waves-effect modal-trigger"
+                        <button (click)="cancelForm()" class="btn btn-large waves-effect yellow darken-2">Abbrechen
+                        </button>
+                        <button *ngIf="isData" class="btn btn-large waves-effect modal-trigger red darken-4"
                             data-target="deleteModal">Löschen</button>
                         <button (click)="saveForm()" [disabled]="!companyFormGroup.valid"
                             class="btn btn-large waves-effect" type="submit">Speichern</button>

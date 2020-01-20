@@ -101,6 +101,10 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
     }
   }
 
+  cancelForm() {
+    this.router.navigate(['/admin-dashboard']);
+  }
+
   showToast(message: string) {
     this.isToast = true;
     M.toast({
