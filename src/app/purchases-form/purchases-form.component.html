@@ -35,15 +35,15 @@
                 <div class="row">
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">money_off</i>
-                        <select id="ust" formControlName='ust'>
+                        <select id="vat" formControlName='vat'>
                             <optgroup label="Österreich">
-                                <option value="0.2" [selected]="ust === 0.2">20%</option>
-                                <option value="0.13" [selected]="ust === 0.13">13%</option>
-                                <option value="0.1" [selected]="ust === 0.1">10%</option>
-                                <option value="0" [selected]="ust === 0">0%</option>
+                                <option value="0.2">20%</option>
+                                <option value="0.13">13%</option>
+                                <option value="0.1">10%</option>
+                                <option value="0.0">0%</option>
                             </optgroup>
                         </select>
-                        <label for="ust">Umsatzsteuer</label>
+                        <label for="vat">Umsatzsteuer</label>
                     </div>
                 </div>
 

@@ -50,7 +50,7 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
       invNo: ['', [Validators.required, Validators.min(0)]],
       invDate: ['', Validators.required],
       biller: ['', Validators.required],
-      ust: ['', Validators.required],
+      vat: ['', Validators.required],
       net: ['', [Validators.required, Validators.min(0)]],
       cashflowdate: ['', Validators.required],
       bookingType: [null, Validators.required],

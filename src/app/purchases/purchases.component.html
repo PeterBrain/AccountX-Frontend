@@ -22,9 +22,9 @@
                     <td>{{ purchase.invDate }}</td>
                     <td>{{ purchase.biller }}</td>
                     <td>{{ purchase.notes }}</td>
-                    <td>{{ purchase.ust | number:'1.2' }}</td>
+                    <td>{{ purchase.vat | number:'1.2' }}</td>
                     <td>{{ purchase.net | number:'1.2' }}</td>
-                    <td>{{ purchase.net * (1 + purchase.ust) | number:'1.2' }}</td>
+                    <td>{{ purchase.net * (1 + purchase.vat) | number:'1.2' }}</td>
                     <td>{{ purchase.cashflowdate }}</td>
                     <td>{{ purchase.bookingType }}</td>
                     <td>
