@@ -120,6 +120,10 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
     }
   }
 
+  cancelForm() {
+    this.router.navigate(['/einnahmen']);
+  }
+
   deletePurchase(purchase) {
     this.purchaseService.deletePurchase(purchase).subscribe(() => {
       this.router.navigate(['/ausgaben']);
