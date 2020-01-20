@@ -1,19 +1,29 @@
-import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable, of } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class BookingTypeService {
-
-  constructor(
-      private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) {}
 
   getBookingTypes() {
-    return this.http.get('/api/bookingTypes/');
-  }
+    //return this.http.get('/api/bookingTypes/');
 
+    return of([
+      {
+        name: "GWG"
+      },
+      {
+        name: "SV"
+      },
+      {
+        name: "Ein Buchungstyp"
+      }
+    ]);
+  }
+  /*
   createBookingType(bookingType) {
     return this.http.post('/api/bookingTypes/', bookingType);
   }
@@ -25,4 +35,5 @@ export class BookingTypeService {
   deleteBookingType(bookingType) {
     return this.http.delete('/api/bookingTypes/' + bookingType.id + '/', bookingType);
   }
+  */
 }

@@ -26,7 +26,7 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
   bookingTypes;
   isData;
   ust;
-
+  company;
   months = datepickerMonths;
   monthsShort = datepickerMonthsShort;
   weekdays = datepickerWeekdays;
