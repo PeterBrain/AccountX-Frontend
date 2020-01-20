@@ -113,6 +113,10 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     }
   }
 
+  cancelForm() {
+    this.router.navigate(['/admin-dashboard']);
+  }
+
   showToast(message) {
     // still no message
     console.log(message);

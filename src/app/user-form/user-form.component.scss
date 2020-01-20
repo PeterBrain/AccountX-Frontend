@@ -1,3 +1,7 @@
-button.modal-trigger {
+button {
   margin-right: 1em;
+}
+
+button:last-of-type {
+  margin-right: 0em;
 }

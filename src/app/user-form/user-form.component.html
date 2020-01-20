@@ -12,8 +12,8 @@
                 <div class="row">
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">account_circle</i>
-                        <input id="username" type="text" class="validate" formControlName="username" required>
-                        <label [ngClass]="{'active': isData}" for="username">Benutzername</label>
+                        <input id="username" type="text" class="validate" formControlName="username" required [readonly]="{ 'readonly': isData }">
+                        <label for="username">Benutzername</label>
                     </div>
                 </div>
 
@@ -21,7 +21,7 @@
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">person</i>
                         <input id="firstname" type="text" class="validate" formControlName="firstname">
-                        <label [ngClass]="{'active': isData}" for="firstname">Vorname</label>
+                        <label  for="firstname">Vorname</label><!--[ngClass]="isData" [ngClass]="{ 'active' : isData" } -->
                     </div>
                 </div>
 
@@ -29,7 +29,7 @@
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">person</i>
                         <input id="lastname" type="text" class="validate" formControlName="lastname">
-                        <label [ngClass]="{'active': isData}" for="lastname">Nachname</label>
+                        <label for="lastname">Nachname</label>
                     </div>
                 </div>
 
@@ -58,11 +58,23 @@
                 </div>
 
                 <div class="row">
+                    <div class="input-field col s12 l6 offset-l3">
+                        <i class="material-icons prefix">lock</i>
+                        <input id="password" type="password" class="validate" formControlName="password">
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="col s12 l6 offset-l3 center">
-                        <button *ngIf="isData" class="btn btn-large waves-effect modal-trigger"
-                            data-target="deleteModal">Löschen</button>
+                        <button (click)="cancelForm()" class="btn btn-large waves-effect yellow darken-2">Abbrechen
+                        </button>
+                        <button *ngIf="isData" class="btn btn-large waves-effect modal-trigger red darken-4"
+                                data-target="deleteModal">Löschen
+                        </button>
                         <button (click)="saveForm()" [disabled]="!userFormGroup.valid"
-                            class="btn btn-large waves-effect" type="submit">Speichern</button>
+                                class="btn btn-large waves-effect" type="submit">Speichern
+                        </button>
 
                         <!-- Modal Structure -->
                         <div id="deleteModal" class="modal col s12 l4 center">
@@ -73,7 +85,7 @@
                             <div class="modal-footer">
                                 <a class="modal-close waves-effect waves-red btn-flat">Abbrechen</a>
                                 <a class="modal-close waves-effect waves-green btn-flat"
-                                    (click)="deleteUser()">Löschen</a>
+                                   (click)="deleteUser()">Löschen</a>
                             </div>
                         </div>
                     </div>
