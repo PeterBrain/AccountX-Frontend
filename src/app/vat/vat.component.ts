@@ -11,7 +11,6 @@ import { CompanyService } from '../service/company.service';
 export class VatComponent implements OnInit, AfterViewInit {
 
   vatReport = ['', '', '', '', '', '', '', '', '', '', '', '']; // initialize array
-  // months = ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"];
   currentYear = new Date().getFullYear().toString();
   months = [
     ['Jan', this.currentYear + '-02-01', this.currentYear + '-01-01'],
@@ -53,12 +52,10 @@ export class VatComponent implements OnInit, AfterViewInit {
     this.months.forEach((element, index) => {
       this.vatService.getVatReport(this.companyId, element[1], element[2]).subscribe(
         (response) => {
-          // was genau passiert hier?
-          response[0].month = element[0]; // changed from response[0]['month'] = element[0];
-          console.log(response[0]);
+          // puts api call responses in an array at the right index to get an ordered list
+          // otherwise, because of the nature of asynchronous calls, we would get an unsorted list
+          response[0].month = element[0];
           this.vatReport[index] = response[0];
-          console.log(this.vatReport);
-
         }
       );
     });

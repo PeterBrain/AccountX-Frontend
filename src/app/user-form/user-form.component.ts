@@ -1,4 +1,3 @@
-import { GroupService } from './../service/group.service';
 import { UserService } from './../service/user.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -20,8 +19,7 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private userService: UserService,
-    private groupService: GroupService
+    private userService: UserService
   ) { }
 
   ngOnInit() {
@@ -76,7 +74,7 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     if (this.isData) {
       this.userService.updateUser(user).subscribe(
         (response) => {
-          const message = JSON.parse(JSON.stringify(response)).username + ' geändert.';
+          const message = 'Mitarbeiter ' + JSON.parse(JSON.stringify(response)).username + ' wurde geändert.';
           M.toast({ html: message });
           this.router.navigate(['/admin-dashboard']);
           return response;
@@ -85,7 +83,7 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     } else {
       this.userService.createUser(user).subscribe(
         (response) => {
-          const message = JSON.parse(JSON.stringify(response)).username + ' erstellt.';
+          const message = 'Mitarbeiter ' + JSON.parse(JSON.stringify(response)).username + ' wurde erstellt.';
           M.toast({ html: message });
           this.router.navigate(['/admin-dashboard']);
           return response;
