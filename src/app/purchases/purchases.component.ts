@@ -23,7 +23,7 @@ export class PurchasesComponent implements OnInit, AfterViewInit {
         this.purchaseService.getPurchases().subscribe(
             (response) => {
                 this.purchases = response;
-                console.log('Purchases object: ');
+                console.log('Purchases objects: ');
                 console.log(this.purchases);
             }
         );
