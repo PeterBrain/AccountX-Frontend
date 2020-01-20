@@ -5,11 +5,12 @@ import {
   datepickerWeekdaysAbbrev,
   datepickerMonthsShort
 } from '../reusables/datepicker/datepicker.config';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import {FormBuilder, Validators} from '@angular/forms';
+import {Component, OnInit, AfterViewInit} from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router';
 import * as M from 'materialize-css';
 import {SaleService} from '../service/sale.service';
+import {CompanyService} from '../service/company.service';
 
 
 @Component({
@@ -19,6 +20,9 @@ import {SaleService} from '../service/sale.service';
 })
 export class SalesFormComponent implements OnInit, AfterViewInit {
 
+  isToast = false;
+
+  company;
   saleFormGroup;
   bookingTypes;
   isData;
@@ -34,7 +38,9 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
     private router: Router,
     private route: ActivatedRoute,
     private saleService: SaleService,
-  ) { }
+    private companyService: CompanyService,
+  ) {
+  }
 
   ngOnInit() {
     this.saleFormGroup = this.fb.group({
@@ -46,12 +52,15 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
       vat: ['', Validators.required],
       cashflowdate: ['', Validators.required],
       bookingType: ['', Validators.required],
-      invoice: ['', Validators.required]
+      invoice: [null],
+      company: [null]
     });
 
     // get resolver data
     const data = this.route.snapshot.data;
     this.bookingTypes = data.bookingTypes;
+    this.company = this.companyService.getCompanyToken(); //needed?
+
     // check if there is actual data in the data object
     if (data.sale) {
       this.isData = true;
@@ -70,7 +79,7 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
     M.Sidenav.init(sidenav);
 
     const elems = document.querySelectorAll('.dropdown-trigger');
-    M.Dropdown.init(elems, { hover: false, constrainWidth: false });
+    M.Dropdown.init(elems, {hover: false, constrainWidth: false});
 
     const tabs = document.querySelectorAll('.tabs');
     M.Tabs.init(tabs);
@@ -97,8 +106,21 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
   }
 
   saveForm() {
-    alert('TODO: save form');
-    this.router.navigate(['/einnahmen']);
+    const sale = this.saleFormGroup.value;
+    let message;
+
+    if (sale.id) {
+      this.saleService.updateSale(sale).subscribe(() => {
+        this.ngOnInit();
+      });
+      message = 'Ausgangsrechnung geändert';
+    } else {
+      this.saleService.createSale(sale).subscribe(() => {
+        this.router.navigate(['/einnahmen']);
+      });
+      message = 'Ausgangsrechnung erstellt';
+    }
+    this.showToast(message);
   }
 
   cancelForm() {
@@ -108,6 +130,14 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
   deleteSale(sale) {
     this.saleService.deleteSale(sale).subscribe(() => {
       this.router.navigate(['/einnahmen']);
+    });
+  }
+
+  showToast(message: string) {
+    this.isToast = true;
+    M.toast({
+      html: message,
+      displayLength: 4000
     });
   }
 }
