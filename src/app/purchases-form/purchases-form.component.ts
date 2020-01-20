@@ -22,6 +22,7 @@ import { CompanyService } from '../service/company.service';
 })
 export class PurchasesFormComponent implements OnInit, AfterViewInit {
 
+  company;
   purchaseFormGroup;
   bookingTypes;
   isData;
@@ -53,7 +54,7 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
       vat: ['', Validators.required],
       net: ['', [Validators.required, Validators.min(0)]],
       cashflowdate: ['', Validators.required],
-      bookingType: [null, Validators.required],
+      bookingType: ['', Validators.required],
       invoice: [null],
       notes: [null],
       company: [null] //needed for edit
@@ -61,7 +62,6 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
 
     // get resolver data
     const data = this.route.snapshot.data;
-    this.bookingTypes = data.bookingTypes;
 
     this.company = this.companyService.getCompanyToken(); //is this needed? test
     // check if there is actual data in the data object

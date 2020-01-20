@@ -1,5 +1,4 @@
 import { SaleFormResolver } from './resolver/sale-form-resolver';
-import { BookingTypesResolver } from './resolver/booking-types-resolver';
 import { CompanyOptionsResolver } from './resolver/company-options-resolver';
 import { UserResolver } from './resolver/user-resolver';
 import { UserFormComponent } from './user-form/user-form.component';
@@ -50,32 +49,28 @@ const routes: Routes = [
     {
         path: 'einnahmen-form', component: SalesFormComponent, canActivate: [AuthGuard],
         resolve: {
-            companyOptions: CompanyOptionsResolver,
-            bookingTypes: BookingTypesResolver
+            companyOptions: CompanyOptionsResolver
         }
     },
     {
         path: 'einnahmen-form/:id', component: SalesFormComponent, canActivate: [AuthGuard],
         resolve: {
             sale: SaleFormResolver,
-            companyOptions: CompanyOptionsResolver,
-            bookingTypes: BookingTypesResolver
+            companyOptions: CompanyOptionsResolver
         }
     },
     { path: 'ausgaben', component: PurchasesComponent, canActivate: [AuthGuard] },
     {
         path: 'ausgaben-form', component: PurchasesFormComponent, canActivate: [AuthGuard],
         resolve: {
-            companyOptions: CompanyOptionsResolver,
-            bookingTypes: BookingTypesResolver
+            companyOptions: CompanyOptionsResolver
         }
     },
     {
         path: 'ausgaben-form/:id', component: PurchasesFormComponent, canActivate: [AuthGuard],
         resolve: {
             purchase: PurchaseFormResolver,
-            companyOptions: CompanyOptionsResolver,
-            bookingTypes: BookingTypesResolver
+            companyOptions: CompanyOptionsResolver
         }
     },
     { path: 'ust', component: VatComponent, canActivate: [AuthGuard] },
