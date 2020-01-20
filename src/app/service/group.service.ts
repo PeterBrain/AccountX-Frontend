@@ -10,8 +10,8 @@ export class GroupService {
     private http: HttpClient
   ) { }
 
-  getGroups(companyId: string) {
-    return this.http.get('/api/groups/' + companyId + '/');
+  getGroups() {
+    return this.http.get('/api/groups/');
   }
 
   getGroup(groupId: string) {
