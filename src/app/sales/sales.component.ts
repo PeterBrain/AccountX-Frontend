@@ -21,7 +21,7 @@ export class SalesComponent implements OnInit, AfterViewInit {
     this.saleService.getSales().subscribe(
       (response) => {
         this.sales = response;
-        console.log('Sales object: ');
+        console.log('Sales objects: ');
         console.log(this.sales);
       }
     );
