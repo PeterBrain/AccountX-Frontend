@@ -97,7 +97,7 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
         }
       );
 
-      this.showToast('Firma gelöscht.')
+      this.showToast('Firma gelöscht.');
     }
   }
 
