@@ -47,14 +47,14 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.purchaseFormGroup = this.fb.group({
       id: [null],
-      invNo: ['', [Validators.required, Validators.min(0)]],
+      invNo: ['', Validators.required],
       invDate: ['', Validators.required],
       biller: ['', Validators.required],
       vat: ['', Validators.required],
       net: ['', [Validators.required, Validators.min(0)]],
       cashflowdate: ['', Validators.required],
       bookingType: [null, Validators.required],
-      invoice: [null, Validators.required],
+      invoice: [null],
       notes: [null],
       company: [null] //needed for edit
     });
