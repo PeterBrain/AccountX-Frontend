@@ -46,6 +46,7 @@ export class AppComponent implements OnInit {
     // }
   }
 
+  //Zuerst checken ob überhaupt angemeldet: sonst fehler auf login page
   checkIfUserIsAdmin() {
     this.userService.getCurrentUser().subscribe(
       (response) => {
