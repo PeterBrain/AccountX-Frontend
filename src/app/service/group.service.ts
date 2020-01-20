@@ -13,4 +13,8 @@ export class GroupService {
   getGroups(companyId: string) {
     return this.http.get('/api/groups/' + companyId + '/');
   }
+
+  getGroup(groupId: string) {
+    return this.http.get('/api/groups/' + groupId + '/');
+  }
 }
