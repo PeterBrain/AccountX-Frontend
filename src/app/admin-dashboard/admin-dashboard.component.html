@@ -9,15 +9,15 @@
                             class="material-icons">add</i></a>
                 </li>
 
-                <li *ngFor="let company of companies" class="collection-item avatar">
+                <li (click)="getUsersOfCompany(company.id)" *ngFor="let company of companies"
+                    class="collection-item avatar">
                     <img src="../../assets/images/bg/sidenav-bg.jpg" alt="{{ company.name }}" class="circle">
                     <span class="title">{{ company.name }} <a href="#" [routerLink]="['/firma-form/' + company.id]"
                             class="custom-secondary-content"><i class="material-icons">mode_edit</i></a></span>
                     <p *ngIf="company.description !== null"><br>
                         {{ company.description }}
                     </p>
-                    <a (click)="getUsersOfCompany(company.id)" class="secondary-content"><i
-                            class="material-icons">keyboard_arrow_right</i></a>
+                    <a class="secondary-content"><i class="material-icons">keyboard_arrow_right</i></a>
                 </li>
             </ul>
         </div>
