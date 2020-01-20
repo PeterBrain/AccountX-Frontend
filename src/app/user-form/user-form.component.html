@@ -57,7 +57,7 @@
                 <div *ngIf="!isData" class="row">
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">business</i>
-                        <select (change)=getGroupsOfCompany($event.target.value) id="company" formControlName="company">
+                        <select (change)=getGroupsOfCompany() id="company"><!--$event.target.value-->
                             <option value="" disabled>Wählen Sie eine Option</option>
                             <option *ngFor="let companyOption of companyOptions" [value]="companyOption.id">
                                 {{ companyOption.name }}</option>
@@ -69,12 +69,13 @@
                 <div class="row">
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">group</i>
-                        <select id="user_rights" formControlName="groups">
+                        <select id="groups" formControlName="groups" multiple>
                             <option value="" disabled>Wählen Sie eine Option</option>
                             <option value="1">Admin</option>
-                            <option value="2">Buchhaltung</option>
+                            <option *ngFor="let groupOption of companyGroups" [value]="groupOption.id">
+                                {{ groupOption.name }}</option>
                         </select>
-                        <label [ngClass]="{ 'active' : isData }" for="user_rights">Berechtigung</label>
+                        <label [ngClass]="{ 'active' : isData }" for="groups">Berechtigung</label>
                     </div>
                 </div>
 
