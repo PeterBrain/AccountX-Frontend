@@ -41,6 +41,7 @@ export class AppComponent implements OnInit {
         this.isLoggedIn = isLoggedIn;
       });
 
+    //Todo
     // if (this.isLoggedIn) {
     this.checkIfUserIsAdmin();
     // }

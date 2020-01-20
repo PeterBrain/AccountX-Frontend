@@ -3,11 +3,13 @@ import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import * as M from 'materialize-css';
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserService {
+  isToast = false;
     // companies;
 
     readonly companyLocalStorageKey = 'company';
@@ -47,7 +49,8 @@ export class UserService {
 
                 this.router.navigate(['firmen']);
             }, () => {
-                alert('Wrong username or password');
+                //alert('Wrong username or password');
+              this.showToast('Wrong username or password');
             });
     }
 
@@ -109,4 +112,12 @@ export class UserService {
 
     //     return count;
     // }
+
+  showToast(message: string) {
+    this.isToast = true;
+    M.toast({
+      html: message,
+      displayLength: 4000,
+    });
+  }
 }
