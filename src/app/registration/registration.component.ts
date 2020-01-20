@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { UserService } from '../service/user.service';
 
 @Component({
@@ -24,7 +24,7 @@ export class RegistrationComponent implements OnInit {
       firstname: [''],
       lastname: [''],
       password: ['', Validators.required],
-      passwordConfirm: ['', Validators.required]
+      passwordConfirm: ['', [Validators.required, passwordMatch()]]
     });
   }
 
@@ -36,5 +36,13 @@ export class RegistrationComponent implements OnInit {
         return result;
       }
     );
+  }
+
+  passwordMatch(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+
+      const forbidden = /fuck/.test(control.value); // regex
+      return forbidden ? { 'badWord': { value: control.value } } : null;
+    };
   }
 }
