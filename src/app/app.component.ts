@@ -50,18 +50,18 @@ export class AppComponent implements OnInit {
   checkIfUserIsAdmin() {
     this.userService.getCurrentUser().subscribe(
       (response) => {
-        console.log(response);
+        // console.log(response);
         const user = JSON.parse(JSON.stringify(response));
-        console.log(user.groups);
+        // console.log(user.groups);
 
         user.groups.forEach((key: string | number) => {
 
           this.groupService.getGroup(user.groups[0]).subscribe(
             (group) => {
               const groupName = (JSON.parse(JSON.stringify(group)).name);
-              console.log(groupName);
+              // console.log(groupName);
               if (groupName.includes('_admins')) {
-                console.log(true);
+                // console.log(true);
                 return this.isAdmin = true;
               }
             }
