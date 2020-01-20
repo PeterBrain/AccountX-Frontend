@@ -27,11 +27,11 @@ export class UserFormComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.userFormGroup = this.fb.group({
       id: [null],
-      username: ['', Validators.required],
-      firstname: [''],
-      lastname: [''],
-      groups: [[''], Validators.required],
-      user_rights: ['', Validators.required]
+      username: [{value: '', disabled: false}, Validators.required],
+      first_name: [''],
+      last_name: [''],
+      groups: [null, Validators.required],
+      user_rights: [null, Validators.required]
     });
 
     const data = this.route.snapshot.data;
@@ -74,33 +74,24 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     if (this.isData) {
       this.userService.updateUser(user).subscribe(
         (response) => {
-          message = 'Mitarbeiter upgedatet.';
-          // cannot call name of response?! works but linter doesnt like it
-          // console.log(response.name);
-
-          // alert shows twice, why?
-          alert('Mitarbeiter upgedated.');
+          message = response.username + ' upgedatet.';
+          M.toast({ html: message });
+          this.router.navigate(['/admin-dashboard']);
           return response;
         }
       );
     } else {
       console.log(user);
 
-      // this.userService.createUser(user).subscribe(
-      //   (response) => {
-      //     message = 'Mitarbeiter erstellt.';
-      //     alert('Mitarbeiter erstellt.');
-      //     return response;
-      //   }
-      // );
+      this.userService.createUser(user).subscribe(
+         (response) => {
+           message = response.username + ' erstellt.';
+           M.toast({ html: message });
+           this.router.navigate(['/admin-dashboard']);
+           return response;
+         }
+      );
     }
-
-    this.router.navigate(['/admin-dashboard']);
-
-    // does not return message, why?
-    console.log(message);
-
-    this.showToast(message);
   }
 
   deleteUser() {
@@ -115,12 +106,6 @@ export class UserFormComponent implements OnInit, AfterViewInit {
 
   cancelForm() {
     this.router.navigate(['/admin-dashboard']);
-  }
-
-  showToast(message) {
-    // still no message
-    console.log(message);
-    M.toast({ html: 'I am a toast!' });
   }
 
   getGroupsOfCompany(companyId) {

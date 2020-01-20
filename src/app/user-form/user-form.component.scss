@@ -3,6 +3,11 @@ button {
   min-width: 10em;
 }
 
+input:read-only {
+  border-bottom: 1px dotted rgba(0, 0, 0, 0.42);
+  color: rgba(0, 0, 0, 0.42);
+}
+
 @media screen and (min-width: 357px) {
   button {
     margin-left: 1em;
