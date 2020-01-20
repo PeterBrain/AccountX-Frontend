@@ -30,8 +30,8 @@ export class UserFormComponent implements OnInit, AfterViewInit {
       username: [{value: '', disabled: false}, Validators.required],
       first_name: [''],
       last_name: [''],
-      groups: [null, Validators.required],
-      user_rights: [null, Validators.required]
+      company: [null, Validators.required],
+      groups: [null, Validators.required]
     });
 
     const data = this.route.snapshot.data;
@@ -74,7 +74,7 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     if (this.isData) {
       this.userService.updateUser(user).subscribe(
         (response) => {
-          message = response.username + ' upgedatet.';
+          message = JSON.parse(JSON.stringify(response)).username + ' upgedatet.';
           M.toast({ html: message });
           this.router.navigate(['/admin-dashboard']);
           return response;
@@ -85,7 +85,7 @@ export class UserFormComponent implements OnInit, AfterViewInit {
 
       this.userService.createUser(user).subscribe(
          (response) => {
-           message = response.username + ' erstellt.';
+           message = JSON.parse(JSON.stringify(response)).username + ' erstellt.';
            M.toast({ html: message });
            this.router.navigate(['/admin-dashboard']);
            return response;
