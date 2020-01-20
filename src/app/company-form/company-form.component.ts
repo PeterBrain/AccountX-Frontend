@@ -69,7 +69,7 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
         }
       );
 
-      message = 'Firma upgedatet.';
+      message = 'Firma geändert';
     } else {
       this.companyService.createCompany(company).subscribe(
         (response) => {
@@ -78,7 +78,7 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
         }
       );
 
-      message = 'Firma erstellt.';
+      message = 'Firma erstellt';
     }
 
     this.router.navigate(['/admin-dashboard']);

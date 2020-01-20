@@ -22,6 +22,8 @@ import { CompanyService } from '../service/company.service';
 })
 export class PurchasesFormComponent implements OnInit, AfterViewInit {
 
+  isToast = false;
+
   company;
   purchaseFormGroup;
   bookingTypes;
@@ -109,16 +111,21 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
 
   saveForm() {
     const purchase = this.purchaseFormGroup.value;
+    let message;
 
     if (purchase.id) {
       this.purchaseService.updatePurchase(purchase).subscribe(() => {
         this.ngOnInit();
       });
+      message = 'Eingangsrechnung geändert';
     } else {
       this.purchaseService.createPurchase(purchase).subscribe(() => {
         this.router.navigate(['/ausgaben']);
       });
+      message = 'Eingangsrechnung erstellt';
     }
+
+    this.showToast(message);
   }
 
   cancelForm() {
@@ -128,6 +135,14 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
   deletePurchase(purchase) {
     this.purchaseService.deletePurchase(purchase).subscribe(() => {
       this.router.navigate(['/ausgaben']);
+    });
+  }
+
+  showToast(message: string) {
+    this.isToast = true;
+    M.toast({
+      html: message,
+      displayLength: 4000
     });
   }
 
