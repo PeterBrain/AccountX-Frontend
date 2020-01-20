@@ -19,7 +19,7 @@ import { VatComponent } from './vat/vat.component';
 import { CompanyFormComponent } from './company-form/company-form.component';
 import { PurchaseFormResolver } from './resolver/purchase-form-resolver';
 import { GroupOptionsResolver } from './resolver/group-options-resolver';
-
+import { BookingTypesResolver } from './resolver/booking-types-resolver';
 const routes: Routes = [
     { path: '', redirectTo: 'einnahmen', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
@@ -36,7 +36,8 @@ const routes: Routes = [
         path: 'mitarbeiter-form', component: UserFormComponent, canActivate: [AuthGuard],
         resolve: {
             companyOptions: CompanyOptionsResolver,
-            groupOptions: GroupOptionsResolver
+            groupOptions: GroupOptionsResolver,
+            bookingTypes: BookingTypesResolver
         }
     },
     {
@@ -49,28 +50,32 @@ const routes: Routes = [
     {
         path: 'einnahmen-form', component: SalesFormComponent, canActivate: [AuthGuard],
         resolve: {
-            companyOptions: CompanyOptionsResolver
+            companyOptions: CompanyOptionsResolver,
+            bookingTypes: BookingTypesResolver
         }
     },
     {
         path: 'einnahmen-form/:id', component: SalesFormComponent, canActivate: [AuthGuard],
         resolve: {
             sale: SaleFormResolver,
-            companyOptions: CompanyOptionsResolver
+            companyOptions: CompanyOptionsResolver,
+            bookingTypes: BookingTypesResolver
         }
     },
     { path: 'ausgaben', component: PurchasesComponent, canActivate: [AuthGuard] },
     {
         path: 'ausgaben-form', component: PurchasesFormComponent, canActivate: [AuthGuard],
         resolve: {
-            companyOptions: CompanyOptionsResolver
+            companyOptions: CompanyOptionsResolver,
+            bookingTypes: BookingTypesResolver
         }
     },
     {
         path: 'ausgaben-form/:id', component: PurchasesFormComponent, canActivate: [AuthGuard],
         resolve: {
             purchase: PurchaseFormResolver,
-            companyOptions: CompanyOptionsResolver
+            companyOptions: CompanyOptionsResolver,
+            bookingTypes: BookingTypesResolver
         }
     },
     { path: 'ust', component: VatComponent, canActivate: [AuthGuard] },

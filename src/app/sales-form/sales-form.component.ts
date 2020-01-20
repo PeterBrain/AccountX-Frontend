@@ -51,7 +51,7 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
 
     // get resolver data
     const data = this.route.snapshot.data;
-
+    this.bookingTypes = data.bookingTypes;
     // check if there is actual data in the data object
     if (data.sale) {
       this.isData = true;
