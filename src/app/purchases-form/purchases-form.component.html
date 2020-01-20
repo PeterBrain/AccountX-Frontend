@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">receipt</i>
-                        <input id="invNo" type="number" min="0" class="validate" formControlName="invNo" required>
+                        <input id="invNo" type="text" class="validate" formControlName="invNo" required>
                         <label [ngClass]="{'active': isData}" for="invNo">Rechnungsnummer</label>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                                 <option value="0.2">20%</option>
                                 <option value="0.13">13%</option>
                                 <option value="0.1">10%</option>
-                                <option value="0.0">0%</option>
+                                <option value="0">0%</option>
                             </optgroup>
                         </select>
                         <label for="vat">Umsatzsteuer</label>
