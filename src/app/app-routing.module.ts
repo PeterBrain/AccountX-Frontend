@@ -19,6 +19,7 @@ import { PurchasesFormComponent } from './purchases-form/purchases-form.componen
 import { VatComponent } from './vat/vat.component';
 import { CompanyFormComponent } from './company-form/company-form.component';
 import { PurchaseFormResolver } from './resolver/purchase-form-resolver';
+import { GroupOptionsResolver } from './resolver/group-options-resolver';
 
 const routes: Routes = [
     { path: '', redirectTo: 'einnahmen', pathMatch: 'full' },
@@ -35,7 +36,8 @@ const routes: Routes = [
     {
         path: 'mitarbeiter-form', component: UserFormComponent, canActivate: [AuthGuard],
         resolve: {
-            companyOptions: CompanyOptionsResolver
+            companyOptions: CompanyOptionsResolver,
+            groupOptions: GroupOptionsResolver
         }
     },
     {

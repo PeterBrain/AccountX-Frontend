@@ -37,6 +37,9 @@ export class UserFormComponent implements OnInit, AfterViewInit {
 
     const data = this.route.snapshot.data;
     this.companyOptions = data.companyOptions;
+    this.companyGroups = data.groupOptions;
+
+    console.log(this.companyGroups);
 
     // check if there is actual data in the data object
     if (data.user) {
@@ -48,7 +51,6 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     // fill form if there is data
     if (data.user) {
       this.userFormGroup.patchValue(data.user);
-      this.companyGroups = this.getGroupsOfCompany();
     }
 
   }
@@ -71,12 +73,10 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     const user = this.userFormGroup.value;
     console.log(user);
 
-    let message;
-
     if (this.isData) {
       this.userService.updateUser(user).subscribe(
         (response) => {
-          message = JSON.parse(JSON.stringify(response)).username + ' geändert.';
+          const message = JSON.parse(JSON.stringify(response)).username + ' geändert.';
           M.toast({ html: message });
           this.router.navigate(['/admin-dashboard']);
           return response;
@@ -87,7 +87,7 @@ export class UserFormComponent implements OnInit, AfterViewInit {
 
       this.userService.createUser(user).subscribe(
         (response) => {
-          message = JSON.parse(JSON.stringify(response)).username + ' erstellt.';
+          const message = JSON.parse(JSON.stringify(response)).username + ' erstellt.';
           M.toast({ html: message });
           this.router.navigate(['/admin-dashboard']);
           return response;
@@ -109,14 +109,4 @@ export class UserFormComponent implements OnInit, AfterViewInit {
   cancelForm() {
     this.router.navigate(['/admin-dashboard']);
   }
-
-  getGroupsOfCompany() {
-    this.groupService.getGroups().subscribe(
-      (response) => {
-        this.companyGroups = response;
-        console.log(this.companyGroups);
-      }
-    );
-  }
-
 }
