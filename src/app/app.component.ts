@@ -1,3 +1,4 @@
+import { GroupService } from './service/group.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from './service/user.service';
@@ -20,7 +21,8 @@ export class AppComponent implements OnInit {
   constructor(
     public router: Router,
     private userService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private groupService: GroupService
   ) {
   }
 
@@ -39,11 +41,35 @@ export class AppComponent implements OnInit {
         this.isLoggedIn = isLoggedIn;
       });
 
-    // TODO: check if user is admin, then set boolean
-    // only then show admin menu in dropdown
-    this.isAdmin = true;
+    // if (this.isLoggedIn) {
+    this.checkIfUserIsAdmin();
+    // }
+  }
 
-  } z
+  checkIfUserIsAdmin() {
+    this.userService.getCurrentUser().subscribe(
+      (response) => {
+        console.log(response);
+        const user = JSON.parse(JSON.stringify(response));
+        console.log(user.groups);
+
+        user.groups.forEach((key: string | number) => {
+
+          this.groupService.getGroup(user.groups[0]).subscribe(
+            (group) => {
+              const groupName = (JSON.parse(JSON.stringify(group)).name);
+              console.log(groupName);
+              if (groupName.includes('_admins')) {
+                console.log(true);
+                return this.isAdmin = true;
+              }
+            }
+          );
+
+        });
+      }
+    );
+  }
 
   logout() {
     this.userService.logout();
