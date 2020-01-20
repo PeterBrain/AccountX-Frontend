@@ -56,12 +56,14 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
       bookingType: [null, Validators.required],
       invoice: [null, Validators.required],
       notes: [null]
+      company: [null] //needed for edit
     });
 
     // get resolver data
     const data = this.route.snapshot.data;
     this.bookingTypes = data.bookingTypes;
 
+    this.company = this.companyService.getCompanyToken(); //is this needed? test
     // check if there is actual data in the data object
     if (data.purchase) {
       this.isData = true;
