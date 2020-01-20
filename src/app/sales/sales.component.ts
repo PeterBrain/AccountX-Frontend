@@ -11,6 +11,7 @@ import * as M from 'materialize-css';
 export class SalesComponent implements OnInit, AfterViewInit {
 
   sales;
+  empty;
 
   constructor(
     private saleService: SaleService,
@@ -18,11 +19,16 @@ export class SalesComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit() {
+    this.empty = false;
     this.saleService.getSales().subscribe(
       (response) => {
         this.sales = response;
         console.log('Sales objects: ');
         console.log(this.sales);
+
+        if (this.sales.length === 0) {
+          this.empty = true;
+        }
       }
     );
   }

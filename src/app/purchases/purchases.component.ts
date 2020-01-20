@@ -11,6 +11,7 @@ import * as M from 'materialize-css';
 export class PurchasesComponent implements OnInit, AfterViewInit {
 
     purchases;
+    empty;
     /*paginationPages = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     activePage = this.paginationPages !== undefined ? this.paginationPages[0] : null;*/
 
@@ -20,11 +21,16 @@ export class PurchasesComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
+        this.empty = false;
         this.purchaseService.getPurchases().subscribe(
             (response) => {
                 this.purchases = response;
                 console.log('Purchases objects: ');
                 console.log(this.purchases);
+
+                if (this.purchases.length === 0) {
+                  this.empty = true;
+                }
             }
         );
     }
