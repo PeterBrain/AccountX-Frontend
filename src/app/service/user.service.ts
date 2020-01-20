@@ -12,7 +12,7 @@ export class UserService {
   isToast = false;
     // companies;
 
-    readonly companyLocalStorageKey = 'company';
+    // readonly companyLocalStorageKey = 'company';
 
     readonly accessTokenLocalStorageKey = 'access_token';
     isLoggedIn = new BehaviorSubject(false);
@@ -49,7 +49,7 @@ export class UserService {
 
                 this.router.navigate(['firmen']);
             }, () => {
-                //alert('Wrong username or password');
+                // alert('Wrong username or password');
               this.showToast('Wrong username or password');
             });
     }
