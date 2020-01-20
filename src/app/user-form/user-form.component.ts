@@ -30,8 +30,8 @@ export class UserFormComponent implements OnInit, AfterViewInit {
       username: [{value: '', disabled: false}, Validators.required],
       first_name: [''],
       last_name: [''],
-      groups: [null, Validators.required],
-      user_rights: [null, Validators.required]
+      company: [null, Validators.required],
+      groups: [null, Validators.required]
     });
 
     const data = this.route.snapshot.data;
