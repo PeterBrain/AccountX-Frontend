@@ -118,6 +118,7 @@ export class UserService {
     M.toast({
       html: message,
       displayLength: 4000,
+      classes: 'red darken-4'
     });
   }
 }
