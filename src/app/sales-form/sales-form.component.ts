@@ -9,6 +9,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import * as M from 'materialize-css';
+import {SaleService} from '../service/sale.service';
 
 
 @Component({
@@ -31,11 +32,13 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private saleService: SaleService,
   ) { }
 
   ngOnInit() {
     this.saleFormGroup = this.fb.group({
+      id: [null],
       invDate: ['', Validators.required],
       customer: ['', Validators.required],
       project: ['', Validators.required],
@@ -101,5 +104,11 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
 
   cancelForm() {
     this.router.navigate(['/einnahmen']);
+  }
+
+  deleteSale(sale) {
+    this.saleService.deleteSale(sale).subscribe(() => {
+      this.router.navigate(['/einnahmen']);
+    });
   }
 }
