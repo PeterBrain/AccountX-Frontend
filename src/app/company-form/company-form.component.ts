@@ -12,7 +12,6 @@ import * as M from 'materialize-css';
 export class CompanyFormComponent implements OnInit, AfterViewInit {
   companyFormGroup;
   isData;
-  isToast = false;
 
   constructor(
     private fb: FormBuilder,
@@ -56,37 +55,31 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
 
   saveForm() {
     const company = this.companyFormGroup.value;
-    let message;
-    let companyName;
 
     if (this.isData) {
       this.companyService.updateCompany(company).subscribe(
         (response) => {
           // same as: response.name but linter does not like it this way
-          console.log(JSON.parse(JSON.stringify(response)).name);
-          companyName = JSON.parse(JSON.stringify(response)).name;
+          console.log(response);
+          const companyName = JSON.parse(JSON.stringify(response)).name;
+          const message = 'Firma ' + companyName + ' geändert';
+          this.showToast(message);
           return response;
         }
       );
-
-      message = 'Firma geändert';
     } else {
       this.companyService.createCompany(company).subscribe(
         (response) => {
-          companyName = JSON.parse(JSON.stringify(response)).name;
+          console.log(response);
+          const companyName = JSON.parse(JSON.stringify(response)).name;
+          const message = 'Firma ' + companyName + ' erstellt';
+          this.showToast(message);
           return response;
         }
       );
-
-      message = 'Firma erstellt';
     }
 
     this.router.navigate(['/admin-dashboard']);
-
-    // does not log the company name only inside subscribe, why?
-    console.log(companyName);
-
-    this.showToast(message);
   }
 
   deleteCompany() {
@@ -106,7 +99,6 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
   }
 
   showToast(message: string) {
-    this.isToast = true;
     M.toast({
       html: message,
       displayLength: 4000

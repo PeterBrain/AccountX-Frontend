@@ -37,8 +37,6 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     this.companyOptions = data.companyOptions;
     this.companyGroups = data.groupOptions;
 
-    console.log(this.companyGroups);
-
     // check if there is actual data in the data object
     if (data.user) {
       this.isData = true;
@@ -75,7 +73,7 @@ export class UserFormComponent implements OnInit, AfterViewInit {
       this.userService.updateUser(user).subscribe(
         (response) => {
           const message = 'Mitarbeiter ' + JSON.parse(JSON.stringify(response)).username + ' wurde geändert.';
-          M.toast({ html: message });
+          this.showToast(message);
           this.router.navigate(['/admin-dashboard']);
           return response;
         }
@@ -84,7 +82,7 @@ export class UserFormComponent implements OnInit, AfterViewInit {
       this.userService.createUser(user).subscribe(
         (response) => {
           const message = 'Mitarbeiter ' + JSON.parse(JSON.stringify(response)).username + ' wurde erstellt.';
-          M.toast({ html: message });
+          this.showToast(message);
           this.router.navigate(['/admin-dashboard']);
           return response;
         }
@@ -96,6 +94,7 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     if (this.isData) {
       this.userService.deleteUser(this.userFormGroup.value.id).subscribe(
         (response) => {
+          this.showToast('Mitarbeiter gelöscht.');
           this.router.navigate(['/admin-dashboard']);
         }
       );
@@ -104,5 +103,12 @@ export class UserFormComponent implements OnInit, AfterViewInit {
 
   cancelForm() {
     this.router.navigate(['/admin-dashboard']);
+  }
+
+  showToast(message: string) {
+    M.toast({
+      html: message,
+      displayLength: 4000
+    });
   }
 }
