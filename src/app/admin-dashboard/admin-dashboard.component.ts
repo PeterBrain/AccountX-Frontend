@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { UserService } from './../service/user.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as M from 'materialize-css';
@@ -12,16 +13,28 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
   companies;
   companyId;
   usersOfCompany;
+  companyOptions;
 
   constructor(
     private userService: UserService,
-    private companyService: CompanyService
+    private companyService: CompanyService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.userService.callAppComponent();
 
-    this.getCompanies();
+    // get companies from resolver data
+    const data = this.route.snapshot.data;
+    this.companies = data.companies;
+    console.log('resolver data');
+    console.log(this.companies);
+
+    // if there is only one company, show the company users as well
+    if (this.companies.length === 1) {
+      this.getUsersOfCompany(this.companies[0].id);
+    }
+
   }
 
   ngAfterViewInit() {
@@ -30,20 +43,6 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
 
     const elems = document.querySelectorAll('.dropdown-trigger');
     M.Dropdown.init(elems, { hover: false, constrainWidth: false });
-  }
-
-  getCompanies() {
-    this.companyService.getCompanies().subscribe(
-      (response) => {
-        this.companies = response;
-
-        // if there is only one company, show the company users as well
-        if (this.companies.length === 1) {
-          this.getUsersOfCompany(this.companies[0].id);
-        }
-
-      }
-    );
   }
 
   getUsersOfCompany(companyId) {

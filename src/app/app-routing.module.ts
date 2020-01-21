@@ -51,7 +51,7 @@ const routes: Routes = [
     {
         path: 'einnahmen-form', component: SalesFormComponent, canActivate: [AuthGuard],
         resolve: {
-            companyOptions: CompanyOptionsResolver,
+            // companyOptions: CompanyOptionsResolver,
             bookingTypes: BookingTypesResolver
         }
     },
@@ -59,7 +59,7 @@ const routes: Routes = [
         path: 'einnahmen-form/:id', component: SalesFormComponent, canActivate: [AuthGuard],
         resolve: {
             sale: SaleFormResolver,
-            companyOptions: CompanyOptionsResolver,
+            // companyOptions: CompanyOptionsResolver,
             bookingTypes: BookingTypesResolver
         }
     },
@@ -67,7 +67,7 @@ const routes: Routes = [
     {
         path: 'ausgaben-form', component: PurchasesFormComponent, canActivate: [AuthGuard],
         resolve: {
-            companyOptions: CompanyOptionsResolver,
+            // companyOptions: CompanyOptionsResolver,
             bookingTypes: BookingTypesResolver
         }
     },
@@ -75,12 +75,17 @@ const routes: Routes = [
         path: 'ausgaben-form/:id', component: PurchasesFormComponent, canActivate: [AuthGuard],
         resolve: {
             purchase: PurchaseFormResolver,
-            companyOptions: CompanyOptionsResolver,
+            // companyOptions: CompanyOptionsResolver,
             bookingTypes: BookingTypesResolver
         }
     },
     { path: 'ust', component: VatComponent, canActivate: [AuthGuard] },
-    { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard] },
+    {
+        path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard],
+        resolve: {
+            companies: CompanyOptionsResolver
+        }
+    },
 
     { path: '**', component: NotFoundComponent }, // last line (everything else -> 404)
 ];
