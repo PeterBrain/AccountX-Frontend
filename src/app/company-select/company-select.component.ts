@@ -2,7 +2,7 @@ import { UserService } from './../service/user.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as M from 'materialize-css';
 import { CompanyService } from '../service/company.service';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-company-select',
@@ -20,9 +20,9 @@ export class CompanySelectComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit() {
+    this.userService.callAppComponent();
+
     this.getCompanies();
-
-
   }
 
   ngAfterViewInit() {
