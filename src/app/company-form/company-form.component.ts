@@ -1,3 +1,4 @@
+import { UserService } from './../service/user.service';
 import { CompanyService } from './../service/company.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -18,6 +19,7 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private router: Router,
     private companyService: CompanyService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
@@ -69,7 +71,6 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
     } else {
       this.companyService.createCompany(company).subscribe(
         (response) => {
-          console.log(response);
           const companyName = JSON.parse(JSON.stringify(response)).name;
           const message = 'Firma ' + companyName + ' erstellt';
           this.showToast(message);

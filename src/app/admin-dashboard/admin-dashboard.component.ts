@@ -19,6 +19,8 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit() {
+    this.userService.callAppComponent();
+
     this.getCompanies();
   }
 
