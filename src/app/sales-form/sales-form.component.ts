@@ -5,12 +5,12 @@ import {
   datepickerWeekdaysAbbrev,
   datepickerMonthsShort
 } from '../reusables/datepicker/datepicker.config';
-import {FormBuilder, Validators} from '@angular/forms';
-import {Component, OnInit, AfterViewInit} from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import * as M from 'materialize-css';
-import {SaleService} from '../service/sale.service';
-import {CompanyService} from '../service/company.service';
+import { SaleService } from '../service/sale.service';
+import { CompanyService } from '../service/company.service';
 
 
 @Component({
@@ -27,6 +27,7 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
   bookingTypes;
   isData;
 
+  datepicker;
   months = datepickerMonths;
   monthsShort = datepickerMonthsShort;
   weekdays = datepickerWeekdays;
@@ -79,13 +80,13 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
     M.Sidenav.init(sidenav);
 
     const elems = document.querySelectorAll('.dropdown-trigger');
-    M.Dropdown.init(elems, {hover: false, constrainWidth: false});
+    M.Dropdown.init(elems, { hover: false, constrainWidth: false });
 
     const tabs = document.querySelectorAll('.tabs');
     M.Tabs.init(tabs);
 
-    const datepicker = document.querySelectorAll('.datepicker');
-    M.Datepicker.init(datepicker, {
+    this.datepicker = document.querySelectorAll('.datepicker');
+    M.Datepicker.init(this.datepicker, {
       format: 'yyyy-mm-dd',
       autoClose: true,
       i18n: {
@@ -106,7 +107,19 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
   }
 
   saveForm() {
+    // save date value from datepicker to input field
+    const invDateInstance = document.querySelectorAll('#invDate') as unknown as HTMLScriptElement;
+    const invDate = invDateInstance[0].value;
+    this.saleFormGroup.controls.invDate.setValue(invDate);
+
+    const cashflowdateInstance = document.querySelectorAll('#cashflowdate') as unknown as HTMLScriptElement;
+    const cashflowdate = cashflowdateInstance[0].value;
+    this.saleFormGroup.controls.cashflowdate.setValue(cashflowdate);
+
+
     const sale = this.saleFormGroup.value;
+    console.log(sale);
+
     let message;
 
     if (sale.id) {

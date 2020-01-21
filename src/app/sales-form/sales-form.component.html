@@ -64,7 +64,7 @@
                 </div>
             </div>
 
-          <div class="row">
+            <div class="row">
                 <div class="input-field col s12 l6 offset-l3">
                     <select id="bookingType" formControlName="bookingType">
                         <option value="" disabled>Wählen Sie eine Option</option>
@@ -75,7 +75,7 @@
                 </div>
             </div>
 
- <!--           <div class="row">
+            <!--           <div class="row">
             <div class="input-field col s12 l6 offset-l3">
               <i class="material-icons prefix">category</i>
               <select id="bookingType" formControlName='bookingType'>
@@ -105,23 +105,23 @@
 
             <div class="row">
                 <div class="input-field col s12 l6 offset-l3 center">
-                  <button (click)="cancelForm()" class="btn btn-large waves-effect yellow darken-2">Abbrechen</button>
-                  <button *ngIf="isData" class="btn btn-large waves-effect red darken-4 modal-trigger"
-                          data-target="deleteModal">Löschen</button>
+                    <button (click)="cancelForm()" class="btn btn-large waves-effect yellow darken-2">Abbrechen</button>
+                    <button *ngIf="isData" class="btn btn-large waves-effect red darken-4 modal-trigger"
+                        data-target="deleteModal">Löschen</button>
                     <button class="btn btn-large waves-effect" type="submit">Speichern</button>
 
-                  <!-- Modal Structure -->
-                  <div id="deleteModal" class="modal col s12 l4 center">
-                    <div class="modal-content">
-                      <h4>Eintrag löschen</h4>
-                      <p>Sind sie sich sicher, dass der Eintrag gelöscht werden soll?</p>
+                    <!-- Modal Structure -->
+                    <div id="deleteModal" class="modal col s12 l4 center">
+                        <div class="modal-content">
+                            <h4>Eintrag löschen</h4>
+                            <p>Sind sie sich sicher, dass der Eintrag gelöscht werden soll?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="modal-close waves-effect waves-red btn-flat">Abbrechen</a>
+                            <a class="modal-close waves-effect waves-green btn-flat"
+                                (click)="deleteSale(saleFormGroup.value)">Löschen</a>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                      <a class="modal-close waves-effect waves-red btn-flat">Abbrechen</a>
-                      <a class="modal-close waves-effect waves-green btn-flat"
-                         (click)="deleteSale(saleFormGroup.value)">Löschen</a>
-                    </div>
-                  </div>
                 </div>
             </div>
         </form>
