@@ -11,9 +11,6 @@ import { UserService } from '../service/user.service';
 export class RegistrationComponent implements OnInit {
 
   registrationFormGroup;
-  // passwordsMatch = {};
-
-
 
   constructor(
     private fb: FormBuilder,
@@ -31,7 +28,6 @@ export class RegistrationComponent implements OnInit {
     });
 
     this.registrationFormGroup.setValidators(this.passwordMatch);
-
   }
 
   register() {
