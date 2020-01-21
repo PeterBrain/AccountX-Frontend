@@ -1,3 +1,4 @@
+import { MediainputComponent } from './mediainput/mediainput.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -20,7 +21,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { CompanyFormComponent } from './company-form/company-form.component';
 import { UserFormComponent } from './user-form/user-form.component';
-
+import { FileUploadModule } from 'ng2-file-upload';
 export function tokenGetter() {
     return localStorage.getItem('access_token');
 }
@@ -40,7 +41,8 @@ export function tokenGetter() {
         NotFoundComponent,
         AdminDashboardComponent,
         CompanyFormComponent,
-        UserFormComponent
+        UserFormComponent,
+        MediainputComponent
     ],
     imports: [
         BrowserModule,
@@ -48,6 +50,7 @@ export function tokenGetter() {
         NoopAnimationsModule,
         ReactiveFormsModule,
         HttpClientModule,
+        FileUploadModule,
         JwtModule.forRoot({
             config: {
                 tokenGetter: tokenGetter,

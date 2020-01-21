@@ -103,11 +103,12 @@
                     <div class="file-field input-field col s12 l6 offset-l3">
                         <div class="btn">
                             <span>Datei</span>
-                            <input formControlName="invoice" type="file" multiple>
+           <!--                 <input formControlName="invoice" type="file" multiple>-->
                         </div>
-                        <div class="file-path-wrapper">
+                        <app-mediainput formControlName="invoice" ></app-mediainput>
+       <!--                 <div class="file-path-wrapper">
                             <input class="file-path validate" type="text" placeholder="Rechnung(en) hochladen">
-                        </div>
+                        </div>-->
                     </div>
                 </div>
 

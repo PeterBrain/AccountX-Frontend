@@ -52,7 +52,7 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
       vat: ['', Validators.required],
       cashflowdate: ['', Validators.required],
       bookingType: ['', Validators.required],
-      invoice: [null],
+      invoice: [[]],
       company: [null]
     });
 
