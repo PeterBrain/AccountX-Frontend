@@ -129,7 +129,7 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
 
     if (purchase.id) {
       this.purchaseService.updatePurchase(purchase).subscribe(() => {
-        this.ngOnInit();
+        this.router.navigate(['/ausgaben']);
       });
       message = 'Eingangsrechnung geändert';
     } else {
