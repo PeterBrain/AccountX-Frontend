@@ -11,6 +11,9 @@ import { UserService } from '../service/user.service';
 export class RegistrationComponent implements OnInit {
 
   registrationFormGroup;
+  // passwordsMatch = {};
+
+
 
   constructor(
     private fb: FormBuilder,
@@ -24,7 +27,6 @@ export class RegistrationComponent implements OnInit {
       firstname: [''],
       lastname: [''],
       password: ['', Validators.required],
-      // passwordConfirm: ['', [Validators.required, this.passwordMatch()]]
       passwordConfirm: ['', Validators.required]
     });
 
@@ -42,31 +44,15 @@ export class RegistrationComponent implements OnInit {
     );
   }
 
-  // passwordMatch(): ValidatorFn {
-  //   return (control: AbstractControl): { [key: string]: any } | null => {
-  //     const password = this.registrationFormGroup.get('password').value;
-  //     console.log(password);
-
-  //     return password;
-  //     // const forbidden = /fuck/.test(control.value); // regex
-  //     // return forbidden ? { 'badWord': { value: control.value } } : null;
-  //   };
-  // }
-
-  // custom validator
+  // custom validator if password is not empty and match
   passwordMatch(group: FormGroup): any {
-    // const birthYear = group.value.year_of_birth;
-
     const password = group.value.password;
-    console.log(password);
+    const passwordConfirm = group.value.passwordConfirm;
 
-    // const currentYear = new Date().getFullYear();
-    // const age = currentYear - birthYear;
-
-    // if (age < 18 && group.value.job === 'child') {
-    //   return { notAdult: true };
-    // } else {
-    //   return null;
-    // }
+    if (password !== '' && password === passwordConfirm) {
+      return { passwordsMatch: true };
+    } else {
+      return { passwordsMatch: false };
+    }
   }
 }
