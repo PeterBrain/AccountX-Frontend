@@ -1,5 +1,5 @@
 import { GroupService } from './service/group.service';
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from './service/user.service';
 
@@ -8,7 +8,7 @@ import { UserService } from './service/user.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
 
   title = 'AccountX';
@@ -26,22 +26,32 @@ export class AppComponent implements OnInit, AfterViewInit {
   ) {
   }
 
+  ngOnChanges() {
+    this.login();
+  }
+
   ngOnInit() {
+    this.login();
+
     // needs typesafe ('?') parameter in html, because html renders faster then the name of the user is loaded
-    this.userService.getCurrentUser().subscribe(
-      (response) => {
-        this.currentUser = response;
-      }
-    );
+    // this.userService.getCurrentUser().subscribe(
+    //   (response) => {
+    //     this.currentUser = response;
+    //   }
+    // );
+
+    // this.currentUser = this.userService.getCurrentUser();
+    // console.log(this.currentUser);
+
+    // this.currentUser = this.userService.getUsername();
+    // console.log(this.currentUser);
 
     this.currentYear = new Date().getFullYear().toString();
   }
 
   ngAfterViewInit() {
-    this.userService.isLoggedIn.subscribe(
-      (isLoggedIn) => {
-        this.isLoggedIn = isLoggedIn;
-      });
+    // this.login();
+    // this.ngOnChanges();
 
     //Todo
     // if (this.isLoggedIn) {
@@ -72,6 +82,13 @@ export class AppComponent implements OnInit, AfterViewInit {
         });
       }
     );
+  }
+
+  login() {
+    this.userService.isLoggedIn.subscribe(
+      (isLoggedIn) => {
+        this.isLoggedIn = isLoggedIn;
+      });
   }
 
   logout() {
