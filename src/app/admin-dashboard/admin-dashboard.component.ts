@@ -27,8 +27,6 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
     // get companies from resolver data
     const data = this.route.snapshot.data;
     this.companies = data.companies;
-    console.log('resolver data');
-    console.log(this.companies);
 
     // if there is only one company, show the company users as well
     if (this.companies.length === 1) {
