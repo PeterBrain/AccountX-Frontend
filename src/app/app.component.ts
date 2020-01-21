@@ -30,14 +30,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
   ngOnInit() {
     this.login();
 
-
-
-    // this.currentUser = this.userService.getCurrentUser();
-    // console.log(this.currentUser);
-
-    // this.currentUser = this.userService.getUsername();
-    // console.log(this.currentUser);
-
     this.currentYear = new Date().getFullYear().toString();
 
     // execute functions after login
@@ -53,7 +45,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     if (this.isLoggedIn) {
       this.checkIfUserIsAdmin();
       this.getCurrentUser();
-      console.log(this.getCurrentUser());
     }
   }
 
@@ -88,11 +79,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     // needs typesafe ('?') parameter in html, because html renders faster then the name of the user is loaded
     this.userService.getCurrentUser().subscribe(
       (response) => {
-        console.log('in subscribe');
-        console.log(response);
         this.userService.currentUser = response;
-        console.log(this.userService.currentUser);
-
       }
     );
   }
