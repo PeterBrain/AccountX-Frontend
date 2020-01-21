@@ -34,6 +34,12 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
     this.companyService.getCompanies().subscribe(
       (response) => {
         this.companies = response;
+
+        // if there is only one company, show the company users as well
+        if (this.companies.length === 1) {
+          this.getUsersOfCompany(this.companies[0].id);
+        }
+
       }
     );
   }
