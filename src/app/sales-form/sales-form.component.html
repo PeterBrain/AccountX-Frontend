@@ -9,7 +9,8 @@
         <form [formGroup]="saleFormGroup" (ngSubmit)="saveForm()" class="col s12">
             <div class="row">
                 <div class="input-field col s12 l6 offset-l3">
-                    <input id="invDate" type="text" class="datepicker validate" formControlName="invDate" required>
+                    <input (change)="setDatepickerInput()" id="invDate" type="text" class="datepicker validate"
+                        formControlName="invDate" required>
                     <label [ngClass]="{'active': isData}" for="invDate">Rechnungsdatum</label>
                 </div>
             </div>
@@ -58,8 +59,8 @@
 
             <div class="row">
                 <div class="input-field col s12 l6 offset-l3">
-                    <input id="cashflowdate" type="text" class="datepicker validate" formControlName="cashflowdate"
-                        required>
+                    <input (change)="setDatepickerInput()" id="cashflowdate" type="text" class="datepicker validate"
+                        formControlName="cashflowdate" required>
                     <label [ngClass]="{'active': isData}" for="cashflowdate">Geldflussdatum</label>
                 </div>
             </div>
@@ -89,15 +90,15 @@
             </div>
           </div>-->
 
-               <div class="row">
+            <div class="row">
                 <div class="file-field input-field col s12 l6 offset-l3">
                     <div class="btn">
                         <span>Datei</span>
 
-                     <!--   <input formControlName="invoice" type="file" multiple>-->
+                        <!--   <input formControlName="invoice" type="file" multiple>-->
                     </div>
-                    <app-mediainput formControlName="invoice" ></app-mediainput>
-                   <!-- <div class="file-path-wrapper">
+                    <app-mediainput formControlName="invoice"></app-mediainput>
+                    <!-- <div class="file-path-wrapper">
                         <input class="file-path validate" type="text" placeholder="Rechnung(en) hochladen">
                     </div>-->
                 </div>
@@ -108,7 +109,8 @@
                     <button (click)="cancelForm()" class="btn btn-large waves-effect yellow darken-2">Abbrechen</button>
                     <button *ngIf="isData" class="btn btn-large waves-effect red darken-4 modal-trigger"
                         data-target="deleteModal">Löschen</button>
-                    <button class="btn btn-large waves-effect" type="submit">Speichern</button>
+                    <button [disabled]="!saleFormGroup.valid" class="btn btn-large waves-effect"
+                        type="submit">Speichern</button>
 
                     <!-- Modal Structure -->
                     <div id="deleteModal" class="modal col s12 l4 center">

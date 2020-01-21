@@ -7,7 +7,7 @@ import {
 } from '../reusables/datepicker/datepicker.config';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnChanges } from '@angular/core';
 import * as M from 'materialize-css';
 import { HttpClient } from '@angular/common/http';
 import { PurchaseService } from '../service/purchase.service';
@@ -112,7 +112,7 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
 
   }
 
-  saveForm() {
+  setDatepickerInput() {
     // save date value from datepicker to input field
     const invDateInstance = document.querySelectorAll('#invDate') as unknown as HTMLScriptElement;
     const invDate = invDateInstance[0].value;
@@ -121,7 +121,9 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
     const cashflowdateInstance = document.querySelectorAll('#cashflowdate') as unknown as HTMLScriptElement;
     const cashflowdate = cashflowdateInstance[0].value;
     this.purchaseFormGroup.controls.cashflowdate.setValue(cashflowdate);
+  }
 
+  saveForm() {
     const purchase = this.purchaseFormGroup.value;
     let message;
 

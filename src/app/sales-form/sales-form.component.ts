@@ -107,7 +107,7 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
 
   }
 
-  saveForm() {
+  setDatepickerInput() {
     // save date value from datepicker to input field
     const invDateInstance = document.querySelectorAll('#invDate') as unknown as HTMLScriptElement;
     const invDate = invDateInstance[0].value;
@@ -116,7 +116,9 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
     const cashflowdateInstance = document.querySelectorAll('#cashflowdate') as unknown as HTMLScriptElement;
     const cashflowdate = cashflowdateInstance[0].value;
     this.saleFormGroup.controls.cashflowdate.setValue(cashflowdate);
+  }
 
+  saveForm() {
     const sale = this.saleFormGroup.value;
     let message;
 
