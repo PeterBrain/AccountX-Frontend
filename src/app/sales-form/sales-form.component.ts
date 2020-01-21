@@ -124,7 +124,7 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
 
     if (sale.id) {
       this.saleService.updateSale(sale).subscribe(() => {
-        this.ngOnInit();
+        this.router.navigate(['/einnahmen']);
       });
       message = 'Ausgangsrechnung geändert';
     } else {
