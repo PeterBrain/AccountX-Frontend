@@ -105,7 +105,7 @@ export class MediainputComponent implements OnInit, ControlValueAccessor {
       this.initializing = false;
     }
     forkJoin(mediaIds.map((id) => {
-      return this.http.get(`${this.resourceUrl}/?id=${id}`);
+      return this.http.get(`${this.resourceUrl}?id=${id}`);
     })).subscribe((medias) => {
       this.medias = medias;
       this.initializing = false;

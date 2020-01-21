@@ -37,7 +37,7 @@ export class RegistrationComponent implements OnInit {
       (result) => {
         this.router.navigate(['/firma-form']);
         const username = (JSON.parse(JSON.stringify(result))).username;
-        this.showToast('Benutzer ' + username + ' wurder erstellt.')
+        this.showToast('Benutzer ' + username + ' wurde erstellt.')
         return result;
       }
     );
