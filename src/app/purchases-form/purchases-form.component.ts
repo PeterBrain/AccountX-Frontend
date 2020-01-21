@@ -21,9 +21,6 @@ import { CompanyService } from '../service/company.service';
   styleUrls: ['./purchases-form.component.scss']
 })
 export class PurchasesFormComponent implements OnInit, AfterViewInit {
-
-  isToast = false;
-
   company;
   purchaseFormGroup;
   bookingTypes;
@@ -150,7 +147,6 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
   }
 
   showToast(message: string) {
-    this.isToast = true;
     M.toast({
       html: message,
       displayLength: 4000

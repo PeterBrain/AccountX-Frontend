@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, ValidatorFn, AbstractControl, FormGroup } from '@angular/forms';
 import { UserService } from '../service/user.service';
+import * as M from 'materialize-css';
 
 @Component({
   selector: 'app-registration',
@@ -35,6 +36,8 @@ export class RegistrationComponent implements OnInit {
     this.userService.register(user).subscribe(
       (result) => {
         this.router.navigate(['/firma-form']);
+        const username = (JSON.parse(JSON.stringify(result))).username;
+        this.showToast('Benutzer ' + username + ' wurder erstellt.')
         return result;
       }
     );
@@ -50,5 +53,12 @@ export class RegistrationComponent implements OnInit {
     } else {
       return { passwordsMatch: false };
     }
+  }
+
+  showToast(message: string) {
+    M.toast({
+      html: message,
+      displayLength: 4000
+    });
   }
 }
