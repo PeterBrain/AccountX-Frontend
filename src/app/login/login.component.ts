@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log('destroyed');
     this.userService.callAppComponent();
   }
 
