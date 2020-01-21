@@ -10,6 +10,7 @@ export interface IMedia {
   original_file_name?: string;
   content_type?: string;
   size?: number;
+  company?: string;
 }
 
 @Component({
@@ -53,7 +54,8 @@ export class MediainputComponent implements OnInit, ControlValueAccessor {
       this.medias.push({
         content_type: item.file.type,
         original_file_name: item.file.name,
-        size: item.file.size
+        size: item.file.size,
+        company: this.companyService.getCompanyToken()
       });
     };
     this.uploader.onSuccessItem = (item: FileItem, response: string, status: number, headers: ParsedResponseHeaders) => {
@@ -107,7 +109,8 @@ export class MediainputComponent implements OnInit, ControlValueAccessor {
     forkJoin(mediaIds.map((id) => {
       return this.http.get(`${this.resourceUrl}?id=${id}`);
     })).subscribe((medias) => {
-      this.medias = medias;
+
+      this.medias = [].concat.apply([], medias);
       this.initializing = false;
     });
   }
