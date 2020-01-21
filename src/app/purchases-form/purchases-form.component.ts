@@ -47,6 +47,8 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit() {
+    this.company = this.companyService.getCompanyToken(); //is this needed? test
+
     this.purchaseFormGroup = this.fb.group({
       id: [null],
       invNo: ['', Validators.required],
@@ -58,13 +60,13 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
       bookingType: ['', Validators.required],
       invoice: [[]],
       notes: [null],
-      company: [null] //needed for edit
+      company: [this.company] //needed for edit
     });
 
     // get resolver data
     const data = this.route.snapshot.data;
     this.bookingTypes = data.bookingTypes;
-    this.company = this.companyService.getCompanyToken(); //is this needed? test
+
 
     // check if there is actual data in the data object
     if (data.purchase) {
