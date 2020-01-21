@@ -15,8 +15,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService) {
-  }
+    private userService: UserService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.loginFormGroup = this.fb.group({
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.userService.callAppComponent();
+    // this.userService.callAppComponent();
   }
 
   login() {
