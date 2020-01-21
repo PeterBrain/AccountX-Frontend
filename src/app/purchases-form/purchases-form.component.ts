@@ -113,6 +113,15 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
   }
 
   saveForm() {
+    // save date value from datepicker to input field
+    const invDateInstance = document.querySelectorAll('#invDate') as unknown as HTMLScriptElement;
+    const invDate = invDateInstance[0].value;
+    this.purchaseFormGroup.controls.invDate.setValue(invDate);
+
+    const cashflowdateInstance = document.querySelectorAll('#cashflowdate') as unknown as HTMLScriptElement;
+    const cashflowdate = cashflowdateInstance[0].value;
+    this.purchaseFormGroup.controls.cashflowdate.setValue(cashflowdate);
+
     const purchase = this.purchaseFormGroup.value;
     let message;
 

@@ -116,10 +116,7 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
     const cashflowdate = cashflowdateInstance[0].value;
     this.saleFormGroup.controls.cashflowdate.setValue(cashflowdate);
 
-
     const sale = this.saleFormGroup.value;
-    console.log(sale);
-
     let message;
 
     if (sale.id) {
