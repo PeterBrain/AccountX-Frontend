@@ -45,10 +45,10 @@
                     <img src="../assets/images/bg/sidenav-bg.jpg">
                 </div>
                 <a href="#"><img class="circle" src="../assets/images/people/example-portrait.jpg"></a>
-                <a href="#"><span class="white-text name">{{ currentUser?.first_name }}
-                        {{ currentUser?.last_name }}</span></a>
+                <a href="#"><span class="white-text name">{{ this.userService.currentUser?.first_name }}
+                        {{ this.userService.currentUser?.last_name }}</span></a>
                 <a href="#"><span
-                        class="white-text email">{{ currentUser?.first_name }}.{{ currentUser?.last_name }}@accountx.com</span></a>
+                        class="white-text email">{{ this.userService.currentUser?.first_name }}.{{ this.userService.currentUser?.last_name }}@accountx.com</span></a>
             </div>
         </li>
 
@@ -98,7 +98,9 @@
         </div>
     </section>
 
+    <br>
     <router-outlet></router-outlet>
+    <br>
 </main>
 
 <footer class="footer">

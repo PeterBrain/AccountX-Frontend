@@ -11,7 +11,6 @@ import { UserService } from './service/user.service';
 
 export class AppComponent implements OnInit, AfterViewInit, OnChanges {
   title = 'AccountX';
-  currentUser;
   currentYear;
   isLoggedIn = false;
   company;
@@ -26,24 +25,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
   ngOnChanges() {
     this.login();
-
-    // this.userService.getIsAdmin().subscribe(
-    //   (response) => {
-    //     console.log('is admin?');
-    //     console.log(response);
-    //   }
-    // );
   }
 
   ngOnInit() {
     this.login();
 
-    // needs typesafe ('?') parameter in html, because html renders faster then the name of the user is loaded
-    // this.userService.getCurrentUser().subscribe(
-    //   (response) => {
-    //     this.currentUser = response;
-    //   }
-    // );
+
 
     // this.currentUser = this.userService.getCurrentUser();
     // console.log(this.currentUser);
@@ -53,9 +40,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
     this.currentYear = new Date().getFullYear().toString();
 
+    // execute functions after login
     this.userService.invokeIsAdmin.subscribe(
       () => {
         this.checkIfUserIsAdmin();
+        this.getCurrentUser();
       });
   }
 
@@ -63,6 +52,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     // keeps admin dashboard link even after page refresh
     if (this.isLoggedIn) {
       this.checkIfUserIsAdmin();
+      this.getCurrentUser();
+      console.log(this.getCurrentUser());
     }
   }
 
@@ -91,6 +82,19 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         }
       );
     }
+  }
+
+  getCurrentUser() {
+    // needs typesafe ('?') parameter in html, because html renders faster then the name of the user is loaded
+    this.userService.getCurrentUser().subscribe(
+      (response) => {
+        console.log('in subscribe');
+        console.log(response);
+        this.userService.currentUser = response;
+        console.log(this.userService.currentUser);
+
+      }
+    );
   }
 
   compareArrays(arr1, arr2) {

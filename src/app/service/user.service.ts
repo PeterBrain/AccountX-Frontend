@@ -12,6 +12,7 @@ export class UserService {
     isToast = false;
     isAdmin = false;
     invokeIsAdmin = new EventEmitter();
+    currentUser;
 
     // companies;
 
@@ -114,16 +115,6 @@ export class UserService {
     //     }
 
     //     return count;
-    // }
-
-    // GETTER & SETTER for public variables
-    // getIsAdmin() {
-    //     return this.isAdmin;
-    // }
-
-    // setIsAdmin(isAdmin) {
-    //     this.isAdmin = isAdmin;
-    //     return this.isAdmin;
     // }
 
     callAppComponent() {
