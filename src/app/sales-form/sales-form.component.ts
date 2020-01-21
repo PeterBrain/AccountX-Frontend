@@ -44,6 +44,8 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.company = this.companyService.getCompanyToken();
+
     this.saleFormGroup = this.fb.group({
       id: [null],
       invDate: ['', Validators.required],
@@ -54,13 +56,12 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
       cashflowdate: ['', Validators.required],
       bookingType: ['', Validators.required],
       invoice: [[]],
-      company: [null]
+      company: [this.company]
     });
 
     // get resolver data
     const data = this.route.snapshot.data;
     this.bookingTypes = data.bookingTypes;
-    this.company = this.companyService.getCompanyToken(); //needed?
 
     // check if there is actual data in the data object
     if (data.sale) {
