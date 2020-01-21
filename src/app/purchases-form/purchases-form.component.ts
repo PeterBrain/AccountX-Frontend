@@ -47,7 +47,7 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit() {
-    this.company = this.companyService.getCompanyToken(); //is this needed? test
+    this.company = this.companyService.getCompanyToken();
 
     this.purchaseFormGroup = this.fb.group({
       id: [null],
@@ -60,7 +60,7 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
       bookingType: ['', Validators.required],
       invoice: [[]],
       notes: [null],
-      company: [this.company] //needed for edit
+      company: [this.company]
     });
 
     // get resolver data
