@@ -1,5 +1,5 @@
 import { GroupService } from './service/group.service';
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnChanges } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnChanges, OnDestroy, DoCheck } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from './service/user.service';
 
@@ -8,19 +8,17 @@ import { UserService } from './service/user.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent implements OnInit, AfterViewInit, OnChanges {
-
-
   title = 'AccountX';
   currentUser;
-  isAdmin;
   currentYear;
   isLoggedIn = false;
   company;
 
   constructor(
     public router: Router,
-    private userService: UserService,
+    public userService: UserService,
     private route: ActivatedRoute,
     private groupService: GroupService
   ) {
@@ -28,6 +26,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
   ngOnChanges() {
     this.login();
+
+    // this.userService.getIsAdmin().subscribe(
+    //   (response) => {
+    //     console.log('is admin?');
+    //     console.log(response);
+    //   }
+    // );
   }
 
   ngOnInit() {
@@ -47,55 +52,19 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     // console.log(this.currentUser);
 
     this.currentYear = new Date().getFullYear().toString();
+
+    this.userService.invokeIsAdmin.subscribe(
+      () => {
+        this.checkIfUserIsAdmin();
+      });
   }
 
   ngAfterViewInit() {
-    // this.login();
-    // this.ngOnChanges();
-
-    //Todo
-    // if (this.isLoggedIn) {
-     this.checkIfUserIsAdmin();
-    // }
+    // keeps admin dashboard link even after page refresh
+    if (this.isLoggedIn) {
+      this.checkIfUserIsAdmin();
+    }
   }
-
-  checkIfUserIsAdmin() {
-    this.userService.getCurrentUser().subscribe(
-      (response) => {
-        const user = JSON.parse(JSON.stringify(response));
-        if (user.isAdminOf.length > 0) {
-          this.isAdmin = true;
-        } else {
-          this.isAdmin = false;
-        }
-      }
-    );
-  }
-
-  // checkIfUserIsAdmin() {
-  //   this.userService.getCurrentUser().subscribe(
-  //     (response) => {
-  //       // console.log(response);
-  //       const user = JSON.parse(JSON.stringify(response));
-  //       // console.log(user.groups);
-  //
-  //       user.groups.forEach((key: string | number) => {
-  //
-  //         this.groupService.getGroup(user.groups[0]).subscribe(
-  //           (group) => {
-  //             const groupName = (JSON.parse(JSON.stringify(group)).name);
-  //             // console.log(groupName);
-  //             if (groupName.includes('_admins')) {
-  //               // console.log(true);
-  //               return this.isAdmin = true;
-  //             }
-  //           }
-  //         );
-  //
-  //       });
-  //     }
-  //   );
-  // }
 
   login() {
     this.userService.isLoggedIn.subscribe(
@@ -106,5 +75,38 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
   logout() {
     this.userService.logout();
+  }
+
+  checkIfUserIsAdmin() {
+    const isLoggedIn = this.userService.isLoggedIn;
+
+    if (isLoggedIn) {
+      this.userService.getCurrentUser().subscribe(
+        (response) => {
+          const user = JSON.parse(JSON.stringify(response));
+          const companies = user.companies;
+          const isAdminOf = user.isAdminOf;
+
+          this.userService.isAdmin = this.compareArrays(companies, isAdminOf);
+        }
+      );
+    }
+  }
+
+  compareArrays(arr1, arr2) {
+    // Check if the arrays are the same length
+    if (arr1.length !== arr2.length) {
+      return false;
+    }
+
+    // Check if all items exist and are in the same order
+    for (let i = 0; i < arr1.length; i++) {
+      if (arr1[i] !== arr2[i]) {
+        return false;
+      }
+    }
+
+    return true;
+
   }
 }

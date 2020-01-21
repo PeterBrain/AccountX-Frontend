@@ -23,7 +23,7 @@
                 </div>
 
                 <li class="divider"></li>
-                <li *ngIf="isAdmin"><a href="#" routerLink="admin-dashboard"><i
+                <li *ngIf="this.userService.isAdmin"><a href="#" routerLink="admin-dashboard"><i
                             class="material-icons left">supervised_user_circle</i>Admin</a></li>
                 <li class="divider"></li>
                 <li><a (click)="logout()"><i class="material-icons left">exit_to_app</i>Logout</a></li>
@@ -86,7 +86,8 @@
 </header>
 
 <main>
-    <section *ngIf="isLoggedIn"><!-- delete for production -->
+    <section *ngIf="isLoggedIn">
+        <!-- delete for production -->
         <div class="row">
             <div class="col s12 nav-tabs">
                 <ul class="tabs">

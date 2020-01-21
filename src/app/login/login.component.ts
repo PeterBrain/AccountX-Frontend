@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { UserService } from '../service/user.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   loginFormGroup;
 
@@ -25,8 +25,12 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    console.log('destroyed');
+    this.userService.callAppComponent();
+  }
+
   login() {
     this.userService.login(this.loginFormGroup.value);
   }
-
 }

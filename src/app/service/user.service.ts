@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, EventEmitter } from '@angular/core';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -9,7 +9,10 @@ import * as M from 'materialize-css';
     providedIn: 'root'
 })
 export class UserService {
-  isToast = false;
+    isToast = false;
+    isAdmin = false;
+    invokeIsAdmin = new EventEmitter();
+
     // companies;
 
     // readonly companyLocalStorageKey = 'company';
@@ -50,7 +53,7 @@ export class UserService {
                 this.router.navigate(['firmen']);
             }, () => {
                 // alert('Wrong username or password');
-              this.showToast('Wrong username or password');
+                this.showToast('Wrong username or password');
             });
     }
 
@@ -113,12 +116,26 @@ export class UserService {
     //     return count;
     // }
 
-  showToast(message: string) {
-    this.isToast = true;
-    M.toast({
-      html: message,
-      displayLength: 4000,
-      classes: 'red darken-4'
-    });
-  }
+    // GETTER & SETTER for public variables
+    // getIsAdmin() {
+    //     return this.isAdmin;
+    // }
+
+    // setIsAdmin(isAdmin) {
+    //     this.isAdmin = isAdmin;
+    //     return this.isAdmin;
+    // }
+
+    callAppComponent() {
+        this.invokeIsAdmin.emit();
+    }
+
+    showToast(message: string) {
+        this.isToast = true;
+        M.toast({
+            html: message,
+            displayLength: 4000,
+            classes: 'red darken-4'
+        });
+    }
 }
