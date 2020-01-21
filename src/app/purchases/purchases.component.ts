@@ -2,6 +2,7 @@ import { PurchaseService } from './../service/purchase.service';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as M from 'materialize-css';
+import * as XLSX from 'xlsx';
 
 @Component({
     selector: 'app-purchases',
@@ -12,8 +13,6 @@ export class PurchasesComponent implements OnInit, AfterViewInit {
 
     purchases;
     empty;
-    /*paginationPages = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    activePage = this.paginationPages !== undefined ? this.paginationPages[0] : null;*/
 
     constructor(
         private http: HttpClient,
@@ -49,27 +48,17 @@ export class PurchasesComponent implements OnInit, AfterViewInit {
         M.FloatingActionButton.init(actionBtn);
     }
 
-    /*setActivePage(page) {
-        if (page === 'next') {
-            if (this.activePage < this.paginationPages.length) {
-                this.activePage += 1;
-            }
-        } else if (page === 'previous') {
-            if (this.activePage > 1) {
-                this.activePage -= 1;
-            }
-        } else {
-            this.activePage = page + 1;
-        }
-    }*/
+    exportexcel(tableId, fileName) {
+        /* table id is passed over here */
+        const element = document.getElementById(tableId);
+        const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
-    // delete will only be possible in the forms component
-    // prevents accidental deletings in list views
+        /* generate workbook and add the worksheet */
+        const wb: XLSX.WorkBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
-    /*deletePurchase(booking: any) {
-        this.bookingService.deleteBooking(booking).subscribe(() => {
-            this.ngOnInit();
-        });
-    }*/
+        /* save to file */
+        XLSX.writeFile(wb, fileName);
+    }
 
 }

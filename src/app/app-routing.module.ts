@@ -43,7 +43,8 @@ const routes: Routes = [
     {
         path: 'mitarbeiter-form/:id', component: UserFormComponent, canActivate: [AuthGuard],
         resolve: {
-            user: UserResolver
+            user: UserResolver,
+            groupOptions: GroupOptionsResolver
         }
     },
     { path: 'einnahmen', component: SalesComponent, canActivate: [AuthGuard] },
