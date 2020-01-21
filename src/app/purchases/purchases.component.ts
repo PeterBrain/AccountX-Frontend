@@ -28,7 +28,7 @@ export class PurchasesComponent implements OnInit, AfterViewInit {
                 console.log(this.purchases);
 
                 if (this.purchases.length === 0) {
-                  this.empty = true;
+                    this.empty = true;
                 }
             }
         );
