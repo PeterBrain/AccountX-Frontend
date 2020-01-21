@@ -1,6 +1,6 @@
 import { UserService } from './../service/user.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as M from 'materialize-css';
 
@@ -30,8 +30,10 @@ export class UserFormComponent implements OnInit, AfterViewInit {
       last_name: [''],
       groups: [null, Validators.required],
       password: [''],
-      passwordConfirm: ['', Validators.required], // [Validators.required, passwordMatch()]]
+      passwordConfirm: ['', Validators.required]
     });
+
+    this.userFormGroup.setValidators(this.passwordMatch);
 
     const data = this.route.snapshot.data;
     this.companyOptions = data.companyOptions;
@@ -110,5 +112,17 @@ export class UserFormComponent implements OnInit, AfterViewInit {
       html: message,
       displayLength: 4000
     });
+  }
+
+  // custom validator if password is not empty and match
+  passwordMatch(group: FormGroup): any {
+    const password = group.value.password;
+    const passwordConfirm = group.value.passwordConfirm;
+
+    if (password !== '' && password === passwordConfirm) {
+      return { passwordsMatch: true };
+    } else {
+      return { passwordsMatch: false };
+    }
   }
 }

@@ -47,7 +47,8 @@
 
                 <div class="row">
                     <div class="input-field col s12 l6 offset-l3">
-                        <i class="material-icons prefix">done</i>
+                        <i *ngIf="!userFormGroup.hasError('passwordsMatch')" class="material-icons prefix">close</i>
+                        <i *ngIf="userFormGroup.hasError('passwordsMatch')" class="material-icons prefix">done</i>
                         <input id="passwordConfirm" type="password" class="validate" formControlName="passwordConfirm"
                             required>
                         <label for="passwordConfirm">Password bestätigen</label>
