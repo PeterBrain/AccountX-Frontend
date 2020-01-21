@@ -60,7 +60,6 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
       this.companyService.updateCompany(company).subscribe(
         (response) => {
           // same as: response.name but linter does not like it this way
-          console.log(response);
           const companyName = JSON.parse(JSON.stringify(response)).name;
           const message = 'Firma ' + companyName + ' geändert';
           this.showToast(message);
