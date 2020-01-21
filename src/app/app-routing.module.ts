@@ -27,7 +27,7 @@ const routes: Routes = [
     { path: 'firmen', component: CompanySelectComponent, canActivate: [AuthGuard] },
     { path: 'firma-form', component: CompanyFormComponent, canActivate: [AuthGuard] },
     {
-        path: 'firma-form/:id', component: CompanyFormComponent,
+        path: 'firma-form/:id', component: CompanyFormComponent, canActivate: [AuthGuard],
         resolve: {
             company: CompanyResolver
         }
