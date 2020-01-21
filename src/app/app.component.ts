@@ -1,5 +1,5 @@
 import { GroupService } from './service/group.service';
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from './service/user.service';
 
@@ -8,7 +8,7 @@ import { UserService } from './service/user.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
 
 
   title = 'AccountX';
@@ -35,7 +35,9 @@ export class AppComponent implements OnInit {
     );
 
     this.currentYear = new Date().getFullYear().toString();
+  }
 
+  ngAfterViewInit() {
     this.userService.isLoggedIn.subscribe(
       (isLoggedIn) => {
         this.isLoggedIn = isLoggedIn;
@@ -43,7 +45,7 @@ export class AppComponent implements OnInit {
 
     //Todo
     // if (this.isLoggedIn) {
-    this.checkIfUserIsAdmin();
+    // this.checkIfUserIsAdmin();
     // }
   }
 
