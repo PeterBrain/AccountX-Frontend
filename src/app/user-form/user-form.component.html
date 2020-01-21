@@ -41,7 +41,7 @@
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">lock</i>
                         <input id="password" type="password" class="validate" formControlName="password">
-                        <label [ngClass]="{ 'active' : isData }" for="password">Passwort</label>
+                        <label for="password">Passwort</label>
                     </div>
                 </div>
 
@@ -53,18 +53,6 @@
                         <label for="passwordConfirm">Password bestätigen</label>
                     </div>
                 </div>
-
-                <!--<div *ngIf="!isData" class="row">
-                    <div class="input-field col s12 l6 offset-l3">
-                        <i class="material-icons prefix">business</i>
-                        <select (change)=getGroupsOfCompany($event.target.value) id="company">
-                            <option value="" disabled>Wählen Sie eine Option</option>
-                            <option *ngFor="let companyOption of companyOptions" [value]="companyOption.id">
-                                {{ companyOption.name }}</option>
-                        </select>
-                        <label for="company">Firma</label>
-                    </div>
-                </div>-->
 
                 <div class="row">
                     <div class="input-field col s12 l6 offset-l3">
