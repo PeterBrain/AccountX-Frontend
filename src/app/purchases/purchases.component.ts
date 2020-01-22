@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as M from 'materialize-css';
 import * as XLSX from 'xlsx';
+import {CompanyService} from '../service/company.service';
 
 @Component({
     selector: 'app-purchases',
@@ -16,7 +17,9 @@ export class PurchasesComponent implements OnInit, AfterViewInit {
 
     constructor(
         private http: HttpClient,
-        public purchaseService: PurchaseService) {
+        public purchaseService: PurchaseService,
+        public companyService: CompanyService
+    ) {
     }
 
     ngOnInit() {

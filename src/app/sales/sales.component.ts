@@ -3,6 +3,7 @@ import { SaleService } from './../service/sale.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as M from 'materialize-css';
 import * as XLSX from 'xlsx';
+import {CompanyService} from '../service/company.service';
 
 @Component({
   selector: 'app-sales',
@@ -16,7 +17,8 @@ export class SalesComponent implements OnInit, AfterViewInit {
 
   constructor(
     private saleService: SaleService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public companyService: CompanyService
   ) { }
 
   ngOnInit() {
