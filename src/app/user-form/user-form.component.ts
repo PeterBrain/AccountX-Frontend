@@ -33,7 +33,7 @@ export class UserFormComponent implements OnInit, AfterViewInit {
       passwordConfirm: ['', Validators.required]
     });
 
-    this.userFormGroup.setValidators(this.passwordMatch);
+    // this.userFormGroup.setValidators(this.passwordMatch); // this one disables the button
 
     const data = this.route.snapshot.data;
     this.companyOptions = data.companyOptions;

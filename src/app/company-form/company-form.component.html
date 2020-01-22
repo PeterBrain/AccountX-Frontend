@@ -32,8 +32,8 @@
                         </button>
                         <button *ngIf="isData" class="btn btn-large waves-effect modal-trigger red darken-4"
                             data-target="deleteModal">Löschen</button>
-                        <button (click)="saveForm()" [disabled]="!companyFormGroup.valid"
-                            class="btn btn-large waves-effect" type="submit">Speichern</button>
+                        <button [disabled]="!companyFormGroup.valid" class="btn btn-large waves-effect" type="submit">
+                            Speichern</button>
 
                         <!-- Modal Structure -->
                         <div id="deleteModal" class="modal col s12 l4 center">

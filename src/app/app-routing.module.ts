@@ -35,9 +35,7 @@ const routes: Routes = [
     {
         path: 'mitarbeiter-form', component: UserFormComponent, canActivate: [AuthGuard],
         resolve: {
-            companyOptions: CompanyOptionsResolver,
-            groupOptions: GroupOptionsResolver,
-            bookingTypes: BookingTypesResolver
+            groupOptions: GroupOptionsResolver
         }
     },
     {
@@ -94,5 +92,6 @@ const routes: Routes = [
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
 })
+
 export class AppRoutingModule {
 }
