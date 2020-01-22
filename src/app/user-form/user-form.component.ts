@@ -46,8 +46,7 @@ export class UserFormComponent implements OnInit, AfterViewInit {
       last_name: [''],
       groups: [null, Validators.required],
       password: [''],
-      passwordConfirm: ['', [Validators.required, UserFormComponent.matchValues('password')
-      ]]
+      passwordConfirm: ['', [Validators.required, UserFormComponent.matchValues('password')]]
     });
 
     // this.userFormGroup.setValidators(this.passwordMatch); // this one disables the button

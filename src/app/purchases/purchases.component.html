@@ -6,43 +6,43 @@
     <div class="col s12">
         <table class="striped responsive-table" id="excel-table">
             <thead>
-                <tr>
-                    <th>ReNr.</th>
-                    <th>Belegdatum</th>
-                    <th>Rechnungsaussteller</th>
-                    <th>Notiz</th>
-                    <th>Ust.</th>
-                    <th>Netto</th>
-                    <th>Brutto</th>
-                    <th>Datum Geldfluss</th>
-                    <th>Buchungskonto</th>
-                    <th></th>
-                </tr>
+            <tr>
+                <th>ReNr.</th>
+                <th>Belegdatum</th>
+                <th>Rechnungsaussteller</th>
+                <th>Notiz</th>
+                <th>Ust.</th>
+                <th>Netto</th>
+                <th>Brutto</th>
+                <th>Datum Geldfluss</th>
+                <th>Buchungskonto</th>
+                <th></th>
+            </tr>
             </thead>
 
             <tbody>
-                <tr *ngFor="let purchase of purchases" class="hoverable">
-                    <td>{{ purchase.invNo }}</td>
-                    <td>{{ purchase.invDate }}</td>
-                    <td>{{ purchase.biller }}</td>
-                    <td>{{ purchase.notes }}</td>
-                    <td>{{ purchase.vat | number:'1.2' }}</td>
-                    <td>{{ purchase.net | number:'1.2' }}</td>
-                    <td>{{ purchase.net * (1 + purchase.vat) | number:'1.2' }}</td>
-                    <td>{{ purchase.cashflowdate }}</td>
-                    <td>{{ purchase.bookingType }}</td>
-                    <td>
-                        <div class="fixed-action-btn custom-action-btn">
-                            <a class="btn-floating btn-small" [routerLink]="['/ausgaben-form/' + purchase.id]">
-                                <i class="large material-icons">mode_edit</i>
-                            </a>
-                            <!--<ul>
-                                <li><a class="btn-floating" target="_blank"><i class="material-icons">save_alt</i></a>
-                                </li>
-                            </ul>-->
-                        </div>
-                    </td>
-                </tr>
+            <tr *ngFor="let purchase of purchases" class="hoverable">
+                <td>{{ purchase.invNo }}</td>
+                <td>{{ purchase.invDate }}</td>
+                <td>{{ purchase.biller }}</td>
+                <td>{{ purchase.notes }}</td>
+                <td>{{ purchase.vat | number:'1.2' }}</td>
+                <td>{{ purchase.net | number:'1.2' }}</td>
+                <td>{{ purchase.net * (1 + purchase.vat) | number:'1.2' }}</td>
+                <td>{{ purchase.cashflowdate }}</td>
+                <td>{{ purchase.bookingType }}</td>
+                <td>
+                    <div class="fixed-action-btn custom-action-btn">
+                        <a class="btn-floating btn-small" [routerLink]="['/ausgaben-form/' + purchase.id]">
+                            <i class="large material-icons">mode_edit</i>
+                        </a>
+                        <!--<ul>
+                            <li><a class="btn-floating" target="_blank"><i class="material-icons">save_alt</i></a>
+                            </li>
+                        </ul>-->
+                    </div>
+                </td>
+            </tr>
             </tbody>
             <span *ngIf="empty">Noch keine Daten vorhanden</span>
         </table>
@@ -50,29 +50,10 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col s12">
-        <a style="cursor: pointer" (click)="exportexcel('excel-table', 'ExcelSheet.xlsx')">Download Excel</a>
-    </div>
-</div>
-
-<!--<div class="row">
-    <div class="col s12">
-        <ul class="pagination center">
-            <li [ngClass]="{'disabled': activePage === 1, 'waves-effect': activePage !== 1}"
-                (click)="setActivePage('previous')">
-                <a><i class="material-icons">chevron_left</i></a>
-            </li>
-            <li class="waves-effect" [ngClass]="{'active': page === activePage}" (click)="setActivePage(i)"
-                *ngFor="let page of paginationPages; let i = index"><a>{{page}}</a></li>
-            <li [ngClass]="{'disabled': activePage === paginationPages.length, 'waves-effect': activePage !== paginationPages.length}"
-                (click)="setActivePage('next')"><a><i class="material-icons">chevron_right</i></a>
-            </li>
-        </ul>
-    </div>
-</div>-->
-
 <div class="fixed-action-btn">
-    <a class="btn-floating btn-large waves-effect waves-light green" routerLink="/ausgaben-form"><i
+    <a class="btn-floating btn-large waves-effect waves-light yellow darken-3"
+       (click)="exportexcel('excel-table', 'ExcelSheet.xlsx')" title="Export"><i
+            class="material-icons">save_alt</i></a>
+    <a class="btn-floating btn-large waves-effect waves-light green" routerLink="/ausgaben-form" title="Neu"><i
             class="material-icons">add</i></a>
 </div>
