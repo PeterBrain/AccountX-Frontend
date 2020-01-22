@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class CompanyService {
   readonly companyLocalStorageKey = 'company';
+  currentCompany;
 
   constructor(
     private http: HttpClient
@@ -40,5 +41,12 @@ export class CompanyService {
 
   setCompanyToken(companyId: string) {
     localStorage.setItem(this.companyLocalStorageKey, companyId);
+
+    // Update of current Company (for name in top left)
+    this.getCompany(companyId).subscribe(
+      (response) => {
+        this.currentCompany = JSON.parse(JSON.stringify(response));
+      }
+    );
   }
 }

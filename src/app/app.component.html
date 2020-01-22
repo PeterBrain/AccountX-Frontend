@@ -1,6 +1,7 @@
 <header>
     <div class="navbar-fixed">
         <nav class="nav-wrapper indigo">
+            <span *ngIf="isLoggedIn && companyService.currentCompany && companyService.getCompanyToken()">Firma: {{companyService.currentCompany?.name}}</span>
             <a routerLink="/" class="brand-logo center">AccountX</a>
             <a href="" class="sidenav-trigger" data-target="mobileNav" *ngIf="isLoggedIn">
                 <i class="material-icons">view_module</i>
