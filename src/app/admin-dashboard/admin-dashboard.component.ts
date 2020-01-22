@@ -14,6 +14,7 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
   companyId;
   usersOfCompany;
   companyOptions;
+  search = '';
 
   constructor(
     private userService: UserService,

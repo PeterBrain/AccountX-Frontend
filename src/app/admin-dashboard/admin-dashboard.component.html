@@ -10,7 +10,9 @@
                     </a>
                 </li>
 
-                <li (click)="getUsersOfCompany(company.id)" *ngFor="let company of companies"
+              <input type="search" [(ngModel)]="search">
+
+                <li (click)="getUsersOfCompany(company.id)" *ngFor="let company of (companies | filter:search)"
                     class="collection-item avatar">
                     <img src="../../assets/images/bg/sidenav-bg.jpg" alt="{{ company.name }}" class="circle">
                     <span class="title">{{ company.name }} <a href="#" [routerLink]="['/firma-form/' + company.id]"

@@ -14,7 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { JwtModule } from '@auth0/angular-jwt';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CompanySelectComponent } from './company-select/company-select.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -22,6 +22,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { CompanyFormComponent } from './company-form/company-form.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { FilterPipe } from './admin-dashboard/filter.pipe';
 export function tokenGetter() {
     return localStorage.getItem('access_token');
 }
@@ -42,22 +43,24 @@ export function tokenGetter() {
         AdminDashboardComponent,
         CompanyFormComponent,
         UserFormComponent,
-        MediainputComponent
+        MediainputComponent,
+        FilterPipe
     ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        NoopAnimationsModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        FileUploadModule,
-        JwtModule.forRoot({
-            config: {
-                tokenGetter: tokenGetter,
-                whitelistedDomains: ['localhost:4200']
-            }
-        })
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NoopAnimationsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    FileUploadModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['localhost:4200']
+      }
+    }),
+    FormsModule
+  ],
     providers: [],
     bootstrap: [AppComponent]
 })
