@@ -13,7 +13,7 @@
                 <!-- <li><a href="#"><i class="material-icons left">settings_applications</i>Einstellungen</a></li> -->
 
                 <!-- Export Modal Structure -->
-                <div id="export-modal" class="modal">
+                <!-- <div id="export-modal" class="modal">
                     <div class="modal-content">
                         <h4>Export Settings</h4>
                         <p>A bunch of text</p>
@@ -21,13 +21,13 @@
                     <div class="modal-footer">
                         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
                     </div>
-                </div>
+                </div> -->
 
                 <li class="divider"></li>
-                <li *ngIf="this.userService.isAdmin"><a href="#" routerLink="admin-dashboard"><i
+                <li *ngIf="this.userService.isAdmin"><a href="#" title="Admin Dashboard" routerLink="admin-dashboard"><i
                             class="material-icons left">supervised_user_circle</i>Admin</a></li>
                 <li class="divider"></li>
-                <li><a (click)="logout()"><i class="material-icons left">exit_to_app</i>Logout</a></li>
+                <li><a title="Logout" (click)="logout()"><i class="material-icons left">exit_to_app</i>Logout</a></li>
             </ul>
 
             <ul class="right" *ngIf="isLoggedIn">
@@ -45,10 +45,10 @@
                 <div class="background">
                     <img src="../assets/images/bg/sidenav-bg.jpg">
                 </div>
-                <a href="#"><img class="circle" src="../assets/images/people/example-portrait.jpg"></a>
-                <a href="#"><span class="white-text name">{{ this.userService.currentUser?.first_name }}
+                <a><img class="circle" src="../assets/images/people/example-portrait.jpg"></a>
+                <a><span class="white-text name">{{ this.userService.currentUser?.first_name }}
                         {{ this.userService.currentUser?.last_name }}</span></a>
-                <a href="#"><span
+                <a><span
                         class="white-text email">{{ this.userService.currentUser?.first_name }}.{{ this.userService.currentUser?.last_name }}@accountx.com</span></a>
             </div>
         </li>
@@ -58,30 +58,32 @@
         </li>
 
         <li><a class="subheader"><i class="material-icons">business</i>Firmen</a></li>
-        <li><a class="waves-effect sidenav-close" routerLink="/firmen">Übersicht</a></li>
+        <li><a title="Firma auswählen" class="waves-effect sidenav-close" routerLink="/firmen">Übersicht</a></li>
 
         <li>
             <div class="divider"></div>
         </li>
 
         <li><a class="subheader"><i class="material-icons">account_balance_wallet</i>Ausgangsrechnungen</a></li>
-        <li><a class="waves-effect sidenav-close" routerLink="/einnahmen">Übersicht</a></li>
-        <li><a class="waves-effect sidenav-close" routerLink="/einnahmen-form">Erstellen</a></li>
+        <li><a title="Einnahmen" class="waves-effect sidenav-close" routerLink="/einnahmen">Übersicht</a></li>
+        <li><a title="Ausgangsrechnung erstellen" class="waves-effect sidenav-close"
+                routerLink="/einnahmen-form">Erstellen</a></li>
 
         <li>
             <div class="divider"></div>
         </li>
 
         <li><a class="subheader"><i class="material-icons">payment</i>Eingangsrechnungen</a></li>
-        <li><a class="waves-effect sidenav-close" routerLink="/ausgaben">Übersicht</a></li>
-        <li><a class="waves-effect sidenav-close" routerLink="/ausgaben-form">Erstellen</a></li>
+        <li><a title="Ausgaben" class="waves-effect sidenav-close" routerLink="/ausgaben">Übersicht</a></li>
+        <li><a title="Eingangsrechnung erstellen" class="waves-effect sidenav-close"
+                routerLink="/ausgaben-form">Erstellen</a></li>
 
         <li>
             <div class="divider"></div>
         </li>
 
         <li><a class="subheader"><i class="material-icons">account_balance</i>Ust. Abgaben</a></li>
-        <li><a class="waves-effect sidenav-close" routerLink="/ust">Übersicht</a></li>
+        <li><a title="Ust. Abgaben" class="waves-effect sidenav-close" routerLink="/ust">Übersicht</a></li>
     </ul>
 </header>
 
