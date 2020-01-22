@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col s12 center">
             <h2>Konto erstellen</h2>
-            <p style="color: red;">Das funktioniert nur wenn ihr im Backend nicht angemeldet seid!</p>
+            <p class="red-text text-darken-4">Das funktioniert nur wenn ihr im Backend nicht angemeldet seid!</p>
         </div>
     </div>
 
@@ -19,16 +19,16 @@
             <div class="row">
                 <div class="input-field col s12 l6 offset-l3">
                     <i class="material-icons prefix">person</i>
-                    <input id="firstname" type="text" class="validate" formControlName="firstname">
-                    <label [ngClass]="{'active': isData}" for="firstname">Vorname</label>
+                    <input id="firstname" type="text" class="validate" formControlName="first_name">
+                    <label for="firstname">Vorname</label>
                 </div>
             </div>
 
             <div class="row">
                 <div class="input-field col s12 l6 offset-l3">
                     <i class="material-icons prefix">person</i>
-                    <input id="lastname" type="text" class="validate" formControlName="lastname">
-                    <label [ngClass]="{'active': isData}" for="lastname">Nachname</label>
+                    <input id="lastname" type="text" class="validate" formControlName="last_name">
+                    <label for="lastname">Nachname</label>
                 </div>
             </div>
 
