@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import * as M from 'materialize-css';
+import {CompanyService} from './company.service';
 
 @Injectable({
     providedIn: 'root'
@@ -24,7 +25,8 @@ export class UserService {
     constructor(
         private http: HttpClient,
         private router: Router,
-        private jwtHelperService: JwtHelperService
+        private jwtHelperService: JwtHelperService,
+        private companyService: CompanyService
     ) {
         const token = localStorage.getItem(this.accessTokenLocalStorageKey);
         if (token) {
@@ -60,9 +62,11 @@ export class UserService {
 
     logout() {
         localStorage.removeItem(this.accessTokenLocalStorageKey);
+        localStorage.removeItem(this.companyService.companyLocalStorageKey);
+
         this.isLoggedIn.next(false);
-        // this.companies = null;
-        this.router.navigate(['/login']);
+          // this.companies = null;
+          this.router.navigate(['/login']);
     }
 
     getUsersOfCompany(companyId) {

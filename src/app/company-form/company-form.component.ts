@@ -72,6 +72,7 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
       this.companyService.createCompany(company).subscribe(
         (response) => {
           const companyName = JSON.parse(JSON.stringify(response)).name;
+          this.companyService.setCompanyToken(JSON.parse(JSON.stringify(response)).id);
           const message = 'Firma ' + companyName + ' erstellt';
           this.showToast(message);
           return response;
