@@ -5,7 +5,7 @@
         <li class="collection-header">
           <h4>Firmen:</h4>
           <a href="#" routerLink="/firma-form"
-             class="secondary-content btn-floating waves-effect waves-light green">
+             class="secondary-content btn-floating waves-effect waves-light green" title="Neu">
             <i class="material-icons">add</i>
           </a>
         </li>
@@ -20,11 +20,11 @@
             class="collection-item avatar">
           <img src="../../assets/images/bg/sidenav-bg.jpg" alt="{{ company.name }}" class="circle">
           <span class="title">{{ company.name }} <a href="#" [routerLink]="['/firma-form/' + company.id]"
-                                                    class="custom-secondary-content"><i class="material-icons">mode_edit</i></a></span>
+                                                    class="custom-secondary-content" title="Bearbeiten"><i class="material-icons">mode_edit</i></a></span>
           <p *ngIf="company.description !== null"><br>
             {{ company.description }}
           </p>
-          <a class="secondary-content"><i class="material-icons">keyboard_arrow_right</i></a>
+          <a class="secondary-content" title="Mitarbeiter anzeigen"><i class="material-icons">keyboard_arrow_right</i></a>
         </li>
         <li>
           <div *ngIf="companies.length > 0 && (companies | filter:search).length <1">
@@ -42,14 +42,14 @@
         <li class="collection-header">
           <h4>Mitarbeiter:</h4>
           <a href="#" routerLink="/mitarbeiter-form"
-             class="secondary-content btn-floating waves-effect waves-light green">
+             class="secondary-content btn-floating waves-effect waves-light green" title="Neu">
             <i class="material-icons">add</i>
           </a>
         </li>
 
         <li *ngFor="let user of usersOfCompany" class="collection-item">
           <div>{{ user.username }}<a href="#" [routerLink]="['/mitarbeiter-form/' + user.id]"
-                                     class="secondary-content"><i class="material-icons">mode_edit</i></a></div>
+                                     class="secondary-content" title="Bearbeiten"><i class="material-icons">mode_edit</i></a></div>
         </li>
       </ul>
     </div>

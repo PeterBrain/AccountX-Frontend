@@ -33,26 +33,21 @@
                 <td>{{ purchase.bookingType }}</td>
                 <td>
                     <div class="fixed-action-btn custom-action-btn">
-                        <a class="btn-floating btn-small" [routerLink]="['/ausgaben-form/' + purchase.id]">
+                        <a class="btn-floating btn-small" [routerLink]="['/ausgaben-form/' + purchase.id]" title="Bearbeiten">
                             <i class="large material-icons">mode_edit</i>
                         </a>
-                        <!--<ul>
-                            <li><a class="btn-floating" target="_blank"><i class="material-icons">save_alt</i></a>
-                            </li>
-                        </ul>-->
                     </div>
                 </td>
             </tr>
             </tbody>
             <span *ngIf="empty">Noch keine Daten vorhanden</span>
         </table>
-
     </div>
 </div>
 
 <div class="fixed-action-btn">
     <a class="btn-floating btn-large waves-effect waves-light yellow darken-3"
-       (click)="exportexcel('excel-table', 'ExcelSheet.xlsx')" title="Export"><i
+       (click)="exportexcel('excel-table', 'Ausgaben.xlsx')" title="Export"><i
             class="material-icons">save_alt</i></a>
     <a class="btn-floating btn-large waves-effect waves-light green" routerLink="/ausgaben-form" title="Neu"><i
             class="material-icons">add</i></a>
