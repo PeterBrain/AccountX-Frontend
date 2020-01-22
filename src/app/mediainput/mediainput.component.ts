@@ -1,10 +1,10 @@
 import { CompanyService } from './../service/company.service';
-import {Component, ElementRef, forwardRef, Input, OnInit} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {FileItem, FileUploader, ParsedResponseHeaders} from 'ng2-file-upload';
-import {HttpClient} from '@angular/common/http';
-import {UserService} from '../service/user.service';
-import {forkJoin} from 'rxjs';
+import { Component, ElementRef, forwardRef, Input, OnInit } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FileItem, FileUploader, ParsedResponseHeaders } from 'ng2-file-upload';
+import { HttpClient } from '@angular/common/http';
+import { UserService } from '../service/user.service';
+import { forkJoin } from 'rxjs';
 export interface IMedia {
   id?: number;
   original_file_name?: string;
@@ -16,7 +16,8 @@ export interface IMedia {
 @Component({
   selector: 'app-mediainput',
   templateUrl: './mediainput.component.html',
-  styles: [],
+  styleUrls: ['./mediainput.component.scss'],
+
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -35,7 +36,7 @@ export class MediainputComponent implements OnInit, ControlValueAccessor {
   onChange = (medias: number[]) => {
     // empty default
   };
-  constructor(private userService: UserService, private http: HttpClient, elm: ElementRef,private companyService: CompanyService) {
+  constructor(private userService: UserService, private http: HttpClient, elm: ElementRef, private companyService: CompanyService) {
   }
 
   ngOnInit() {
@@ -77,7 +78,7 @@ export class MediainputComponent implements OnInit, ControlValueAccessor {
   }
 
   downloadMedia(media: IMedia): void {
-    this.http.get(`${this.resourceUrl}/${media.id}/`, {responseType: 'blob'}).subscribe((blob: Blob) => {
+    this.http.get(`${this.resourceUrl}/${media.id}/`, { responseType: 'blob' }).subscribe((blob: Blob) => {
       const fileURL = URL.createObjectURL(blob);
       const a = <HTMLAnchorElement>document.createElement('a');
       a.href = fileURL;
