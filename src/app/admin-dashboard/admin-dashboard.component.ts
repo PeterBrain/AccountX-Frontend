@@ -13,7 +13,6 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
   companies;
   companyId;
   usersOfCompany;
-  companyOptions;
   search = '';
 
   constructor(

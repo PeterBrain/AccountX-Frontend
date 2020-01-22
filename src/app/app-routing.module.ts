@@ -49,7 +49,6 @@ const routes: Routes = [
     {
         path: 'einnahmen-form', component: SalesFormComponent, canActivate: [AuthGuard],
         resolve: {
-            // companyOptions: CompanyOptionsResolver,
             bookingTypes: BookingTypesResolver
         }
     },
@@ -57,7 +56,6 @@ const routes: Routes = [
         path: 'einnahmen-form/:id', component: SalesFormComponent, canActivate: [AuthGuard],
         resolve: {
             sale: SaleFormResolver,
-            // companyOptions: CompanyOptionsResolver,
             bookingTypes: BookingTypesResolver
         }
     },
@@ -65,7 +63,6 @@ const routes: Routes = [
     {
         path: 'ausgaben-form', component: PurchasesFormComponent, canActivate: [AuthGuard],
         resolve: {
-            // companyOptions: CompanyOptionsResolver,
             bookingTypes: BookingTypesResolver
         }
     },
@@ -73,7 +70,6 @@ const routes: Routes = [
         path: 'ausgaben-form/:id', component: PurchasesFormComponent, canActivate: [AuthGuard],
         resolve: {
             purchase: PurchaseFormResolver,
-            // companyOptions: CompanyOptionsResolver,
             bookingTypes: BookingTypesResolver
         }
     },

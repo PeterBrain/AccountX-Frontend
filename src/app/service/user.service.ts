@@ -16,7 +16,6 @@ export class UserService {
     currentUser;
 
     // companies;
-
     // readonly companyLocalStorageKey = 'company';
 
     readonly accessTokenLocalStorageKey = 'access_token';

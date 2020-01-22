@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="col s12">
-        <table class="striped responsive-table" id="excel-table">
+        <table *ngIf="companyService.getCompanyToken()" class="striped responsive-table" id="excel-table">
             <thead>
             <tr>
                 <th>ReNr.</th>
@@ -38,11 +38,9 @@
                 </td>
             </tr>
             </tbody>
-            <span *ngIf="empty">Noch keine Daten vorhanden</span>
-            <span *ngIf="!companyService.getCompanyToken()">Zuerst eine <a routerLink="/firmen">Firma auswählen</a></span>
-
         </table>
-
+        <span *ngIf="empty">Noch keine Daten vorhanden</span>
+        <span *ngIf="!companyService.getCompanyToken()">Zuerst eine <a routerLink="/firmen">Firma auswählen</a></span>
     </div>
 </div>
 

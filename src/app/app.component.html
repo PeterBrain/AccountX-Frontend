@@ -10,7 +10,6 @@
             <ul id="dropdown" class="dropdown-content" *ngIf="isLoggedIn">
                 <!-- <li><a href="#"><i class="material-icons left">account_circle</i>Profil</a></li> -->
                 <!-- <li><a href="#"><i class="material-icons left">settings_applications</i>Einstellungen</a></li> -->
-                <!-- <li><a href="#"><i class="material-icons left">save_alt</i>Export</a></li> -->
 
                 <!-- Export Modal Structure -->
                 <div id="export-modal" class="modal">
@@ -25,7 +24,7 @@
 
                 <li class="divider"></li>
                 <li *ngIf="this.userService.isAdmin"><a href="#" routerLink="admin-dashboard"><i
-                            class="material-icons left">supervised_user_circle</i>Admin</a></li>
+                        class="material-icons left">supervised_user_circle</i>Admin</a></li>
                 <li class="divider"></li>
                 <li><a (click)="logout()"><i class="material-icons left">exit_to_app</i>Logout</a></li>
             </ul>
@@ -47,9 +46,9 @@
                 </div>
                 <a href="#"><img class="circle" src="../assets/images/people/example-portrait.jpg"></a>
                 <a href="#"><span class="white-text name">{{ this.userService.currentUser?.first_name }}
-                        {{ this.userService.currentUser?.last_name }}</span></a>
-                <a href="#"><span
-                        class="white-text email">{{ this.userService.currentUser?.first_name }}.{{ this.userService.currentUser?.last_name }}@accountx.com</span></a>
+                    {{ this.userService.currentUser?.last_name }}</span></a>
+                <a href="#"><span class="white-text email">{{ this.userService.currentUser?.first_name }}
+                    .{{ this.userService.currentUser?.last_name }}@accountx.com</span></a>
             </div>
         </li>
 
