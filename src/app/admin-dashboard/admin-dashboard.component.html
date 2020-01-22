@@ -26,6 +26,14 @@
                     </p>
                     <a class="secondary-content"><i class="material-icons">keyboard_arrow_right</i></a>
                 </li>
+              <li>
+                <div *ngIf="companies.length > 0 && (companies | filter:search).length <1">
+                  Keine Firma gefunden
+                </div>
+              </li>
+              <li>
+                <span *ngIf="companies.length === 0">Noch keine Firmen vorhanden</span>
+              </li>
             </ul>
         </div>
 
