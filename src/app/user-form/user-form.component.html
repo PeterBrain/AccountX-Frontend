@@ -40,17 +40,17 @@
                 <div class="row">
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">lock</i>
-                        <input id="password" type="password" class="validate" formControlName="password">
+                        <input id="password" type="password" class="validate" (keyup)="passwordMatch()" formControlName="password">
                         <label for="password">Passwort</label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12 l6 offset-l3">
-                        <i *ngIf="!userFormGroup.hasError('passwordsMatch')" class="material-icons prefix">close</i>
-                        <i *ngIf="userFormGroup.hasError('passwordsMatch')" class="material-icons prefix">done</i>
+                        <i *ngIf="!passwordsMatch" class="material-icons prefix">close</i>
+                        <i *ngIf="passwordsMatch" class="material-icons prefix">done</i>
                         <input id="passwordConfirm" type="password" class="validate" formControlName="passwordConfirm"
-                            required>
+                            required (keyup)="passwordMatch()">
                         <label for="passwordConfirm">Password bestätigen</label>
                     </div>
                 </div>

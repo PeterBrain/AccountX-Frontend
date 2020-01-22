@@ -1,8 +1,9 @@
 import { UserService } from './../service/user.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import {FormBuilder, Validators, FormGroup, ValidationErrors, AbstractControl} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as M from 'materialize-css';
+
 
 @Component({
   selector: 'app-user-form',
@@ -14,6 +15,7 @@ export class UserFormComponent implements OnInit, AfterViewInit {
   isData;
   companyOptions;
   companyGroups;
+  passwordsMatch;
 
   constructor(
     private fb: FormBuilder,
@@ -21,6 +23,20 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     private router: Router,
     private userService: UserService
   ) { }
+
+  // actual validator for password-match
+  public static matchValues(
+    matchTo: string
+  ): (AbstractControl) => ValidationErrors | null {
+    return (control: AbstractControl): ValidationErrors | null => {
+      return !!control.parent &&
+      !!control.parent.value &&
+      control.value === control.parent.controls[matchTo].value
+        ? null
+        : { isMatching: false };
+    };
+  }
+
 
   ngOnInit() {
     this.userFormGroup = this.fb.group({
@@ -30,7 +46,8 @@ export class UserFormComponent implements OnInit, AfterViewInit {
       last_name: [''],
       groups: [null, Validators.required],
       password: [''],
-      passwordConfirm: ['', Validators.required]
+      passwordConfirm: ['', [Validators.required, UserFormComponent.matchValues('password')
+      ]]
     });
 
     // this.userFormGroup.setValidators(this.passwordMatch); // this one disables the button
@@ -114,15 +131,15 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     });
   }
 
-  // custom validator if password is not empty and match
-  passwordMatch(group: FormGroup): any {
-    const password = group.value.password;
-    const passwordConfirm = group.value.passwordConfirm;
+  // check if passwords match (just for visual X or check)
+  passwordMatch() {
+    const password = this.userFormGroup.value.password;
+    const passwordConfirm = this.userFormGroup.value.passwordConfirm;
 
     if (password !== '' && password === passwordConfirm) {
-      return { passwordsMatch: true };
+      this.passwordsMatch = true;
     } else {
-      return { passwordsMatch: false };
+      this.passwordsMatch = false;
     }
   }
 }
