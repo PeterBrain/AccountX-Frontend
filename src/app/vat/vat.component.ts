@@ -31,7 +31,7 @@ export class VatComponent implements OnInit, AfterViewInit {
 
   constructor(
     private vatService: VatService,
-    private companyService: CompanyService
+    public companyService: CompanyService
   ) { }
 
   ngOnInit() {
