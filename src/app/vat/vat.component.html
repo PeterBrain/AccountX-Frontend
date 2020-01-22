@@ -60,7 +60,8 @@
             </table>
         </div>
     </div>
-  <span *ngIf="!companyService.getCompanyToken()" id="noCompany">Zuerst eine Firma auswählen</span>
+    <p class="center" *ngIf="!companyService.getCompanyToken()">Zuerst eine <a routerLink="/firmen">Firma
+        auswählen</a></p>
 </div>
 
 <div class="fixed-action-btn" *ngIf="companyService.getCompanyToken()">
