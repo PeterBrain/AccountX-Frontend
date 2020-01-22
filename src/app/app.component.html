@@ -46,10 +46,9 @@
                     <img src="../assets/images/bg/sidenav-bg.jpg">
                 </div>
                 <a><img class="circle" src="../assets/images/people/example-portrait.jpg"></a>
-                <a><span class="white-text name">{{ this.userService.currentUser?.first_name }}
-                        {{ this.userService.currentUser?.last_name }}</span></a>
-                <a><span
-                        class="white-text email">{{ this.userService.currentUser?.first_name }}.{{ this.userService.currentUser?.last_name }}@accountx.com</span></a>
+                <a><span class="white-text name">{{ this.userService.currentUser?.first_name !== '' ? this.userService.currentUser?.first_name : '(Vorname fehlt)' }}
+                        {{ this.userService.currentUser?.last_name !== '' ? this.userService.currentUser?.last_name : '(Nachname fehlt)' }}</span></a>
+                <a><span class="white-text email">{{ this.userService.currentUser?.username }}@accountx.com</span></a>
             </div>
         </li>
 
