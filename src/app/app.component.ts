@@ -2,7 +2,7 @@ import { GroupService } from './service/group.service';
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnChanges, OnDestroy, DoCheck } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from './service/user.service';
-import {CompanyService} from './service/company.service';
+import { CompanyService } from './service/company.service';
 
 @Component({
   selector: 'app-root',
@@ -107,6 +107,5 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     }
 
     return true;
-
   }
 }
