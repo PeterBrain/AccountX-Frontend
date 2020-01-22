@@ -2,6 +2,7 @@ import { VatService } from './../service/vat.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as M from 'materialize-css';
 import { CompanyService } from '../service/company.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-vat',
@@ -56,6 +57,25 @@ export class VatComponent implements OnInit, AfterViewInit {
         }
       );
     });
+  }
+
+  exportexcel(tableId1, tableId2, tableId3, fileName) {
+    /* table id is passed over here */
+    const element1 = document.getElementById(tableId1);
+    const ws1: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element1);
+    const element2 = document.getElementById(tableId2);
+    const ws2: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element2);
+    const element3 = document.getElementById(tableId3);
+    const ws3: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element3);
+
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws1, 'Umsatzsteuer');
+    XLSX.utils.book_append_sheet(wb, ws2, 'Vorsteuer');
+    XLSX.utils.book_append_sheet(wb, ws3, 'Ust. Zahllast');
+
+    /* save to file */
+    XLSX.writeFile(wb, this.currentYear + '_' + fileName);
   }
 
 }

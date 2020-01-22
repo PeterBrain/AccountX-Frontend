@@ -6,7 +6,7 @@
     <div class="container">
         <div class="col m4">
             <h4>Umsatzsteuer</h4>
-            <table class="striped responsive-table">
+            <table class="striped responsive-table" id="ust">
                 <thead>
                     <tr>
                         <th>Monat</th>
@@ -24,7 +24,7 @@
 
         <div class="col m4">
             <h4>Vorsteuer</h4>
-            <table class="striped responsive-table">
+            <table class="striped responsive-table" id="vst">
                 <thead>
                     <tr>
                         <th>Monat</th>
@@ -42,7 +42,7 @@
 
         <div class="col m4">
             <h4>Ust. Zahllast</h4>
-            <table class="striped responsive-table">
+            <table class="striped responsive-table" id="tax">
                 <thead>
                     <tr>
                         <th>Monat</th>
@@ -60,4 +60,10 @@
             </table>
         </div>
     </div>
+</div>
+
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large waves-effect waves-light yellow darken-3"
+       (click)="exportexcel('ust', 'vst', 'tax', 'Ust-Abgabe.xlsx')" title="Export"><i
+            class="material-icons">save_alt</i></a>
 </div>
