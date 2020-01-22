@@ -1,7 +1,8 @@
 <header>
     <div class="navbar-fixed">
         <nav class="nav-wrapper indigo">
-            <span *ngIf="isLoggedIn && companyService.currentCompany && companyService.getCompanyToken()">Firma: {{companyService.currentCompany?.name}}</span>
+            <span *ngIf="isLoggedIn && companyService.currentCompany && companyService.getCompanyToken()">Firma:
+                {{companyService.currentCompany?.name}}</span>
             <a routerLink="/" class="brand-logo center">AccountX</a>
             <a href="" class="sidenav-trigger" data-target="mobileNav" *ngIf="isLoggedIn">
                 <i class="material-icons">view_module</i>
@@ -24,7 +25,7 @@
 
                 <li class="divider"></li>
                 <li *ngIf="this.userService.isAdmin"><a href="#" routerLink="admin-dashboard"><i
-                        class="material-icons left">supervised_user_circle</i>Admin</a></li>
+                            class="material-icons left">supervised_user_circle</i>Admin</a></li>
                 <li class="divider"></li>
                 <li><a (click)="logout()"><i class="material-icons left">exit_to_app</i>Logout</a></li>
             </ul>
@@ -46,9 +47,9 @@
                 </div>
                 <a href="#"><img class="circle" src="../assets/images/people/example-portrait.jpg"></a>
                 <a href="#"><span class="white-text name">{{ this.userService.currentUser?.first_name }}
-                    {{ this.userService.currentUser?.last_name }}</span></a>
-                <a href="#"><span class="white-text email">{{ this.userService.currentUser?.first_name }}
-                    .{{ this.userService.currentUser?.last_name }}@accountx.com</span></a>
+                        {{ this.userService.currentUser?.last_name }}</span></a>
+                <a href="#"><span
+                        class="white-text email">{{ this.userService.currentUser?.first_name }}.{{ this.userService.currentUser?.last_name }}@accountx.com</span></a>
             </div>
         </li>
 
