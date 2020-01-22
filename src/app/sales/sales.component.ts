@@ -3,7 +3,7 @@ import { SaleService } from './../service/sale.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as M from 'materialize-css';
 import * as XLSX from 'xlsx';
-import {CompanyService} from '../service/company.service';
+import { CompanyService } from '../service/company.service';
 
 @Component({
   selector: 'app-sales',
@@ -51,6 +51,9 @@ export class SalesComponent implements OnInit, AfterViewInit {
     /* table id is passed over here */
     const element = document.getElementById(tableId);
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+
+    // remove last column I2 (mode_edit)
+    delete ws.I2;
 
     /* generate workbook and add the worksheet */
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
