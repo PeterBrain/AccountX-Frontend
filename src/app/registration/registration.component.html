@@ -35,24 +35,24 @@
             <div class="row">
                 <div class="input-field col s12 l6 offset-l3">
                     <i class="material-icons prefix">lock</i>
-                    <input id="password" type="password" class="validate" formControlName="password" required>
+                    <input id="password" type="password" class="validate" formControlName="password" required (keyup)="passwordMatch()">
                     <label for="password">Password</label>
                 </div>
             </div>
 
             <div class="row">
                 <div class="input-field col s12 l6 offset-l3">
-                    <i *ngIf="!registrationFormGroup.hasError('passwordsMatch')" class="material-icons prefix">close</i>
-                    <i *ngIf="registrationFormGroup.hasError('passwordsMatch')" class="material-icons prefix">done</i>
+                    <i *ngIf="!passwordsMatch" class="material-icons prefix">close</i>
+                    <i *ngIf="passwordsMatch" class="material-icons prefix">done</i>
                     <input id="passwordConfirm" type="password" class="validate" formControlName="passwordConfirm"
-                        required>
+                        required (keyup)="passwordMatch()">
                     <label for="passwordConfirm">Password bestätigen</label>
                 </div>
             </div>
 
             <div class="row">
                 <div class="input-field col s12 l6 offset-l3 center">
-                    <button class="btn btn-large waves-effect indigo" type="submit">erstellen</button>
+                    <button class="btn btn-large waves-effect indigo" [disabled]="!registrationFormGroup.valid" type="submit">erstellen</button>
                     <br>
                     <br>
                     <a href="#" routerLink="/login">Abbrechen</a>

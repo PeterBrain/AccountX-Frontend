@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, ValidatorFn, AbstractControl, FormGroup } from '@angular/forms';
+import {FormBuilder, Validators, ValidatorFn, AbstractControl, FormGroup, ValidationErrors} from '@angular/forms';
 import { UserService } from '../service/user.service';
 import * as M from 'materialize-css';
 
@@ -12,11 +12,25 @@ import * as M from 'materialize-css';
 export class RegistrationComponent implements OnInit {
 
   registrationFormGroup;
+  passwordsMatch;
 
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
     private router: Router) {
+  }
+
+  // actual validator for password-match
+  public static matchValues(
+    matchTo: string
+  ): (AbstractControl) => ValidationErrors | null {
+    return (control: AbstractControl): ValidationErrors | null => {
+      return !!control.parent &&
+      !!control.parent.value &&
+      control.value === control.parent.controls[matchTo].value
+        ? null
+        : { isMatching: false };
+    };
   }
 
   ngOnInit() {
@@ -25,10 +39,10 @@ export class RegistrationComponent implements OnInit {
       firstname: [''],
       lastname: [''],
       password: ['', Validators.required],
-      passwordConfirm: ['', Validators.required]
+      passwordConfirm: ['', [Validators.required, RegistrationComponent.matchValues('password')]]
     });
 
-    this.registrationFormGroup.setValidators(this.passwordMatch);
+    // this.registrationFormGroup.setValidators(this.passwordMatch);
   }
 
   register() {
@@ -43,15 +57,15 @@ export class RegistrationComponent implements OnInit {
     );
   }
 
-  // custom validator if password is not empty and match
-  passwordMatch(group: FormGroup): any {
-    const password = group.value.password;
-    const passwordConfirm = group.value.passwordConfirm;
+  // check if passwords match (just for visual X or check)
+  passwordMatch() {
+    const password = this.registrationFormGroup.value.password;
+    const passwordConfirm = this.registrationFormGroup.value.passwordConfirm;
 
     if (password !== '' && password === passwordConfirm) {
-      return { passwordsMatch: true };
+      this.passwordsMatch = true;
     } else {
-      return { passwordsMatch: false };
+      this.passwordsMatch = false;
     }
   }
 
