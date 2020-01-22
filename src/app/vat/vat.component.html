@@ -63,7 +63,7 @@
   <span *ngIf="!companyService.getCompanyToken()" id="noCompany">Zuerst eine Firma auswählen</span>
 </div>
 
-<div class="fixed-action-btn">
+<div class="fixed-action-btn" *ngIf="companyService.getCompanyToken()">
     <a class="btn-floating btn-large waves-effect waves-light yellow darken-3"
        (click)="exportexcel('ust', 'vst', 'tax', 'Ust-Abgabe.xlsx')" title="Export"><i
             class="material-icons">save_alt</i></a>
