@@ -26,8 +26,6 @@ export class CompanyService {
 
   updateCompany(company: { id: string; }) {
     const id = company.id;
-    // console.log(company);
-    // console.log(id);
     return this.http.put('/api/companies/' + id + '/', company);
   }
 
@@ -48,5 +46,10 @@ export class CompanyService {
         this.currentCompany = JSON.parse(JSON.stringify(response));
       }
     );
+  }
+
+  unsetCompanyToken() {
+    localStorage.removeItem(this.companyLocalStorageKey);
+    this.currentCompany = '';
   }
 }
