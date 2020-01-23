@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, Validators, ValidatorFn, AbstractControl, FormGroup, ValidationErrors} from '@angular/forms';
+import {FormBuilder, Validators, AbstractControl, ValidationErrors} from '@angular/forms';
 import { UserService } from '../service/user.service';
 import * as M from 'materialize-css';
 
@@ -41,18 +41,20 @@ export class RegistrationComponent implements OnInit {
       password: ['', Validators.required],
       passwordConfirm: ['', [Validators.required, RegistrationComponent.matchValues('password')]]
     });
-
-    // this.registrationFormGroup.setValidators(this.passwordMatch);
   }
 
   register() {
     const user = this.registrationFormGroup.value;
     this.userService.register(user).subscribe(
-      (result) => {
-        this.router.navigate(['/firma-form']);
+      result => {
         const username = (JSON.parse(JSON.stringify(result))).username;
-        this.showToast('Benutzer ' + username + ' wurde erstellt.')
-        return result;
+        this.showToast('Benutzer ' + username + ' wurde erstellt');
+      },
+      error => {
+        this.showToast('Ups, da gibt es wohl ein Problem');
+      },
+      () => {
+        this.router.navigate(['/firma-form']);
       }
     );
   }

@@ -37,7 +37,6 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     };
   }
 
-
   ngOnInit() {
     this.userFormGroup = this.fb.group({
       id: [null],
@@ -66,7 +65,6 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     if (data.user) {
       this.userFormGroup.patchValue(data.user);
     }
-
   }
 
   ngAfterViewInit() {

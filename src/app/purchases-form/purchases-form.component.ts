@@ -7,7 +7,7 @@ import {
 } from '../reusables/datepicker/datepicker.config';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit, AfterViewInit, OnChanges } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as M from 'materialize-css';
 import { HttpClient } from '@angular/common/http';
 import { PurchaseService } from '../service/purchase.service';
@@ -103,7 +103,6 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
 
     const modal = document.querySelectorAll('.modal');
     M.Modal.init(modal);
-
   }
 
   setDatepickerInput() {
