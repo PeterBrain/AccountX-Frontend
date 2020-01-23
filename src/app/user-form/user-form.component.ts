@@ -16,6 +16,7 @@ export class UserFormComponent implements OnInit, AfterViewInit {
   companyOptions;
   companyGroups;
   passwordsMatch;
+  passwordIsPresent = true;
 
   constructor(
     private fb: FormBuilder,
@@ -38,15 +39,17 @@ export class UserFormComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.userFormGroup = this.fb.group({
-      id: [null],
-      username: [{ value: '', disabled: false }, Validators.required],
-      first_name: [''],
-      last_name: [''],
-      groups: [null, Validators.required],
-      password: [''],
-      passwordConfirm: ['', [Validators.required, UserFormComponent.matchValues('password')]]
-    });
+    this.userFormGroup = this.fb.group(
+      {
+        id: [null],
+        username: [{ value: '', disabled: false }, [Validators.required, Validators.pattern('^[a-zA-Z0-9]*')]],
+        first_name: [''],
+        last_name: [''],
+        groups: [null, Validators.required],
+        password: [''],
+        passwordConfirm: ['']
+      }
+    );
 
     const data = this.route.snapshot.data;
     this.companyOptions = data.companyOptions;
@@ -62,6 +65,9 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     // fill form if there is data
     if (data.user) {
       this.userFormGroup.patchValue(data.user);
+    } else {
+      this.userFormGroup.controls['password'].setValidators([Validators.required, UserFormComponent.matchValues('passwordConfirm')]);
+      this.userFormGroup.controls['passwordConfirm'].setValidators([Validators.required, UserFormComponent.matchValues('password')]);
     }
   }
 
@@ -81,7 +87,11 @@ export class UserFormComponent implements OnInit, AfterViewInit {
 
   saveForm() {
     const user = this.userFormGroup.value;
-    console.log(user);
+    delete user.passwordConfirm; // unnecessary
+
+    if (user.password === '') {
+      delete user.password;
+    }
 
     if (this.isData) {
       this.userService.updateUser(user).subscribe(
@@ -145,7 +155,13 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     const password = this.userFormGroup.value.password;
     const passwordConfirm = this.userFormGroup.value.passwordConfirm;
 
-    if (password !== '' && password === passwordConfirm) {
+    if (password || passwordConfirm !== '') {
+      this.passwordIsPresent = false;
+    } else {
+      this.passwordIsPresent = true;
+    }
+
+    if (this.passwordIsPresent && password === passwordConfirm) {
       this.passwordsMatch = true;
     } else {
       this.passwordsMatch = false;

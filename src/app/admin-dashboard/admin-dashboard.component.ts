@@ -32,7 +32,6 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
     if (this.companies.length === 1) {
       this.getUsersOfCompany(this.companies[0].id);
     }
-
   }
 
   ngAfterViewInit() {
