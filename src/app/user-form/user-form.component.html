@@ -41,7 +41,7 @@
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">lock</i>
                         <input id="password" type="password" class="validate" formControlName="password"
-                            [required]="(!isData || !passwordIsPresent)" (keyup)="passwordMatch()" >
+                            [required]="(!isData || !passwordIsNotPresent)" (keyup)="passwordMatch()" >
                         <label for="password">Passwort</label>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                         <i *ngIf="!passwordsMatch" class="material-icons prefix">close</i>
                         <i *ngIf="passwordsMatch" class="material-icons prefix">done</i>
                         <input id="passwordConfirm" type="password" class="validate" formControlName="passwordConfirm"
-                            [required]="(!isData || !passwordIsPresent)" (keyup)="passwordMatch()">
+                            [required]="(!isData || !passwordIsNotPresent)" (keyup)="passwordMatch()">
                         <label for="passwordConfirm">Password bestätigen</label>
                     </div>
                 </div>

@@ -16,7 +16,7 @@ export class UserFormComponent implements OnInit, AfterViewInit {
   companyOptions;
   companyGroups;
   passwordsMatch;
-  passwordIsPresent = true;
+  passwordIsNotPresent = true;
 
   constructor(
     private fb: FormBuilder,
@@ -155,13 +155,13 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     const password = this.userFormGroup.value.password;
     const passwordConfirm = this.userFormGroup.value.passwordConfirm;
 
-    if (password || passwordConfirm !== '') {
-      this.passwordIsPresent = false;
+    if (password !== '' || passwordConfirm !== '') {
+      this.passwordIsNotPresent = false;
     } else {
-      this.passwordIsPresent = true;
+      this.passwordIsNotPresent = true;
     }
 
-    if (this.passwordIsPresent && password === passwordConfirm) {
+    if (this.passwordIsNotPresent && password === passwordConfirm) {
       this.passwordsMatch = true;
     } else {
       this.passwordsMatch = false;
