@@ -1,4 +1,3 @@
-import { UserService } from './../service/user.service';
 import { CompanyService } from './../service/company.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -96,7 +95,7 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
         }
       );
 
-      this.showToast('Firma gelöscht.');
+      this.showToast('Firma gelöscht');
     }
   }
 

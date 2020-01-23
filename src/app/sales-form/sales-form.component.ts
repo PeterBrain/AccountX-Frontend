@@ -101,7 +101,6 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
 
     const modal = document.querySelectorAll('.modal');
     M.Modal.init(modal);
-
   }
 
   setDatepickerInput() {

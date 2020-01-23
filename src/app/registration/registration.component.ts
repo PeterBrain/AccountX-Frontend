@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, Validators, AbstractControl, ValidationErrors} from '@angular/forms';
+import { FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { UserService } from '../service/user.service';
 import * as M from 'materialize-css';
 

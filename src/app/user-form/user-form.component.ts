@@ -1,6 +1,6 @@
 import { UserService } from './../service/user.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import {FormBuilder, Validators, FormGroup, ValidationErrors, AbstractControl} from '@angular/forms';
+import { FormBuilder, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as M from 'materialize-css';
 
@@ -47,8 +47,6 @@ export class UserFormComponent implements OnInit, AfterViewInit {
       password: [''],
       passwordConfirm: ['', [Validators.required, UserFormComponent.matchValues('password')]]
     });
-
-    // this.userFormGroup.setValidators(this.passwordMatch); // this one disables the button
 
     const data = this.route.snapshot.data;
     this.companyOptions = data.companyOptions;
@@ -119,7 +117,7 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     if (this.isData) {
       this.userService.deleteUser(this.userFormGroup.value.id).subscribe(
         (response) => {
-          this.showToast('Mitarbeiter gelöscht.');
+          this.showToast('Mitarbeiter gelöscht');
           this.router.navigate(['/admin-dashboard']);
         }
       );
