@@ -89,20 +89,29 @@ export class UserFormComponent implements OnInit, AfterViewInit {
 
     if (this.isData) {
       this.userService.updateUser(user).subscribe(
-        (response) => {
-          const message = 'Mitarbeiter ' + JSON.parse(JSON.stringify(response)).username + ' wurde geändert.';
-          this.showToast(message);
+        result => {
+          // same as: response.name but linter does not like it this way
+          const userName = JSON.parse(JSON.stringify(result)).username;
+          this.showToast('Mitarbeiter ' + userName + ' wurde geändert');
+        },
+        error => {
+          this.showToast('Ups, da gibt es wohl ein Problem');
+        },
+        () => {
           this.router.navigate(['/admin-dashboard']);
-          return response;
         }
       );
     } else {
       this.userService.createUser(user).subscribe(
-        (response) => {
-          const message = 'Mitarbeiter ' + JSON.parse(JSON.stringify(response)).username + ' wurde erstellt.';
-          this.showToast(message);
+        result => {
+          const userName = JSON.parse(JSON.stringify(result)).username;
+          this.showToast('Mitarbeiter ' + userName + ' wurde erstellt');
+        },
+        error => {
+          this.showToast('Ups, da gibt es wohl ein Problem');
+        },
+        () => {
           this.router.navigate(['/admin-dashboard']);
-          return response;
         }
       );
     }

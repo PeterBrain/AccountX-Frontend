@@ -59,27 +59,33 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
 
     if (this.isData) {
       this.companyService.updateCompany(company).subscribe(
-        (response) => {
+        result => {
           // same as: response.name but linter does not like it this way
-          const companyName = JSON.parse(JSON.stringify(response)).name;
-          const message = 'Firma ' + companyName + ' geändert';
-          this.showToast(message);
-          return response;
+          const companyName = JSON.parse(JSON.stringify(result)).name;
+          this.showToast('Firma ' + companyName + ' wurde geändert');
+        },
+        error => {
+          this.showToast('Ups, da gibt es wohl ein Problem');
+        },
+        () => {
+          this.router.navigate(['/admin-dashboard']);
         }
       );
     } else {
       this.companyService.createCompany(company).subscribe(
-        (response) => {
-          const companyName = JSON.parse(JSON.stringify(response)).name;
-          this.companyService.setCompanyToken(JSON.parse(JSON.stringify(response)).id);
-          const message = 'Firma ' + companyName + ' erstellt';
-          this.showToast(message);
-          return response;
+        result => {
+          const companyName = JSON.parse(JSON.stringify(result)).name;
+          this.companyService.setCompanyToken(JSON.parse(JSON.stringify(result)).id);
+          this.showToast('Firma ' + companyName + ' wurde erstellt');
+        },
+        error => {
+          this.showToast('Ups, da gibt es wohl ein Problem');
+        },
+        () => {
+          this.router.navigate(['/admin-dashboard']);
         }
       );
     }
-
-    this.router.navigate(['/admin-dashboard']);
   }
 
   deleteCompany() {
