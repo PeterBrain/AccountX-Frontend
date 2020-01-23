@@ -29,3 +29,7 @@ li.collection-item {
   margin-left: 5px;
   color: #26a69a;
 }
+
+.input-field input[type="search"]:focus {
+  border-bottom: 1px solid;
+}

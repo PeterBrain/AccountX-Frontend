@@ -20,7 +20,7 @@
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">calendar_today</i>
                         <input (change)="setDatepickerInput()" id="invDate" type="text" class="datepicker validate"
-                            formControlName="invDate" required>
+                               formControlName="invDate" required>
                         <label [ngClass]="{'active': isData}" for="invDate">Rechnungsdatum</label>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">calendar_today</i>
                         <input (change)="setDatepickerInput()" id="cashflowdate" type="text" class="datepicker validate"
-                            formControlName="cashflowdate" required>
+                               formControlName="cashflowdate" required>
                         <label [ngClass]="{'active': isData}" for="cashflowdate">Geldflussdatum</label>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">note</i>
                         <textarea id="notes" class="materialize-textarea validate" formControlName="notes"
-                            ></textarea>
+                        ></textarea>
                         <label [ngClass]="{'active': isData}" for="notes">Notizen</label>
                     </div>
                 </div>
@@ -85,34 +85,23 @@
                         <label for="bookingType">Buchungskonto</label>
                     </div>
                 </div>
-                <!--
-              <div class="row">
-                <div class="input-field col s12 l6 offset-l3">
-                  <i class="material-icons prefix">category</i>
-                  <select id="bookingType" formControlName='bookingType'>
-                    <optgroup label="ka...">
-                      <option value="KFZ">KFZ</option>
-                      <option value="SVA">SVA</option>
-                      <option value="GWG">GWG</option>
-                    </optgroup>
-                  </select>
-                  <label for="vat">Buchungskonto</label>
-                </div>
-              </div>-->
-              <div class="row">
-                <div class="file-field input-field col s12 l6 offset-l3">
-                <app-mediainput formControlName="invoice"></app-mediainput>
-              </div></div>
 
+                <div class="row">
+                    <div class="file-field input-field col s12 l6 offset-l3">
+                        <app-mediainput formControlName="invoice"></app-mediainput>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col s12 l6 offset-l3 center">
                         <button (click)="cancelForm()" class="btn btn-large waves-effect yellow darken-2">Abbrechen
                         </button>
                         <button *ngIf="isData" class="btn btn-large waves-effect red darken-4 modal-trigger"
-                            data-target="deleteModal">Löschen</button>
+                                data-target="deleteModal">Löschen
+                        </button>
                         <button class="btn btn-large waves-effect" type="submit"
-                            [disabled]="!purchaseFormGroup.valid">Speichern</button>
+                                [disabled]="!purchaseFormGroup.valid">Speichern
+                        </button>
 
                         <!-- Modal Structure -->
                         <div id="deleteModal" class="modal col s12 l4 center">
@@ -123,7 +112,7 @@
                             <div class="modal-footer">
                                 <a class="modal-close waves-effect waves-red btn-flat">Abbrechen</a>
                                 <a class="modal-close waves-effect waves-green btn-flat"
-                                    (click)="deletePurchase(purchaseFormGroup.value)">Löschen</a>
+                                   (click)="deletePurchase(purchaseFormGroup.value)">Löschen</a>
                             </div>
                         </div>
                     </div>
