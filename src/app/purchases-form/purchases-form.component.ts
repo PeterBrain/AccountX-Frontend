@@ -146,14 +146,22 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
     }
   }
 
-  cancelForm() {
-    this.router.navigate(['/ausgaben']);
+  deletePurchase(purchase) {
+    this.purchaseService.deletePurchase(purchase).subscribe(
+      result => {
+        this.showToast('Ausgangsrechnung wurde gelöscht');
+      },
+      error => {
+        this.showToast('Ups, da gibt es wohl ein Problem');
+      },
+      () => {
+        this.router.navigate(['/ausgaben']);
+      }
+    );
   }
 
-  deletePurchase(purchase) {
-    this.purchaseService.deletePurchase(purchase).subscribe(() => {
-      this.router.navigate(['/ausgaben']);
-    });
+  cancelForm() {
+    this.router.navigate(['/ausgaben']);
   }
 
   showToast(message: string) {

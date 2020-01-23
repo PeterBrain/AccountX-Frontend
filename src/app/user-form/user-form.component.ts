@@ -116,8 +116,13 @@ export class UserFormComponent implements OnInit, AfterViewInit {
   deleteUser() {
     if (this.isData) {
       this.userService.deleteUser(this.userFormGroup.value.id).subscribe(
-        (response) => {
-          this.showToast('Mitarbeiter gelöscht');
+        result => {
+          this.showToast('Mitarbeiter wurde gelöscht');
+        },
+        error => {
+          this.showToast('Ups, da gibt es wohl ein Problem');
+        },
+        () => {
           this.router.navigate(['/admin-dashboard']);
         }
       );

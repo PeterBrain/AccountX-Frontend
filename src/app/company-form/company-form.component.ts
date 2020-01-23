@@ -90,12 +90,16 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
   deleteCompany() {
     if (this.isData) {
       this.companyService.deleteCompany(this.companyFormGroup.value.id).subscribe(
-        (response) => {
+        result => {
+          this.showToast('Firma wurde gelöscht');
+        },
+        error => {
+          this.showToast('Ups, da gibt es wohl ein Problem');
+        },
+        () => {
           this.router.navigate(['/admin-dashboard']);
         }
       );
-
-      this.showToast('Firma gelöscht');
     }
   }
 

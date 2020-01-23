@@ -144,14 +144,22 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
     }
   }
 
-  cancelForm() {
-    this.router.navigate(['/einnahmen']);
+  deleteSale(sale) {
+    this.saleService.deleteSale(sale).subscribe(
+      result => {
+        this.showToast('Eingangsrechnung wurde gelöscht');
+      },
+      error => {
+        this.showToast('Ups, da gibt es wohl ein Problem');
+      },
+      () => {
+        this.router.navigate(['/einnahmen']);
+      }
+    );
   }
 
-  deleteSale(sale) {
-    this.saleService.deleteSale(sale).subscribe(() => {
-      this.router.navigate(['/einnahmen']);
-    });
+  cancelForm() {
+    this.router.navigate(['/einnahmen']);
   }
 
   showToast(message: string) {
