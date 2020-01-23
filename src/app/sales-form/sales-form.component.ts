@@ -120,17 +120,32 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
     let message;
 
     if (sale.id) {
-      this.saleService.updateSale(sale).subscribe(() => {
-        this.router.navigate(['/einnahmen']);
+      this.saleService.updateSale(sale).subscribe(
+        result => {
+          message = 'Ausgangsrechnung geändert';
+          this.showToast(message);
+        },
+        error => {
+          message = 'Ups, da gibt es wohl ein Problem';
+          this.showToast(message);
+        },
+        () => {
+          this.router.navigate(['/einnahmen']);
       });
-      message = 'Ausgangsrechnung geändert';
     } else {
-      this.saleService.createSale(sale).subscribe(() => {
-        this.router.navigate(['/einnahmen']);
+      this.saleService.createSale(sale).subscribe(
+        result => {
+          message = 'Ausgangsrechnung erstellt';
+          this.showToast(message);
+        },
+        error => {
+          message = 'Ups, da gibt es wohl ein Problem';
+          this.showToast(message);
+        },
+        () => {
+          this.router.navigate(['/einnahmen']);
       });
-      message = 'Ausgangsrechnung erstellt';
     }
-    this.showToast(message);
   }
 
   cancelForm() {

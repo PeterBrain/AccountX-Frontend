@@ -40,9 +40,9 @@
                 </tr>
             </tbody>
         </table>
-        <p class="center" *ngIf="empty">Noch keine Daten vorhanden</p>
+        <p class="center" *ngIf="empty && companyService.getCompanyToken()">Noch keine Daten vorhanden</p>
         <p class="center" *ngIf="!companyService.getCompanyToken()">Zuerst eine <a routerLink="/firmen">Firma
-                auswählen</a></p>
+            auswählen</a></p>
     </div>
 </div>
 

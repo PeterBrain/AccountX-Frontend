@@ -122,18 +122,36 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
     let message;
 
     if (purchase.id) {
-      this.purchaseService.updatePurchase(purchase).subscribe(() => {
-        this.router.navigate(['/ausgaben']);
+      this.purchaseService.updatePurchase(purchase).subscribe(
+          result => {
+            // Handle result
+            // console.log(result);
+            message = 'Eingangsrechnung geändert';
+            this.showToast(message);
+          },
+          error => {
+            // this.errors = error;
+            message = 'Ups, da gibt es wohl ein Problem';
+            this.showToast(message);
+          },
+          () => {
+            this.router.navigate(['/ausgaben']);
       });
-      message = 'Eingangsrechnung geändert';
-    } else {
-      this.purchaseService.createPurchase(purchase).subscribe(() => {
-        this.router.navigate(['/ausgaben']);
-      });
-      message = 'Eingangsrechnung erstellt';
-    }
 
-    this.showToast(message);
+    } else {
+      this.purchaseService.createPurchase(purchase).subscribe(
+          result => {
+            message = 'Eingangsrechnung erstellt';
+            this.showToast(message);
+          },
+          error => {
+            message = 'Ups, da gibt es wohl ein Problem';
+            this.showToast(message);
+          },
+          () => {
+            this.router.navigate(['/ausgaben']);
+      });
+    }
   }
 
   cancelForm() {

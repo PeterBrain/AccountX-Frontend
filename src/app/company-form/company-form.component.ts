@@ -18,8 +18,7 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private companyService: CompanyService,
-    private userService: UserService
+    private companyService: CompanyService
   ) { }
 
   ngOnInit() {
