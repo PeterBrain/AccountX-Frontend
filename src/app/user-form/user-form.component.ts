@@ -31,8 +31,8 @@ export class UserFormComponent implements OnInit, AfterViewInit {
   ): (AbstractControl) => ValidationErrors | null {
     return (control: AbstractControl): ValidationErrors | null => {
       return !!control.parent &&
-      !!control.parent.value &&
-      control.value === control.parent.controls[matchTo].value
+        !!control.parent.value &&
+        control.value === control.parent.controls[matchTo].value
         ? null
         : { isMatching: false };
     };
@@ -66,8 +66,8 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     if (data.user) {
       this.userFormGroup.patchValue(data.user);
     } else {
-      this.userFormGroup.controls['password'].setValidators([Validators.required, UserFormComponent.matchValues('passwordConfirm')]);
-      this.userFormGroup.controls['passwordConfirm'].setValidators([Validators.required, UserFormComponent.matchValues('password')]);
+      this.userFormGroup.controls.password.setValidators([Validators.required, UserFormComponent.matchValues('passwordConfirm')]);
+      this.userFormGroup.controls.passwordConfirm.setValidators([Validators.required, UserFormComponent.matchValues('password')]);
     }
   }
 
