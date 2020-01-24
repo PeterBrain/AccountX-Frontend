@@ -28,15 +28,16 @@
           <img src="../../assets/images/bg/sidenav-bg.jpg" alt="{{ company.name }}" class="circle">
           <div>
             <div class="title">{{ company.name }} <a href="#" [routerLink]="['/firma-form/' + company.id]"
-              class="custom-secondary-content" title="Bearbeiten"><i class="material-icons">mode_edit</i></a></div>
+                class="custom-secondary-content" title="Bearbeiten"><i class="material-icons">mode_edit</i></a></div>
             <span *ngIf="company.description !== null">{{ company.description }}</span>
           </div>
           <a class="secondary-content" title="Mitarbeiter anzeigen"><i
-                  class="material-icons">keyboard_arrow_right</i></a>
+              class="material-icons">keyboard_arrow_right</i></a>
         </li>
 
         <li>
-          <div class="center" *ngIf="companies.length > 0 && (companies | filter:search).length < 1">Keine Firma gefunden</div>
+          <div class="center" *ngIf="companies.length > 0 && (companies | filter:search).length < 1">Keine Firma
+            gefunden</div>
           <div class="center" *ngIf="companies.length === 0">Noch keine Firmen vorhanden</div>
         </li>
       </ul>
@@ -51,7 +52,7 @@
             <i class="material-icons">add</i>
           </a>
         </li>
-        
+
         <li *ngFor="let user of usersOfCompany" class="collection-item">
           <div>{{ user.username }}<a href="#" [routerLink]="['/mitarbeiter-form/' + user.id]" class="secondary-content"
               title="Bearbeiten"><i class="material-icons">mode_edit</i></a></div>
