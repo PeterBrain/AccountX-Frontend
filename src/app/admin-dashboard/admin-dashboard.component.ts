@@ -1,8 +1,8 @@
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from './../service/user.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import * as M from 'materialize-css';
 import { CompanyService } from '../service/company.service';
+import * as M from 'materialize-css';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -10,6 +10,7 @@ import { CompanyService } from '../service/company.service';
   styleUrls: ['./admin-dashboard.component.scss']
 })
 export class AdminDashboardComponent implements OnInit, AfterViewInit {
+
   companies;
   companyId;
   usersOfCompany;
@@ -46,9 +47,11 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
     this.companyId = companyId;
 
     this.userService.getUsersOfCompany(companyId).subscribe(
-      (response) => {
-        this.usersOfCompany = response;
-      }
+      result => {
+        this.usersOfCompany = result;
+      },
+      error => {},
+      () => {}
     );
   }
 

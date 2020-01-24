@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
     HttpInterceptor, HttpRequest,
     HttpHandler, HttpEvent, HttpErrorResponse
 } from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
-import {catchError} from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import * as M from 'materialize-css';
 
 @Injectable({

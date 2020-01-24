@@ -4,13 +4,13 @@ import { FormBuilder, Validators, ValidationErrors, AbstractControl } from '@ang
 import { ActivatedRoute, Router } from '@angular/router';
 import * as M from 'materialize-css';
 
-
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.scss']
 })
 export class UserFormComponent implements OnInit, AfterViewInit {
+
   userFormGroup;
   isData;
   companyOptions;
@@ -98,10 +98,10 @@ export class UserFormComponent implements OnInit, AfterViewInit {
         result => {
           // same as: response.name but linter does not like it this way
           const userName = JSON.parse(JSON.stringify(result)).username;
-          this.showToast('Mitarbeiter ' + userName + ' wurde geändert');
+          this.userService.showToast('Mitarbeiter ' + userName + ' wurde geändert');
         },
         error => {
-          this.showToast('Ups, da gibt es wohl ein Problem');
+          this.userService.showToast('Ups, da gibt es wohl ein Problem');
         },
         () => {
           this.router.navigate(['/admin-dashboard']);
@@ -111,10 +111,10 @@ export class UserFormComponent implements OnInit, AfterViewInit {
       this.userService.createUser(user).subscribe(
         result => {
           const userName = JSON.parse(JSON.stringify(result)).username;
-          this.showToast('Mitarbeiter ' + userName + ' wurde erstellt');
+          this.userService.showToast('Mitarbeiter ' + userName + ' wurde erstellt');
         },
         error => {
-          this.showToast('Ups, da gibt es wohl ein Problem');
+          this.userService.showToast('Ups, da gibt es wohl ein Problem');
         },
         () => {
           this.router.navigate(['/admin-dashboard']);
@@ -127,10 +127,10 @@ export class UserFormComponent implements OnInit, AfterViewInit {
     if (this.isData) {
       this.userService.deleteUser(this.userFormGroup.value.id).subscribe(
         result => {
-          this.showToast('Mitarbeiter wurde gelöscht');
+          this.userService.showToast('Mitarbeiter wurde gelöscht');
         },
         error => {
-          this.showToast('Ups, da gibt es wohl ein Problem');
+          this.userService.showToast('Ups, da gibt es wohl ein Problem');
         },
         () => {
           this.router.navigate(['/admin-dashboard']);
@@ -141,13 +141,6 @@ export class UserFormComponent implements OnInit, AfterViewInit {
 
   cancelForm() {
     this.router.navigate(['/admin-dashboard']);
-  }
-
-  showToast(message: string) {
-    M.toast({
-      html: message,
-      displayLength: 4000
-    });
   }
 
   // check if passwords match (just for visual X or check)

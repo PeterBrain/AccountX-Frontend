@@ -1,9 +1,9 @@
 import { PurchaseService } from './../service/purchase.service';
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { CompanyService } from '../service/company.service';
+import { UserService } from '../service/user.service';
 import * as M from 'materialize-css';
 import * as XLSX from 'xlsx';
-import { CompanyService } from '../service/company.service';
 
 @Component({
     selector: 'app-purchases',
@@ -16,24 +16,25 @@ export class PurchasesComponent implements OnInit, AfterViewInit {
     empty;
 
     constructor(
-        private http: HttpClient,
+        private userService: UserService,
         public purchaseService: PurchaseService,
         public companyService: CompanyService
-    ) {
-    }
+    ) { }
 
     ngOnInit() {
         this.empty = false;
         this.purchaseService.getPurchases().subscribe(
-            (response) => {
-                this.purchases = response;
+            result => {
+                this.purchases = result;
                 console.log('Purchases objects: ');
                 console.log(this.purchases);
 
                 if (this.purchases.length === 0) {
                     this.empty = true;
                 }
-            }
+            },
+            error => {},
+            () => {}
         );
     }
 
@@ -63,5 +64,4 @@ export class PurchasesComponent implements OnInit, AfterViewInit {
         /* save to file */
         XLSX.writeFile(wb, fileName);
     }
-
 }

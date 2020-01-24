@@ -48,7 +48,7 @@
 
 <div class="fixed-action-btn">
     <a class="btn-floating btn-large waves-effect waves-light yellow darken-3"
-        *ngIf="companyService.getCompanyToken() && !this.empty" (click)="exportexcel('excel-table', 'Einnahmen.xlsx')"
+        *ngIf="companyService.getCompanyToken() && !empty" (click)="exportexcel('excel-table', 'Einnahmen.xlsx')"
         title="Export"><i class="material-icons">save_alt</i></a>
     <a class="btn-floating btn-large waves-effect waves-light green" *ngIf="companyService.getCompanyToken()"
         routerLink="/einnahmen-form" title="Neu"><i class="material-icons">add</i></a>

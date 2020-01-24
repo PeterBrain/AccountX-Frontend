@@ -1,9 +1,10 @@
 import { ActivatedRoute } from '@angular/router';
 import { SaleService } from './../service/sale.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { CompanyService } from '../service/company.service';
+import { UserService } from '../service/user.service';
 import * as M from 'materialize-css';
 import * as XLSX from 'xlsx';
-import { CompanyService } from '../service/company.service';
 
 @Component({
   selector: 'app-sales',
@@ -18,21 +19,24 @@ export class SalesComponent implements OnInit, AfterViewInit {
   constructor(
     private saleService: SaleService,
     private route: ActivatedRoute,
-    public companyService: CompanyService
+    public companyService: CompanyService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
     this.empty = false;
     this.saleService.getSales().subscribe(
-      (response) => {
-        this.sales = response;
+      result => {
+        this.sales = result;
         console.log('Sales objects: ');
         console.log(this.sales);
 
         if (this.sales.length === 0) {
           this.empty = true;
         }
-      }
+      },
+      error => {},
+      () => {}
     );
   }
 
@@ -62,5 +66,4 @@ export class SalesComponent implements OnInit, AfterViewInit {
     /* save to file */
     XLSX.writeFile(wb, fileName);
   }
-
 }

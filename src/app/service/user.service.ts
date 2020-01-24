@@ -1,22 +1,18 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { CompanyService } from './company.service';
 import * as M from 'materialize-css';
-import {CompanyService} from './company.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserService {
-    isToast = false;
     isAdmin = false;
     invokeIsAdmin = new EventEmitter();
     currentUser;
-
-    // companies;
-    // readonly companyLocalStorageKey = 'company';
 
     readonly accessTokenLocalStorageKey = 'access_token';
     isLoggedIn = new BehaviorSubject(false);
@@ -45,17 +41,9 @@ export class UserService {
                 this.isLoggedIn.next(true);
                 localStorage.setItem(this.accessTokenLocalStorageKey, res.token);
 
-                // if more companies are available, route to company selection
-                // if (companyCount > 1) {
-                //     this.router.navigate(['firmen']);
-                // } else {
-                //     this.router.navigate(['einnahmen']);
-                // }
-
                 this.router.navigate(['firmen']);
             }, () => {
-                // alert('Wrong username or password');
-                this.showToast('Wrong username or password');
+                this.showToastRed('Wrong username or password');
             });
     }
 
@@ -64,8 +52,7 @@ export class UserService {
         localStorage.removeItem(this.companyService.companyLocalStorageKey);
 
         this.isLoggedIn.next(false);
-          // this.companies = null;
-          this.router.navigate(['/login']);
+        this.router.navigate(['/login']);
     }
 
     getUsersOfCompany(companyId) {
@@ -107,29 +94,22 @@ export class UserService {
         return this.http.delete('/api/users/' + userId + '/');
     }
 
-    // counts object properties of object and return amount
-    // countProperties(obj) {
-    //     let count = 0;
-
-    //     for (const prop in obj) {
-    //         if (obj.hasOwnProperty(prop)) {
-    //             ++count;
-    //         }
-    //     }
-
-    //     return count;
-    // }
-
     callAppComponent() {
         this.invokeIsAdmin.emit();
     }
 
-    showToast(message: string) {
-        this.isToast = true;
+    showToastRed(message: string) {
         M.toast({
             html: message,
             displayLength: 4000,
             classes: 'red darken-4'
+        });
+    }
+
+    showToast(message: string) {
+        M.toast({
+            html: message,
+            displayLength: 4000
         });
     }
 }

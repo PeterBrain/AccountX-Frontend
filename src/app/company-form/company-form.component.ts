@@ -2,6 +2,7 @@ import { CompanyService } from './../service/company.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { UserService } from '../service/user.service';
 import * as M from 'materialize-css';
 
 @Component({
@@ -17,6 +18,7 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
+    private userService: UserService,
     private companyService: CompanyService
   ) { }
 
@@ -61,10 +63,10 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
         result => {
           // same as: response.name but linter does not like it this way
           const companyName = JSON.parse(JSON.stringify(result)).name;
-          this.showToast('Firma ' + companyName + ' wurde geändert');
+          this.userService.showToast('Firma ' + companyName + ' wurde geändert');
         },
         error => {
-          this.showToast('Ups, da gibt es wohl ein Problem');
+          this.userService.showToast('Ups, da gibt es wohl ein Problem');
         },
         () => {
           this.router.navigate(['/admin-dashboard']);
@@ -75,10 +77,10 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
         result => {
           const companyName = JSON.parse(JSON.stringify(result)).name;
           this.companyService.setCompanyToken(JSON.parse(JSON.stringify(result)).id);
-          this.showToast('Firma ' + companyName + ' wurde erstellt');
+          this.userService.showToast('Firma ' + companyName + ' wurde erstellt');
         },
         error => {
-          this.showToast('Ups, da gibt es wohl ein Problem');
+          this.userService.showToast('Ups, da gibt es wohl ein Problem');
         },
         () => {
           this.router.navigate(['/admin-dashboard']);
@@ -92,10 +94,10 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
       this.companyService.deleteCompany(this.companyFormGroup.value.id).subscribe(
         result => {
           this.companyService.unsetCompanyToken();
-          this.showToast('Firma wurde gelöscht');
+          this.userService.showToast('Firma wurde gelöscht');
         },
         error => {
-          this.showToast('Ups, da gibt es wohl ein Problem');
+          this.userService.showToast('Ups, da gibt es wohl ein Problem');
         },
         () => {
           this.router.navigate(['/admin-dashboard']);
@@ -106,12 +108,5 @@ export class CompanyFormComponent implements OnInit, AfterViewInit {
 
   cancelForm() {
     this.router.navigate(['/admin-dashboard']);
-  }
-
-  showToast(message: string) {
-    M.toast({
-      html: message,
-      displayLength: 4000
-    });
   }
 }

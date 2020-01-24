@@ -1,3 +1,9 @@
+import { FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { SaleService } from '../service/sale.service';
+import { CompanyService } from '../service/company.service';
+import { UserService } from '../service/user.service';
 import {
   datepickerMonths,
   datepickerWeekdays,
@@ -5,13 +11,7 @@ import {
   datepickerWeekdaysAbbrev,
   datepickerMonthsShort
 } from '../reusables/datepicker/datepicker.config';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import * as M from 'materialize-css';
-import { SaleService } from '../service/sale.service';
-import { CompanyService } from '../service/company.service';
-
 
 @Component({
   selector: 'app-sales-form',
@@ -19,8 +19,6 @@ import { CompanyService } from '../service/company.service';
   styleUrls: ['./sales-form.component.scss']
 })
 export class SalesFormComponent implements OnInit, AfterViewInit {
-
-  isToast = false;
 
   company;
   saleFormGroup;
@@ -38,10 +36,10 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
+    private userService: UserService,
     private saleService: SaleService,
     private companyService: CompanyService,
-  ) {
-  }
+  ) { }
 
   ngOnInit() {
     this.company = this.companyService.getCompanyToken();
@@ -120,10 +118,10 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
     if (sale.id) {
       this.saleService.updateSale(sale).subscribe(
         result => {
-          this.showToast('Ausgangsrechnung wurde geändert');
+          this.userService.showToast('Ausgangsrechnung wurde geändert');
         },
         error => {
-          this.showToast('Ups, da gibt es wohl ein Problem');
+          this.userService.showToast('Ups, da gibt es wohl ein Problem');
         },
         () => {
           this.router.navigate(['/einnahmen']);
@@ -132,10 +130,10 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
     } else {
       this.saleService.createSale(sale).subscribe(
         result => {
-          this.showToast('Ausgangsrechnung wurde erstellt');
+          this.userService.showToast('Ausgangsrechnung wurde erstellt');
         },
         error => {
-          this.showToast('Ups, da gibt es wohl ein Problem');
+          this.userService.showToast('Ups, da gibt es wohl ein Problem');
         },
         () => {
           this.router.navigate(['/einnahmen']);
@@ -147,10 +145,10 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
   deleteSale(sale) {
     this.saleService.deleteSale(sale).subscribe(
       result => {
-        this.showToast('Eingangsrechnung wurde gelöscht');
+        this.userService.showToast('Eingangsrechnung wurde gelöscht');
       },
       error => {
-        this.showToast('Ups, da gibt es wohl ein Problem');
+        this.userService.showToast('Ups, da gibt es wohl ein Problem');
       },
       () => {
         this.router.navigate(['/einnahmen']);
@@ -160,13 +158,5 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
 
   cancelForm() {
     this.router.navigate(['/einnahmen']);
-  }
-
-  showToast(message: string) {
-    this.isToast = true;
-    M.toast({
-      html: message,
-      displayLength: 4000
-    });
   }
 }

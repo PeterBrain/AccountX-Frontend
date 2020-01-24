@@ -1,7 +1,8 @@
 import { VatService } from './../service/vat.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import * as M from 'materialize-css';
 import { CompanyService } from '../service/company.service';
+import { UserService } from '../service/user.service';
+import * as M from 'materialize-css';
 import * as XLSX from 'xlsx';
 
 @Component({
@@ -11,6 +12,7 @@ import * as XLSX from 'xlsx';
 })
 export class VatComponent implements OnInit, AfterViewInit {
 
+  companyId = this.companyService.getCompanyToken();
   vatReport = ['', '', '', '', '', '', '', '', '', '', '', '']; // initialize array
   currentYear = new Date().getFullYear().toString();
   months = [
@@ -27,9 +29,9 @@ export class VatComponent implements OnInit, AfterViewInit {
     ['Nov', this.currentYear + '-12-01', this.currentYear + '-11-01'],
     ['Dez', this.currentYear + '-12-31', this.currentYear + '-12-01']
   ];
-  companyId = this.companyService.getCompanyToken();
 
   constructor(
+    private userService: UserService,
     private vatService: VatService,
     public companyService: CompanyService
   ) { }
@@ -47,16 +49,22 @@ export class VatComponent implements OnInit, AfterViewInit {
   }
 
   getData() {
-    this.months.forEach((element, index) => {
-      this.vatService.getVatReport(this.companyId, element[1], element[2]).subscribe(
-        (response) => {
-          // puts api call responses in an array at the right index to get an ordered list
-          // otherwise, because of the nature of asynchronous calls, we would get an unsorted list
-          response[0].month = element[0];
-          this.vatReport[index] = response[0];
-        }
-      );
-    });
+    if (this.companyId !== null) {
+      this.months.forEach((element, index) => {
+        this.vatService.getVatReport(this.companyId, element[1], element[2]).subscribe(
+          result => {
+            // puts api call responses in an array at the right index to get an ordered list
+            // otherwise, because of the nature of asynchronous calls, we would get an unsorted list
+            result[0].month = element[0];
+            this.vatReport[index] = result[0];
+          },
+          error => {
+            // this.userService.showToast('Keine VAT Daten'); // to many toasts
+          },
+          () => {}
+        );
+      });
+    }
   }
 
   exportexcel(tableId1, tableId2, tableId3, fileName) {
@@ -77,5 +85,4 @@ export class VatComponent implements OnInit, AfterViewInit {
     /* save to file */
     XLSX.writeFile(wb, this.currentYear + '_' + fileName);
   }
-
 }

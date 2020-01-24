@@ -1,3 +1,11 @@
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { PurchaseService } from '../service/purchase.service';
+import { UserService } from '../service/user.service';
+import { BookingTypeService } from '../service/booking-type.service';
+import { CompanyService } from '../service/company.service';
 import {
   datepickerMonths,
   datepickerWeekdays,
@@ -5,15 +13,7 @@ import {
   datepickerWeekdaysAbbrev,
   datepickerMonthsShort
 } from '../reusables/datepicker/datepicker.config';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as M from 'materialize-css';
-import { HttpClient } from '@angular/common/http';
-import { PurchaseService } from '../service/purchase.service';
-import { UserService } from '../service/user.service';
-import { BookingTypeService } from '../service/booking-type.service';
-import { CompanyService } from '../service/company.service';
 
 @Component({
   selector: 'app-purchases-form',
@@ -21,6 +21,7 @@ import { CompanyService } from '../service/company.service';
   styleUrls: ['./purchases-form.component.scss']
 })
 export class PurchasesFormComponent implements OnInit, AfterViewInit {
+
   company;
   purchaseFormGroup;
   bookingTypes;
@@ -37,9 +38,9 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
     private router: Router,
     private http: HttpClient,
     private route: ActivatedRoute,
+    private userService: UserService,
     private purchaseService: PurchaseService,
     private bookingTypeService: BookingTypeService,
-    private userService: UserService,
     private companyService: CompanyService
   ) { }
 
@@ -122,10 +123,10 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
     if (purchase.id) {
       this.purchaseService.updatePurchase(purchase).subscribe(
         result => {
-          this.showToast('Eingangsrechnung wurde geändert');
+          this.userService.showToast('Eingangsrechnung wurde geändert');
         },
         error => {
-          this.showToast('Ups, da gibt es wohl ein Problem');
+          this.userService.showToast('Ups, da gibt es wohl ein Problem');
         },
         () => {
           this.router.navigate(['/ausgaben']);
@@ -134,10 +135,10 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
     } else {
       this.purchaseService.createPurchase(purchase).subscribe(
         result => {
-          this.showToast('Eingangsrechnung wurde erstellt');
+          this.userService.showToast('Eingangsrechnung wurde erstellt');
         },
         error => {
-          this.showToast('Ups, da gibt es wohl ein Problem');
+          this.userService.showToast('Ups, da gibt es wohl ein Problem');
         },
         () => {
           this.router.navigate(['/ausgaben']);
@@ -149,10 +150,10 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
   deletePurchase(purchase) {
     this.purchaseService.deletePurchase(purchase).subscribe(
       result => {
-        this.showToast('Ausgangsrechnung wurde gelöscht');
+        this.userService.showToast('Ausgangsrechnung wurde gelöscht');
       },
       error => {
-        this.showToast('Ups, da gibt es wohl ein Problem');
+        this.userService.showToast('Ups, da gibt es wohl ein Problem');
       },
       () => {
         this.router.navigate(['/ausgaben']);
@@ -163,12 +164,4 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
   cancelForm() {
     this.router.navigate(['/ausgaben']);
   }
-
-  showToast(message: string) {
-    M.toast({
-      html: message,
-      displayLength: 4000
-    });
-  }
-
 }

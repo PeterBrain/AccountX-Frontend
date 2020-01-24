@@ -1,6 +1,5 @@
-import { UserService } from './user.service';
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { CompanyService } from './company.service';
 
 @Injectable({

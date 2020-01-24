@@ -2,7 +2,6 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { UserService } from '../service/user.service';
-import * as M from 'materialize-css';
 
 @Component({
   selector: 'app-registration',
@@ -16,9 +15,9 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService,
-    private router: Router) {
-  }
+    private router: Router,
+    private userService: UserService
+  ) { }
 
   // actual validator for password-match
   public static matchValues(
@@ -48,10 +47,10 @@ export class RegistrationComponent implements OnInit {
     this.userService.register(user).subscribe(
       result => {
         const username = (JSON.parse(JSON.stringify(result))).username;
-        this.showToast('Benutzer ' + username + ' wurde erstellt');
+        this.userService.showToast('Benutzer ' + username + ' wurde erstellt');
       },
       error => {
-        this.showToast('Ups, da gibt es wohl ein Problem');
+        this.userService.showToast('Ups, da gibt es wohl ein Problem');
       },
       () => {
         this.router.navigate(['/firma-form']);
@@ -69,12 +68,5 @@ export class RegistrationComponent implements OnInit {
     } else {
       this.passwordsMatch = false;
     }
-  }
-
-  showToast(message: string) {
-    M.toast({
-      html: message,
-      displayLength: 4000
-    });
   }
 }

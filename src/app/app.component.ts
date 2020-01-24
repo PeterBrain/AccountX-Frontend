@@ -10,6 +10,7 @@ import { CompanyService } from './service/company.service';
 })
 
 export class AppComponent implements OnInit, AfterViewInit, OnChanges {
+
   title = 'AccountX';
   currentYear;
   isLoggedIn = false;
@@ -19,8 +20,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     public router: Router,
     public userService: UserService,
     public companyService: CompanyService,
-  ) {
-  }
+  ) { }
 
   ngOnChanges() {
     this.login();
@@ -32,9 +32,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     // Update of current Company (for name in top left)^
     if (this.isLoggedIn) {
       this.companyService.getCompany(this.companyService.getCompanyToken()).subscribe(
-        (response) => {
-          this.companyService.currentCompany = JSON.parse(JSON.stringify(response));
-        }
+        result => {
+          this.companyService.currentCompany = JSON.parse(JSON.stringify(result));
+        },
+        error => {
+          this.userService.showToast('Keine Firma ausgewählt');
+        },
+        () => {}
       );
     }
 
@@ -42,10 +46,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
     // execute functions after login
     this.userService.invokeIsAdmin.subscribe(
-      () => {
+      result => {
         this.checkIfUserIsAdmin();
         this.getCurrentUser();
-      });
+      },
+      error => {},
+      () => {}
+    );
   }
 
   ngAfterViewInit() {
@@ -58,9 +65,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
   login() {
     this.userService.isLoggedIn.subscribe(
-      (isLoggedIn) => {
-        this.isLoggedIn = isLoggedIn;
-      });
+      result => {
+        this.isLoggedIn = result;
+      },
+      error => {},
+      () => {}
+    );
   }
 
   logout() {
@@ -72,13 +82,15 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
     if (isLoggedIn) {
       this.userService.getCurrentUser().subscribe(
-        (response) => {
-          const user = JSON.parse(JSON.stringify(response));
+        result => {
+          const user = JSON.parse(JSON.stringify(result));
           const companies = user.companies;
           const isAdminOf = user.isAdminOf;
 
           this.userService.isAdmin = this.compareArrays(companies, isAdminOf);
-        }
+        },
+        error => {},
+        () => {}
       );
     }
   }
@@ -86,9 +98,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
   getCurrentUser() {
     // needs typesafe ('?') parameter in html, because html renders faster then the name of the user is loaded
     this.userService.getCurrentUser().subscribe(
-      (response) => {
-        this.userService.currentUser = response;
-      }
+      result => {
+        this.userService.currentUser = result;
+      },
+      error => {},
+      () => {}
     );
   }
 

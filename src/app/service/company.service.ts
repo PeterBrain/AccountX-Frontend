@@ -42,9 +42,13 @@ export class CompanyService {
 
     // Update of current Company (for name in top left)
     this.getCompany(companyId).subscribe(
-      (response) => {
-        this.currentCompany = JSON.parse(JSON.stringify(response));
-      }
+      result => {
+        this.currentCompany = JSON.parse(JSON.stringify(result));
+      },
+      error => {
+        console.log('Die Company konnte nicht gefunden werden');
+      },
+      () => {}
     );
   }
 
