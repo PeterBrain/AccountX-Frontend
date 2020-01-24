@@ -150,7 +150,7 @@ export class PurchasesFormComponent implements OnInit, AfterViewInit {
   deletePurchase(purchase) {
     this.purchaseService.deletePurchase(purchase).subscribe(
       result => {
-        this.userService.showToast('Ausgangsrechnung wurde gelöscht');
+        this.userService.showToast('Eingangsrechnung wurde gelöscht');
       },
       error => {
         this.userService.showToast('Ups, da gibt es wohl ein Problem');

@@ -145,7 +145,7 @@ export class SalesFormComponent implements OnInit, AfterViewInit {
   deleteSale(sale) {
     this.saleService.deleteSale(sale).subscribe(
       result => {
-        this.userService.showToast('Eingangsrechnung wurde gelöscht');
+        this.userService.showToast('Ausgangsrechnung wurde gelöscht');
       },
       error => {
         this.userService.showToast('Ups, da gibt es wohl ein Problem');
