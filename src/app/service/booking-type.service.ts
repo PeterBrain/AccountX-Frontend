@@ -1,25 +1,46 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { of } from "rxjs";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { of } from 'rxjs';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class BookingTypeService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getBookingTypes() {
-    //return this.http.get('/api/bookingTypes/');
+    // return this.http.get('/api/bookingTypes/');
 
     return of([
       {
-        name: "GWG"
+        name: 'Erlöse'
       },
       {
-        name: "SV"
+        name: 'Betriebseinnahmen - Förderungen'
       },
       {
-        name: "Ein Buchungstyp"
+        name: 'Afa - Investitionen'
+      },
+      {
+        name: 'GWG (unter €400)'
+      },
+      {
+        name: 'Kilometergelder à € 0,42'
+      },
+      {
+        name: 'Kommunikationsaufwand (Internet, Telefon)'
+      },
+      {
+        name: 'Sozialversicherung'
+      },
+      {
+        name: 'Postgebühren, Büromaterial'
+      },
+      {
+        name: 'Kfz-Kosten'
+      },
+      {
+        name: 'Personalaufwand'
       }
     ]);
   }
