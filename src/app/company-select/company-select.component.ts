@@ -35,9 +35,11 @@ export class CompanySelectComponent implements OnInit, AfterViewInit {
 
   getCompanies() {
     this.companyService.getCompanies().subscribe(
-      (response) => {
-        this.companies = response;
-
+      result => {
+        this.companies = result;
+      },
+      error => {},
+      () => {
         if (this.companies.length === 0) {
           this.router.navigate(['firma-form']);
         }

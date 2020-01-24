@@ -13,9 +13,9 @@
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">account_circle</i>
                         <input id="username" type="text" [ngClass]="{ 'validate' : !isData }" formControlName="username"
-                            required [readonly]="isData" pattern="[a-zA-Z0-9]*">
+                               required [readonly]="isData" pattern="[a-zA-Z0-9]*">
                         <label [ngClass]="{ 'active' : (isData && userFormGroup.username != '') }"
-                            for="username">Benutzername</label>
+                               for="username">Benutzername</label>
                     </div>
                 </div>
 
@@ -24,7 +24,7 @@
                         <i class="material-icons prefix">person</i>
                         <input id="firstname" type="text" class="validate" formControlName="first_name">
                         <label [ngClass]="{ 'active' : (isData && userFormGroup.first_name != '') }"
-                            for="firstname">Vorname</label>
+                               for="firstname">Vorname</label>
                     </div>
                 </div>
 
@@ -33,7 +33,7 @@
                         <i class="material-icons prefix">person</i>
                         <input id="lastname" type="text" class="validate" formControlName="last_name">
                         <label [ngClass]="{ 'active' : (isData && userFormGroup.last_name != '') }"
-                            for="lastname">Nachname</label>
+                               for="lastname">Nachname</label>
                     </div>
                 </div>
 
@@ -41,7 +41,7 @@
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">lock</i>
                         <input id="password" type="password" class="validate" formControlName="password"
-                            [required]="(!isData || !passwordIsNotPresent)" (keyup)="passwordMatch()" >
+                               [required]="(!isData || !passwordIsNotPresent)" (keyup)="passwordMatch()">
                         <label for="password">Passwort</label>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                         <i *ngIf="!passwordsMatch" class="material-icons prefix">close</i>
                         <i *ngIf="passwordsMatch" class="material-icons prefix">done</i>
                         <input id="passwordConfirm" type="password" class="validate" formControlName="passwordConfirm"
-                            [required]="(!isData || !passwordIsNotPresent)" (keyup)="passwordMatch()">
+                               [required]="(!isData || !passwordIsNotPresent)" (keyup)="passwordMatch()">
                         <label for="passwordConfirm">Password bestätigen</label>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                             Abbrechen
                         </button>
                         <button type="button" *ngIf="isData"
-                            class="btn btn-large waves-effect modal-trigger red darken-4" data-target="deleteModal">
+                                class="btn btn-large waves-effect modal-trigger red darken-4" data-target="deleteModal">
                             Löschen
                         </button>
                         <button type="submit" [disabled]="!userFormGroup.valid" class="btn btn-large waves-effect">
@@ -90,7 +90,7 @@
                             <div class="modal-footer">
                                 <a class="modal-close waves-effect waves-red btn-flat">Abbrechen</a>
                                 <a class="modal-close waves-effect waves-green btn-flat"
-                                    (click)="deleteUser()">Löschen</a>
+                                   (click)="deleteUser()">Löschen</a>
                             </div>
                         </div>
                     </div>

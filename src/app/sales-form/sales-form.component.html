@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="input-field col s12 l6 offset-l3">
                     <input (change)="setDatepickerInput()" id="invDate" type="text" class="datepicker validate"
-                        formControlName="invDate" required>
+                           formControlName="invDate" required>
                     <label [ngClass]="{'active': isData}" for="invDate">Rechnungsdatum</label>
                 </div>
             </div>
@@ -36,13 +36,6 @@
                 </div>
             </div>
 
-            <!--<div class="row">
-                <div class="input-field col s12 l6 offset-l3">
-                    <input id="vat" type="text" min="0" class="validate" formControlName="vat" required>
-                    <label [ngClass]="{'active': isData}" for="vat">Temp</label>
-                </div>
-            </div>-->
-
             <div class="row">
                 <div class="input-field col s12 l6 offset-l3">
                     <select id="vat" formControlName='vat'>
@@ -60,7 +53,7 @@
             <div class="row">
                 <div class="input-field col s12 l6 offset-l3">
                     <input (change)="setDatepickerInput()" id="cashflowdate" type="text" class="datepicker validate"
-                        formControlName="cashflowdate" required>
+                           formControlName="cashflowdate" required>
                     <label [ngClass]="{'active': isData}" for="cashflowdate">Geldflussdatum</label>
                 </div>
             </div>
@@ -76,32 +69,36 @@
                 </div>
             </div>
 
-            <!--           <div class="row">
-            <div class="input-field col s12 l6 offset-l3">
-              <i class="material-icons prefix">category</i>
-              <select id="bookingType" formControlName='bookingType'>
-                <optgroup label="ka...">
-                  <option value="KFZ">KFZ</option>
-                  <option value="SVA">SVA</option>
-                  <option value="GWG">GWG</option>
-                </optgroup>
-              </select>
-              <label for="vat">Buchungskonto</label>
-            </div>
-          </div>-->
-
-          <div class="row">
-            <div class="input-field col s12 l6 offset-l3 center">
-            <app-mediainput formControlName="invoice"></app-mediainput>
-          </div></div>
+            <!--<div class="row">
+                <div class="input-field col s12 l6 offset-l3">
+                    <i class="material-icons prefix">category</i>
+                    <select id="bookingType" formControlName='bookingType'>
+                        <optgroup label="ka...">
+                            <option value="KFZ">KFZ</option>
+                            <option value="SVA">SVA</option>
+                            <option value="GWG">GWG</option>
+                        </optgroup>
+                    </select>
+                    <label for="vat">Buchungskonto</label>
+                </div>
+            </div>-->
 
             <div class="row">
                 <div class="input-field col s12 l6 offset-l3 center">
-                    <button (click)="cancelForm()" class="btn btn-large waves-effect yellow darken-2">Abbrechen</button>
-                    <button *ngIf="isData" class="btn btn-large waves-effect red darken-4 modal-trigger"
-                        data-target="deleteModal">Löschen</button>
-                    <button [disabled]="!saleFormGroup.valid" class="btn btn-large waves-effect"
-                        type="submit">Speichern</button>
+                    <app-mediainput formControlName="invoice"></app-mediainput>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12 l6 offset-l3 center">
+                    <button type="button" (click)="cancelForm()" class="btn btn-large waves-effect yellow darken-2">
+                        Abbrechen
+                    </button>
+                    <button type="button" *ngIf="isData" class="btn btn-large waves-effect red darken-4 modal-trigger"
+                            data-target="deleteModal">Löschen
+                    </button>
+                    <button type="submit" [disabled]="!saleFormGroup.valid" class="btn btn-large waves-effect">Speichern
+                    </button>
 
                     <!-- Modal Structure -->
                     <div id="deleteModal" class="modal col s12 l4 center">
@@ -112,7 +109,7 @@
                         <div class="modal-footer">
                             <a class="modal-close waves-effect waves-red btn-flat">Abbrechen</a>
                             <a class="modal-close waves-effect waves-green btn-flat"
-                                (click)="deleteSale(saleFormGroup.value)">Löschen</a>
+                               (click)="deleteSale(saleFormGroup.value)">Löschen</a>
                         </div>
                     </div>
                 </div>
