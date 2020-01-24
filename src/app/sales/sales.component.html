@@ -42,12 +42,12 @@
         </table>
         <p class="center" *ngIf="empty && companyService.getCompanyToken()">Noch keine Daten vorhanden</p>
         <p class="center" *ngIf="!companyService.getCompanyToken()">Zuerst eine <a routerLink="/firmen">Firma
-            auswählen</a></p>
+                auswählen</a></p>
     </div>
 </div>
 
 <div class="fixed-action-btn">
-    <a class="btn-floating btn-large waves-effect waves-light yellow darken-3"
+    <a class="btn-floating btn-large waves-effect waves-light blue darken-3"
         *ngIf="companyService.getCompanyToken() && !empty" (click)="exportexcel('excel-table', 'Einnahmen.xlsx')"
         title="Export"><i class="material-icons">save_alt</i></a>
     <a class="btn-floating btn-large waves-effect waves-light green" *ngIf="companyService.getCompanyToken()"
