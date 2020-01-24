@@ -52,18 +52,24 @@ export class SalesComponent implements OnInit, AfterViewInit {
   }
 
   exportexcel(tableId, fileName) {
-    /* table id is passed over here */
+    // table id is passed over here
     const element = document.getElementById(tableId);
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
-    // remove last column I2 (mode_edit)
-    delete ws.I2;
+    // generate a range object
+    const range = XLSX.utils.decode_range(ws['!ref']);
 
-    /* generate workbook and add the worksheet */
+    // remove last column I2 (mode_edit)
+    range.e.c--;
+
+    // reencode the range
+    ws['!ref'] = XLSX.utils.encode_range(range);
+
+    // generate workbook and add the worksheet
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
-    /* save to file */
+    // save to file
     XLSX.writeFile(wb, fileName);
   }
 }

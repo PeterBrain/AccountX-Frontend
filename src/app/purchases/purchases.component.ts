@@ -54,8 +54,14 @@ export class PurchasesComponent implements OnInit, AfterViewInit {
         const element = document.getElementById(tableId);
         const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
-        // remove last column J2 (mode_edit)
-        delete ws.J2;
+        // generate a range object
+        const range = XLSX.utils.decode_range(ws['!ref']);
+
+        // remove last column I2 (mode_edit)
+        range.e.c--;
+
+        // reencode the range
+        ws['!ref'] = XLSX.utils.encode_range(range);
 
         /* generate workbook and add the worksheet */
         const wb: XLSX.WorkBook = XLSX.utils.book_new();
