@@ -2,6 +2,12 @@ main {
   flex: 1 0 auto;
 }
 
+.navbar-fixed {
+  // actions buttons have a z-index of 997
+  // navbar should be higher therefore
+  z-index: 998;
+}
+
 nav a.sidenav-trigger {
   display: initial;
 
