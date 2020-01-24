@@ -1,6 +1,5 @@
-import { GroupService } from './service/group.service';
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnChanges, OnDestroy, DoCheck } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, AfterViewInit, OnChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from './service/user.service';
 import { CompanyService } from './service/company.service';
 
@@ -20,8 +19,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
     public router: Router,
     public userService: UserService,
     public companyService: CompanyService,
-    private route: ActivatedRoute,
-    private groupService: GroupService
   ) {
   }
 
@@ -32,12 +29,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
   ngOnInit() {
     this.login();
 
-    // Update of current Company (for name in top left)
-    this.companyService.getCompany(this.companyService.getCompanyToken()).subscribe(
-      (response) => {
-        this.companyService.currentCompany = JSON.parse(JSON.stringify(response));
-      }
-    );
+    // Update of current Company (for name in top left)^
+    if (this.isLoggedIn) {
+      this.companyService.getCompany(this.companyService.getCompanyToken()).subscribe(
+        (response) => {
+          this.companyService.currentCompany = JSON.parse(JSON.stringify(response));
+        }
+      );
+    }
 
     this.currentYear = new Date().getFullYear().toString();
 
