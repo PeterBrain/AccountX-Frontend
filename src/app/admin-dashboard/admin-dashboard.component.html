@@ -57,6 +57,9 @@
           <div>{{ user.username }}<a href="#" [routerLink]="['/mitarbeiter-form/' + user.id]" class="secondary-content"
               title="Bearbeiten"><i class="material-icons">mode_edit</i></a></div>
         </li>
+        <li *ngIf="!usersOfCompany">
+          <div class="center" >Zuerst links eine Firma auswählen</div>
+        </li>
       </ul>
     </div>
   </div>
