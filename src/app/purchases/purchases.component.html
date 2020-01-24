@@ -26,7 +26,7 @@
                     <td>{{ purchase.invDate }}</td>
                     <td>{{ purchase.biller }}</td>
                     <td>{{ purchase.notes }}</td>
-                    <td>{{ purchase.vat | number:'1.2' }}</td>
+                    <td>{{ (purchase.vat * 100 | number) + '%' }}</td>
                     <td>{{ purchase.net | number:'1.2' }}</td>
                     <td>{{ purchase.net * (1 + purchase.vat) | number:'1.2' }}</td>
                     <td>{{ purchase.cashflowdate }}</td>
