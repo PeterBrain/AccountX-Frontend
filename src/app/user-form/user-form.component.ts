@@ -161,7 +161,7 @@ export class UserFormComponent implements OnInit, AfterViewInit {
       this.passwordIsNotPresent = true;
     }
 
-    if (this.passwordIsNotPresent && password === passwordConfirm) {
+    if (!this.passwordIsNotPresent && password === passwordConfirm) {
       this.passwordsMatch = true;
     } else {
       this.passwordsMatch = false;
