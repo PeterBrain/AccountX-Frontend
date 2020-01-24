@@ -26,8 +26,8 @@ export class PurchasesComponent implements OnInit, AfterViewInit {
         this.purchaseService.getPurchases().subscribe(
             result => {
                 this.purchases = result;
-                console.log('Purchases objects: ');
-                console.log(this.purchases);
+                // console.log('Purchases objects: ');
+                // console.log(this.purchases);
 
                 if (this.purchases.length === 0) {
                     this.empty = true;
