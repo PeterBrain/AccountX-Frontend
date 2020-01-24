@@ -11,28 +11,28 @@
                 <div class="input-field col s12 l6 offset-l3">
                     <input (change)="setDatepickerInput()" id="invDate" type="text" class="datepicker validate"
                            formControlName="invDate" required>
-                    <label [ngClass]="{'active': isData}" for="invDate">Rechnungsdatum</label>
+                    <label [ngClass]="{'active': isData}" for="invDate">Rechnungsdatum *</label>
                 </div>
             </div>
 
             <div class="row">
                 <div class="input-field col s12 l6 offset-l3">
                     <input id="customer" type="text" class="validate" formControlName="customer" required>
-                    <label [ngClass]="{'active': isData}" for="customer">Kunde</label>
+                    <label [ngClass]="{'active': isData}" for="customer">Kunde *</label>
                 </div>
             </div>
 
             <div class="row">
                 <div class="input-field col s12 l6 offset-l3">
                     <input id="project" type="text" class="validate" formControlName="project" required>
-                    <label [ngClass]="{'active': isData}" for="project">Projekt / Auftrag</label>
+                    <label [ngClass]="{'active': isData}" for="project">Projekt / Auftrag *</label>
                 </div>
             </div>
 
             <div class="row">
                 <div class="input-field col s12 l6 offset-l3">
                     <input id="net" type="number" min="0" class="validate" formControlName="net" required>
-                    <label [ngClass]="{'active': isData}" for="net">Netto</label>
+                    <label [ngClass]="{'active': isData}" for="net">Netto *</label>
                 </div>
             </div>
 
@@ -46,7 +46,7 @@
                             <option value="0">0%</option>
                         </optgroup>
                     </select>
-                    <label for="vat">Umsatzsteuer</label>
+                    <label for="vat">Umsatzsteuer *</label>
                 </div>
             </div>
 
@@ -54,7 +54,7 @@
                 <div class="input-field col s12 l6 offset-l3">
                     <input (change)="setDatepickerInput()" id="cashflowdate" type="text" class="datepicker validate"
                            formControlName="cashflowdate" required>
-                    <label [ngClass]="{'active': isData}" for="cashflowdate">Geldflussdatum</label>
+                    <label [ngClass]="{'active': isData}" for="cashflowdate">Geldflussdatum *</label>
                 </div>
             </div>
 
@@ -65,7 +65,7 @@
                         <option *ngFor="let bookingType of bookingTypes" [value]="bookingType.name">
                             {{ bookingType.name }}</option>
                     </select>
-                    <label for="bookingType">Buchungskonto</label>
+                    <label for="bookingType">Buchungskonto *</label>
                 </div>
             </div>
 

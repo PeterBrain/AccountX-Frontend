@@ -12,7 +12,7 @@
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">receipt</i>
                         <input id="invNo" type="text" class="validate" formControlName="invNo" required>
-                        <label [ngClass]="{'active': isData}" for="invNo">Rechnungsnummer</label>
+                        <label [ngClass]="{'active': isData}" for="invNo">Rechnungsnummer *</label>
                     </div>
                 </div>
 
@@ -21,7 +21,7 @@
                         <i class="material-icons prefix">calendar_today</i>
                         <input (change)="setDatepickerInput()" id="invDate" type="text" class="datepicker validate"
                                formControlName="invDate" required>
-                        <label [ngClass]="{'active': isData}" for="invDate">Rechnungsdatum</label>
+                        <label [ngClass]="{'active': isData}" for="invDate">Rechnungsdatum *</label>
                     </div>
                 </div>
 
@@ -29,7 +29,7 @@
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">person</i>
                         <input id="biller" type="text" class="validate" formControlName="biller" required>
-                        <label [ngClass]="{'active': isData}" for="biller">Rechnungsaussteller</label>
+                        <label [ngClass]="{'active': isData}" for="biller">Rechnungsaussteller *</label>
                     </div>
                 </div>
 
@@ -44,7 +44,7 @@
                                 <option value="0">0%</option>
                             </optgroup>
                         </select>
-                        <label for="vat">Umsatzsteuer</label>
+                        <label for="vat">Umsatzsteuer *</label>
                     </div>
                 </div>
 
@@ -52,7 +52,7 @@
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">attach_money</i>
                         <input id="net" type="number" min="0" class="validate" formControlName="net" required>
-                        <label [ngClass]="{'active': isData}" for="net">Netto</label>
+                        <label [ngClass]="{'active': isData}" for="net">Netto *</label>
                     </div>
                 </div>
 
@@ -61,7 +61,7 @@
                         <i class="material-icons prefix">calendar_today</i>
                         <input (change)="setDatepickerInput()" id="cashflowdate" type="text" class="datepicker validate"
                                formControlName="cashflowdate" required>
-                        <label [ngClass]="{'active': isData}" for="cashflowdate">Geldflussdatum</label>
+                        <label [ngClass]="{'active': isData}" for="cashflowdate">Geldflussdatum *</label>
                     </div>
                 </div>
 
@@ -82,7 +82,7 @@
                             <option *ngFor="let bookingType of bookingTypes" [value]="bookingType.name">
                                 {{ bookingType.name }}</option>
                         </select>
-                        <label for="bookingType">Buchungskonto</label>
+                        <label for="bookingType">Buchungskonto *</label>
                     </div>
                 </div>
 
