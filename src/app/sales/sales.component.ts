@@ -28,15 +28,15 @@ export class SalesComponent implements OnInit, AfterViewInit {
     this.saleService.getSales().subscribe(
       result => {
         this.sales = result;
-        console.log('Sales objects: ');
-        console.log(this.sales);
+        // console.log('Sales objects: ');
+        // console.log(this.sales);
 
         if (this.sales.length === 0) {
           this.empty = true;
         }
       },
-      error => {},
-      () => {}
+      error => { },
+      () => { }
     );
   }
 
