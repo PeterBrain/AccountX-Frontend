@@ -27,7 +27,7 @@
           class="collection-item avatar collection-item-company valign-wrapper">
           <img src="../../assets/images/bg/sidenav-bg.jpg" alt="{{ company.name }}" class="circle">
           <div>
-            <div class="title">{{ company.name }} <a href="#" [routerLink]="['/firma-form/' + company.id]"
+            <div class="title">{{ company.name }} <a *ngIf="this.userService.isAdmin" [routerLink]="['/firma-form/' + company.id]"
                 class="custom-secondary-content" title="Bearbeiten"><i class="material-icons">mode_edit</i></a></div>
             <span *ngIf="company.description !== null">{{ company.description }}</span>
           </div>
