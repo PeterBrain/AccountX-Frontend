@@ -20,6 +20,8 @@ import { CompanyFormComponent } from './company-form/company-form.component';
 import { PurchaseFormResolver } from './resolver/purchase-form-resolver';
 import { GroupOptionsResolver } from './resolver/group-options-resolver';
 import { BookingTypesResolver } from './resolver/booking-types-resolver';
+import {PasswordChangeComponent} from './password-change/password-change.component';
+import {CurrentUserResolver} from './resolver/current-user-resolver';
 const routes: Routes = [
     { path: '', redirectTo: 'einnahmen', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
@@ -44,6 +46,12 @@ const routes: Routes = [
             user: UserResolver,
             groupOptions: GroupOptionsResolver
         }
+    },
+    {
+        path: 'passwort', component: PasswordChangeComponent, canActivate: [AuthGuard],
+        resolve: {
+            user: CurrentUserResolver,
+      }
     },
     { path: 'einnahmen', component: SalesComponent, canActivate: [AuthGuard] },
     {

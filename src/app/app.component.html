@@ -12,6 +12,8 @@
                 <li *ngIf="this.userService.isAdmin"><a href="#" title="Admin Dashboard" routerLink="admin-dashboard"><i
                         class="material-icons left">supervised_user_circle</i>Admin</a></li>
                 <li class="divider"></li>
+                <li><a title="Passwort ändern" routerLink="passwort"><i class="material-icons left">vpn_key</i>Passwort ändern</a></li>
+                <li class="divider"></li>
                 <li><a title="Logout" (click)="logout()"><i class="material-icons left">exit_to_app</i>Logout</a></li>
             </ul>
 

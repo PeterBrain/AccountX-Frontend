@@ -23,6 +23,7 @@ import {UserFormComponent} from './user-form/user-form.component';
 import {FileUploadModule} from 'ng2-file-upload';
 import {FilterPipe} from './admin-dashboard/filter.pipe';
 import {InterceptorService} from './service/interceptor.service';
+import { PasswordChangeComponent } from './password-change/password-change.component';
 
 export function tokenGetter() {
     return localStorage.getItem('access_token');
@@ -45,7 +46,8 @@ export function tokenGetter() {
         CompanyFormComponent,
         UserFormComponent,
         MediainputComponent,
-        FilterPipe
+        FilterPipe,
+        PasswordChangeComponent
     ],
     imports: [
         BrowserModule,
