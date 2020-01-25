@@ -6,52 +6,53 @@
     <div class="col s12">
         <table *ngIf="companyService.getCompanyToken()" class="striped responsive-table" id="excel-table">
             <thead>
-                <tr>
-                    <th>ReNr.</th>
-                    <th>Belegdatum</th>
-                    <th>Rechnungsaussteller</th>
-                    <th>Notiz</th>
-                    <th>Ust.</th>
-                    <th>Netto</th>
-                    <th>Brutto</th>
-                    <th>Datum Geldfluss</th>
-                    <th>Buchungskonto</th>
-                    <th></th>
-                </tr>
+            <tr>
+                <th>ReNr.</th>
+                <th>Belegdatum</th>
+                <th>Rechnungsaussteller</th>
+                <th>Notiz</th>
+                <th>Ust.</th>
+                <th>Netto</th>
+                <th>Brutto</th>
+                <th>Datum Geldfluss</th>
+                <th>Buchungskonto</th>
+                <th></th>
+            </tr>
             </thead>
 
             <tbody>
-                <tr *ngFor="let purchase of purchases" class="hoverable">
-                    <td>{{ purchase.invNo }}</td>
-                    <td>{{ purchase.invDate }}</td>
-                    <td>{{ purchase.biller }}</td>
-                    <td>{{ purchase.notes }}</td>
-                    <td>{{ (purchase.vat * 100 | number) + '%' }}</td>
-                    <td>{{ purchase.net | number:'1.2' }}</td>
-                    <td>{{ purchase.gross | number:'1.2' }}</td>
-                    <td>{{ purchase.cashflowdate }}</td>
-                    <td>{{ purchase.bookingType }}</td>
-                    <td>
-                        <div class="fixed-action-btn custom-action-btn">
-                            <a class="btn-floating btn-small" [routerLink]="['/ausgaben-form/' + purchase.id]"
-                                title="Bearbeiten">
-                                <i class="large material-icons">mode_edit</i>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
+            <tr *ngFor="let purchase of purchases" class="hoverable">
+                <td>{{ purchase.invNo }}</td>
+                <td>{{ purchase.invDate }}</td>
+                <td>{{ purchase.biller }}</td>
+                <td>{{ purchase.notes }}</td>
+                <td>{{ (purchase.vat * 100 | number) + '%' }}</td>
+                <td>{{ purchase.net | number:'1.2' }}</td>
+                <td>{{ purchase.gross | number:'1.2' }}</td>
+                <td>{{ purchase.cashflowdate }}</td>
+                <td>{{ purchase.bookingType }}</td>
+                <td>
+                    <div class="fixed-action-btn custom-action-btn">
+                        <a class="btn-floating btn-small" [routerLink]="['/ausgaben-form/' + purchase.id]"
+                           title="Bearbeiten">
+                            <i class="large material-icons">mode_edit</i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
             </tbody>
         </table>
         <p class="center" *ngIf="empty && companyService.getCompanyToken()">Noch keine Daten vorhanden</p>
         <p class="center" *ngIf="!companyService.getCompanyToken()">Zuerst eine <a routerLink="/firmen">Firma
-                auswählen</a></p>
+            auswählen</a></p>
     </div>
 </div>
 
 <div class="fixed-action-btn">
     <a class="btn-floating btn-large waves-effect waves-light blue darken-3"
-        *ngIf="companyService.getCompanyToken() && !empty" (click)="exportexcel('excel-table', 'Ausgaben.xlsx')"
-        title="Export"><i class="material-icons">save_alt</i></a>
+       *ngIf="companyService.getCompanyToken() && !empty"
+       (click)="exportexcel('excel-table', 'Ausgaben_' + this.companyService.currentCompany.name + '.xlsx')"
+       title="Export"><i class="material-icons">save_alt</i></a>
     <a class="btn-floating btn-large waves-effect waves-light green" *ngIf="companyService.getCompanyToken()"
-        routerLink="/ausgaben-form" title="Neu"><i class="material-icons">add</i></a>
+       routerLink="/ausgaben-form" title="Neu"><i class="material-icons">add</i></a>
 </div>

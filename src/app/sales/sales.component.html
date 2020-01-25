@@ -6,50 +6,51 @@
     <div class="col s12">
         <table *ngIf="companyService.getCompanyToken()" class="striped responsive-table" id="excel-table">
             <thead>
-                <tr>
-                    <th>ReNr.</th>
-                    <th>Datum</th>
-                    <th>Kunde</th>
-                    <th>Projekt / Auftrag</th>
-                    <th>Ust.</th>
-                    <th>Netto</th>
-                    <th>Brutto</th>
-                    <th>Zahlungseingang</th>
-                    <th></th>
-                </tr>
+            <tr>
+                <th>ReNr.</th>
+                <th>Datum</th>
+                <th>Kunde</th>
+                <th>Projekt / Auftrag</th>
+                <th>Ust.</th>
+                <th>Netto</th>
+                <th>Brutto</th>
+                <th>Zahlungseingang</th>
+                <th></th>
+            </tr>
             </thead>
 
             <tbody>
-                <tr *ngFor="let sale of sales" class="hoverable">
-                    <td>{{ sale.invNo }}</td>
-                    <td>{{ sale.invDate }}</td>
-                    <td>{{ sale.customer }}</td>
-                    <td>{{ sale.project }}</td>
-                    <td>{{ (sale.vat * 100 | number) + '%' }}</td>
-                    <td>{{ sale.net | number:'1.2' }}</td>
-                    <td>{{ sale.gross | number:'1.2' }}</td>
-                    <td>{{ sale.cashflowdate }}</td>
-                    <td>
-                        <div class="fixed-action-btn custom-action-btn">
-                            <a class="btn-floating btn-small" [routerLink]="['/einnahmen-form/' + sale.id]"
-                                title="Bearbeiten">
-                                <i class="large material-icons">mode_edit</i>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
+            <tr *ngFor="let sale of sales" class="hoverable">
+                <td>{{ sale.invNo }}</td>
+                <td>{{ sale.invDate }}</td>
+                <td>{{ sale.customer }}</td>
+                <td>{{ sale.project }}</td>
+                <td>{{ (sale.vat * 100 | number) + '%' }}</td>
+                <td>{{ sale.net | number:'1.2' }}</td>
+                <td>{{ sale.gross | number:'1.2' }}</td>
+                <td>{{ sale.cashflowdate }}</td>
+                <td>
+                    <div class="fixed-action-btn custom-action-btn">
+                        <a class="btn-floating btn-small" [routerLink]="['/einnahmen-form/' + sale.id]"
+                           title="Bearbeiten">
+                            <i class="large material-icons">mode_edit</i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
             </tbody>
         </table>
         <p class="center" *ngIf="empty && companyService.getCompanyToken()">Noch keine Daten vorhanden</p>
         <p class="center" *ngIf="!companyService.getCompanyToken()">Zuerst eine <a routerLink="/firmen">Firma
-                auswählen</a></p>
+            auswählen</a></p>
     </div>
 </div>
 
 <div class="fixed-action-btn">
     <a class="btn-floating btn-large waves-effect waves-light blue darken-3"
-        *ngIf="companyService.getCompanyToken() && !empty" (click)="exportexcel('excel-table', 'Einnahmen.xlsx')"
-        title="Export"><i class="material-icons">save_alt</i></a>
+       *ngIf="companyService.getCompanyToken() && !empty"
+       (click)="exportexcel('excel-table', 'Einnahmen_' + this.companyService.currentCompany.name + '.xlsx')"
+       title="Export"><i class="material-icons">save_alt</i></a>
     <a class="btn-floating btn-large waves-effect waves-light green" *ngIf="companyService.getCompanyToken()"
-        routerLink="/einnahmen-form" title="Neu"><i class="material-icons">add</i></a>
+       routerLink="/einnahmen-form" title="Neu"><i class="material-icons">add</i></a>
 </div>
