@@ -17,7 +17,7 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
   search = '';
 
   constructor(
-    private userService: UserService,
+    public userService: UserService,
     private companyService: CompanyService,
     private route: ActivatedRoute
   ) { }
