@@ -56,7 +56,7 @@
                     </div>
                 </div>
 
-                <div class="row" *ngIf="this.userService.isAdmin">
+                <div class="row">
                     <div class="input-field col s12 l6 offset-l3">
                         <i class="material-icons prefix">group</i>
                         <select id="groups" formControlName="groups" multiple>
@@ -73,7 +73,7 @@
                         <button type="button" (click)="cancelForm()" class="btn btn-large waves-effect yellow darken-2">
                             Abbrechen
                         </button>
-                        <button type="button" *ngIf="isData && this.userService.isAdmin"
+                        <button type="button" *ngIf="isData"
                                 class="btn btn-large waves-effect modal-trigger red darken-4" data-target="deleteModal">
                             Löschen
                         </button>
