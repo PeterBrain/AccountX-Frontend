@@ -36,7 +36,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           this.companyService.currentCompany = JSON.parse(JSON.stringify(result));
         },
         error => {
-          this.userService.showToast('Keine Firma ausgewählt');
+          // this.userService.showToast('Keine Firma ausgewählt');
         },
         () => {}
       );

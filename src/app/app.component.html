@@ -9,9 +9,6 @@
             </a>
 
             <ul id="dropdown" class="dropdown-content" *ngIf="isLoggedIn">
-                <!-- <li><a href="#"><i class="material-icons left">account_circle</i>Profil</a></li> -->
-                <!-- <li><a href="#"><i class="material-icons left">settings_applications</i>Einstellungen</a></li> -->
-
                 <li *ngIf="this.userService.isAdmin"><a href="#" title="Admin Dashboard" routerLink="admin-dashboard"><i
                         class="material-icons left">supervised_user_circle</i>Admin</a></li>
                 <li class="divider"></li>

@@ -24,10 +24,10 @@ export class InterceptorService implements HttpInterceptor {
             errorMessage = `Error Code: ${error.status}<br>Message: ${error.message}`; // server-side error
         }
 
-        M.toast({
+        /*M.toast({
             html: errorMessage,
             displayLength: 10000
-        });
+        });*/
 
         return throwError(error);
     }
