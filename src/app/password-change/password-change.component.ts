@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormBuilder, ValidationErrors, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {UserService} from '../service/user.service';
+import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, ValidationErrors, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from '../service/user.service';
 import * as M from 'materialize-css';
 
 @Component({
@@ -19,8 +19,7 @@ export class PasswordChangeComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private userService: UserService
-  ) {
-  }
+  ) { }
 
   // actual validator for password-match
   public static matchValues(
@@ -75,22 +74,19 @@ export class PasswordChangeComponent implements OnInit {
 
     this.userService.updateUser(user).subscribe(
       result => {
-        // same as: response.name but linter does not like it this way
-        const userName = JSON.parse(JSON.stringify(result)).username;
         this.userService.showToast('Passwort wurde geändert');
       },
       error => {
         this.userService.showToast('Ups, da gibt es wohl ein Problem');
       },
       () => {
-        this.router.navigate(['/einnahmen']);
+        this.router.navigate(['/']);
       }
     );
-
   }
 
   cancelForm() {
-    this.router.navigate(['/einnahmen']);
+    this.router.navigate(['/']);
   }
 
   // check if passwords match (just for visual X or check)

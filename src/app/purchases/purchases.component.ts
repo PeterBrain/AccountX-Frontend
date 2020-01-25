@@ -1,7 +1,6 @@
 import { PurchaseService } from './../service/purchase.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CompanyService } from '../service/company.service';
-import { UserService } from '../service/user.service';
 import * as M from 'materialize-css';
 import * as XLSX from 'xlsx';
 
@@ -16,7 +15,6 @@ export class PurchasesComponent implements OnInit, AfterViewInit {
     empty;
 
     constructor(
-        private userService: UserService,
         public purchaseService: PurchaseService,
         public companyService: CompanyService
     ) { }

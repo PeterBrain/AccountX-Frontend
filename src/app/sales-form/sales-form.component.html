@@ -1,113 +1,120 @@
 <section>
     <div class="row">
         <div class="col s12 center">
-            <h2>Ausgangsrechnung <span *ngIf="!isData">erstellen</span><span *ngIf="isData">bearbeiten</span></h2>
+            <h2 class="flow-text">Ausgangsrechnung <span *ngIf="!isData">erstellen</span><span
+                    *ngIf="isData">bearbeiten</span></h2>
         </div>
     </div>
 
     <div class="row">
-        <form [formGroup]="saleFormGroup" (ngSubmit)="saveForm()" class="col s12">
-            <div class="row">
-                <div class="input-field col s12 l6 offset-l3">
-                    <i class="material-icons prefix">calendar_today</i>
-                    <input (change)="setDatepickerInput()" id="invDate" type="text" class="datepicker validate"
-                           formControlName="invDate" required>
-                    <label [ngClass]="{'active': isData}" for="invDate">Rechnungsdatum *</label>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="input-field col s12 l6 offset-l3">
-                    <i class="material-icons prefix">person</i>
-                    <input id="customer" type="text" class="validate" formControlName="customer" required>
-                    <label [ngClass]="{'active': isData}" for="customer">Kunde *</label>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="input-field col s12 l6 offset-l3">
-                  <i class="material-icons prefix">book</i>
-                    <input id="project" type="text" class="validate" formControlName="project" required>
-                    <label [ngClass]="{'active': isData}" for="project">Projekt / Auftrag *</label>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="input-field col s12 l6 offset-l3">
-                  <i class="material-icons prefix">attach_money</i>
-                    <input id="net" type="number" min="0" class="validate" formControlName="net" required>
-                    <label [ngClass]="{'active': isData}" for="net">Netto *</label>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="input-field col s12 l6 offset-l3">
-                  <i class="material-icons prefix">money_off</i>
-                    <select id="vat" formControlName='vat'>
-                        <option value="" disabled>Wählen Sie eine Option</option>
-                        <optgroup label="Österreich">
-                            <option value="0.2">20%</option>
-                            <option value="0.13">13%</option>
-                            <option value="0.1">10%</option>
-                            <option value="0">0%</option>
-                        </optgroup>
-                    </select>
-                    <label for="vat">Umsatzsteuer *</label>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="input-field col s12 l6 offset-l3">
-                  <i class="material-icons prefix">calendar_today</i>
-                    <input (change)="setDatepickerInput()" id="cashflowdate" type="text" class="datepicker validate"
-                           formControlName="cashflowdate" required>
-                    <label [ngClass]="{'active': isData}" for="cashflowdate">Geldflussdatum *</label>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="input-field col s12 l6 offset-l3">
-                  <i class="material-icons prefix">category</i>
-                    <select id="bookingType" formControlName="bookingType">
-                        <option value="" disabled>Wählen Sie eine Option</option>
-                        <option *ngFor="let bookingType of bookingTypes" [value]="bookingType.name">
-                            {{ bookingType.name }}</option>
-                    </select>
-                    <label for="bookingType">Buchungskonto *</label>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="input-field col s12 l6 offset-l3 center">
-                    <app-mediainput formControlName="invoice"></app-mediainput>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="input-field col s12 l6 offset-l3 center">
-                    <button type="button" (click)="cancelForm()" class="btn btn-large waves-effect yellow darken-2">
-                        Abbrechen
-                    </button>
-                    <button type="button" *ngIf="isData" class="btn btn-large waves-effect red darken-4 modal-trigger"
-                            data-target="deleteModal">Löschen
-                    </button>
-                    <button type="submit" [disabled]="!saleFormGroup.valid" class="btn btn-large waves-effect">Speichern
-                    </button>
-
-                    <!-- Modal Structure -->
-                    <div id="deleteModal" class="modal col s12 l4 center">
-                        <div class="modal-content">
-                            <h4>Eintrag löschen</h4>
-                            <p>Sind sie sich sicher, dass der Eintrag gelöscht werden soll?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <a class="modal-close waves-effect waves-red btn-flat">Abbrechen</a>
-                            <a class="modal-close waves-effect waves-green btn-flat"
-                               (click)="deleteSale(saleFormGroup.value)">Löschen</a>
-                        </div>
+        <div class="container">
+            <form [formGroup]="saleFormGroup" (ngSubmit)="saveForm()" class="col s12">
+                <div class="row">
+                    <div class="input-field col s12 l6 offset-l3">
+                        <i class="material-icons prefix">calendar_today</i>
+                        <input (change)="setDatepickerInput()" id="invDate" type="text" class="datepicker validate"
+                               formControlName="invDate" required>
+                        <label [ngClass]="{'active': isData}" for="invDate">Rechnungsdatum *</label>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="input-field col s12 l6 offset-l3">
+                        <i class="material-icons prefix">person</i>
+                        <input id="customer" type="text" class="validate" formControlName="customer" required>
+                        <label [ngClass]="{'active': isData}" for="customer">Kunde *</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12 l6 offset-l3">
+                        <i class="material-icons prefix">book</i>
+                        <input id="project" type="text" class="validate" formControlName="project" required>
+                        <label [ngClass]="{'active': isData}" for="project">Projekt / Auftrag *</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12 l6 offset-l3">
+                        <i class="material-icons prefix">attach_money</i>
+                        <input id="net" type="number" min="0" class="validate" formControlName="net" required>
+                        <label [ngClass]="{'active': isData}" for="net">Netto *</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12 l6 offset-l3">
+                        <i class="material-icons prefix">money_off</i>
+                        <select id="vat" formControlName='vat'>
+                            <option value="" disabled>Wählen Sie eine Option</option>
+                            <optgroup label="Österreich">
+                                <option value="0.2">20%</option>
+                                <option value="0.13">13%</option>
+                                <option value="0.1">10%</option>
+                                <option value="0">0%</option>
+                            </optgroup>
+                        </select>
+                        <label for="vat">Umsatzsteuer *</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12 l6 offset-l3">
+                        <i class="material-icons prefix">calendar_today</i>
+                        <input (change)="setDatepickerInput()" id="cashflowdate" type="text" class="datepicker validate"
+                               formControlName="cashflowdate" required>
+                        <label [ngClass]="{'active': isData}" for="cashflowdate">Geldflussdatum *</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12 l6 offset-l3">
+                        <i class="material-icons prefix">category</i>
+                        <select id="bookingType" formControlName="bookingType">
+                            <option value="" disabled>Wählen Sie eine Option</option>
+                            <option *ngFor="let bookingType of bookingTypes" [value]="bookingType.name">
+                                {{ bookingType.name }}</option>
+                        </select>
+                        <label for="bookingType">Buchungskonto *</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12 l6 offset-l3 center">
+                        <app-mediainput formControlName="invoice"></app-mediainput>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12 l6 offset-l3 center">
+                        <button type="button" (click)="cancelForm()" class="btn btn-large waves-effect yellow darken-2">
+                            Abbrechen
+                        </button>
+                        <button type="button" *ngIf="isData"
+                                class="btn btn-large waves-effect red darken-4 modal-trigger" data-target="deleteModal">
+                            Löschen
+                        </button>
+                        <button type="submit" [disabled]="!saleFormGroup.valid" class="btn btn-large waves-effect">
+                            Speichern
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Modal Structure -->
+        <div id="deleteModal" class="modal col s10 l4 offset-s1 offset-l4 center">
+            <div class="modal-content">
+                <h4>Eintrag löschen</h4>
+                <p>Sind sie sich sicher, dass der Eintrag gelöscht werden soll?</p>
             </div>
-        </form>
+            <div class="modal-footer">
+                <a class="modal-close waves-effect waves-red btn-flat">Abbrechen</a>
+                <a class="modal-close waves-effect waves-green btn-flat"
+                   (click)="deleteSale(saleFormGroup.value)">Löschen</a>
+            </div>
+        </div>
     </div>
 </section>

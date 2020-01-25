@@ -2,7 +2,6 @@ import { ActivatedRoute } from '@angular/router';
 import { SaleService } from './../service/sale.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CompanyService } from '../service/company.service';
-import { UserService } from '../service/user.service';
 import * as M from 'materialize-css';
 import * as XLSX from 'xlsx';
 
@@ -19,8 +18,7 @@ export class SalesComponent implements OnInit, AfterViewInit {
   constructor(
     private saleService: SaleService,
     private route: ActivatedRoute,
-    public companyService: CompanyService,
-    private userService: UserService
+    public companyService: CompanyService
   ) { }
 
   ngOnInit() {

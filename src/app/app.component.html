@@ -1,26 +1,27 @@
 <header>
     <div class="navbar-fixed">
         <nav class="nav-wrapper indigo">
-            <a *ngIf="isLoggedIn && companyService.currentCompany && companyService.getCompanyToken()" routerLink="/firmen">Firma:
-                {{ companyService.currentCompany?.name }}</a>
+            <a class="hide-on-small-only"
+               *ngIf="isLoggedIn && companyService.currentCompany && companyService.getCompanyToken()"
+               routerLink="/firmen">Firma: {{ companyService.currentCompany?.name }}</a>
             <a routerLink="/" class="brand-logo center">AccountX</a>
-            <a href="" class="sidenav-trigger" data-target="mobileNav" *ngIf="isLoggedIn">
+            <a class="sidenav-trigger" data-target="mobileNav" *ngIf="isLoggedIn">
                 <i class="material-icons">view_module</i>
             </a>
 
             <ul id="dropdown" class="dropdown-content" *ngIf="isLoggedIn">
-                <li *ngIf="this.userService.isAdmin"><a href="#" title="Admin Dashboard" routerLink="admin-dashboard"><i
+                <li *ngIf="this.userService.isAdmin"><a title="Admin Dashboard" routerLink="admin-dashboard"><i
                         class="material-icons left">supervised_user_circle</i>Admin</a></li>
                 <li class="divider"></li>
-                <li><a title="Passwort ändern" routerLink="passwort"><i class="material-icons left">vpn_key</i>Passwort ändern</a></li>
+                <li><a title="Passwort ändern" routerLink="passwort"><i class="material-icons left">vpn_key</i>Passwort
+                    ändern</a></li>
                 <li class="divider"></li>
                 <li><a title="Logout" (click)="logout()"><i class="material-icons left">exit_to_app</i>Logout</a></li>
             </ul>
 
             <ul class="right" *ngIf="isLoggedIn">
                 <li>
-                    <a href="#" class="dropdown-trigger" data-target="dropdown"><i
-                            class="material-icons right">more_vert</i></a>
+                    <a class="dropdown-trigger" data-target="dropdown"><i class="material-icons right">more_vert</i></a>
                 </li>
             </ul>
         </nav>
@@ -37,6 +38,9 @@
                         class="white-text name">{{ this.userService.currentUser?.first_name !== '' ? this.userService.currentUser?.first_name : '(Vorname fehlt)' }}
                     {{ this.userService.currentUser?.last_name !== '' ? this.userService.currentUser?.last_name : '(Nachname fehlt)' }}</span></a>
                 <a><span class="white-text email">{{ this.userService.currentUser?.username }}@accountx.com</span></a>
+                <a class="hide-on-med-and-up" *ngIf="isLoggedIn && companyService.currentCompany && companyService.getCompanyToken()"
+                   routerLink="/firmen"><span
+                        class="white-text email">Firma: {{ companyService.currentCompany?.name }}</span></a>
             </div>
         </li>
 

@@ -1,63 +1,69 @@
 <section>
     <div class="row">
         <div class="col s12 center">
-            <h2>Konto erstellen</h2>
-            <p class="red-text text-darken-4">Registrieren funktioniert nur, wenn man im Backend nicht angemeldet ist!</p>
+            <h2 class="flow-text">Konto erstellen</h2>
+            <p class="red-text text-darken-4">Registrieren funktioniert nur, wenn man im Backend nicht angemeldet
+                ist!</p>
         </div>
     </div>
 
     <div class="row">
-        <form [formGroup]="registrationFormGroup" (ngSubmit)="register()" class="col s12">
-            <div class="row">
-                <div class="input-field col s12 l6 offset-l3">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="username" type="text" class="validate" formControlName="username" autofocus required>
-                    <label for="username">Benutzername *</label>
+        <div class="container">
+            <form [formGroup]="registrationFormGroup" (ngSubmit)="register()" class="col s12">
+                <div class="row">
+                    <div class="input-field col s12 l6 offset-l3">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="username" type="text" class="validate" formControlName="username" autofocus required>
+                        <label for="username">Benutzername *</label>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="input-field col s12 l6 offset-l3">
-                    <i class="material-icons prefix">person</i>
-                    <input id="firstname" type="text" class="validate" formControlName="first_name">
-                    <label for="firstname">Vorname</label>
+                <div class="row">
+                    <div class="input-field col s12 l6 offset-l3">
+                        <i class="material-icons prefix">person</i>
+                        <input id="firstname" type="text" class="validate" formControlName="first_name">
+                        <label for="firstname">Vorname</label>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="input-field col s12 l6 offset-l3">
-                    <i class="material-icons prefix">person</i>
-                    <input id="lastname" type="text" class="validate" formControlName="last_name">
-                    <label for="lastname">Nachname</label>
+                <div class="row">
+                    <div class="input-field col s12 l6 offset-l3">
+                        <i class="material-icons prefix">person</i>
+                        <input id="lastname" type="text" class="validate" formControlName="last_name">
+                        <label for="lastname">Nachname</label>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="input-field col s12 l6 offset-l3">
-                    <i class="material-icons prefix">lock</i>
-                    <input id="password" type="password" class="validate" formControlName="password" required (keyup)="passwordMatch()">
-                    <label for="password">Passwort *</label>
+                <div class="row">
+                    <div class="input-field col s12 l6 offset-l3">
+                        <i class="material-icons prefix">lock</i>
+                        <input id="password" type="password" class="validate" formControlName="password" required
+                               (keyup)="passwordMatch()">
+                        <label for="password">Passwort *</label>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="input-field col s12 l6 offset-l3">
-                    <i *ngIf="!passwordsMatch" class="material-icons prefix">close</i>
-                    <i *ngIf="passwordsMatch" class="material-icons prefix">done</i>
-                    <input id="passwordConfirm" type="password" class="validate" formControlName="passwordConfirm"
-                        required (keyup)="passwordMatch()">
-                    <label for="passwordConfirm">Passwort bestätigen *</label>
+                <div class="row">
+                    <div class="input-field col s12 l6 offset-l3">
+                        <i *ngIf="!passwordsMatch" class="material-icons prefix">close</i>
+                        <i *ngIf="passwordsMatch" class="material-icons prefix">done</i>
+                        <input id="passwordConfirm" type="password" class="validate" formControlName="passwordConfirm"
+                               required (keyup)="passwordMatch()">
+                        <label for="passwordConfirm">Passwort bestätigen *</label>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="input-field col s12 l6 offset-l3 center">
-                    <button class="btn btn-large waves-effect indigo" [disabled]="!registrationFormGroup.valid" type="submit">erstellen</button>
-                    <br>
-                    <br>
-                    <a href="#" routerLink="/login">Abbrechen</a>
+                <div class="row">
+                    <div class="input-field col s12 l6 offset-l3 center">
+                        <div class="row">
+                            <button class="btn btn-large waves-effect indigo" [disabled]="!registrationFormGroup.valid"
+                                    type="submit">Erstellen
+                            </button>
+                        </div>
+                        <a routerLink="/login">Abbrechen</a>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </section>

@@ -23,7 +23,7 @@ import { BookingTypesResolver } from './resolver/booking-types-resolver';
 import {PasswordChangeComponent} from './password-change/password-change.component';
 import {CurrentUserResolver} from './resolver/current-user-resolver';
 const routes: Routes = [
-    { path: '', redirectTo: 'einnahmen', pathMatch: 'full' },
+    { path: '', redirectTo: 'firmen', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'registration', component: RegistrationComponent },
     { path: 'firmen', component: CompanySelectComponent, canActivate: [AuthGuard] },

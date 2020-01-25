@@ -4,68 +4,67 @@
 
 <div class="row">
     <div class="container" *ngIf="companyService.getCompanyToken()">
-        <div class="col m4">
+        <div class="col s12 l4">
             <h4>Umsatzsteuer</h4>
             <table class="striped responsive-table" id="ust">
                 <thead>
-                    <tr>
-                        <th>Monat</th>
-                        <th>Summe</th>
-                    </tr>
+                <tr>
+                    <th>Monat</th>
+                    <th>Summe</th>
+                </tr>
                 </thead>
                 <tbody *ngFor="let vatEntry of vatReport">
-                    <tr class="hoverable">
-                        <td>{{ vatEntry.month }}</td>
-                        <td>€ {{ vatEntry.vatIn | number:'1.2' }}</td>
-                    </tr>
+                <tr class="hoverable">
+                    <td>{{ vatEntry.month }}</td>
+                    <td>€ {{ vatEntry.vatIn | number:'1.2' }}</td>
+                </tr>
                 </tbody>
             </table>
         </div>
 
-        <div class="col m4">
+        <div class="col s12 l4">
             <h4>Vorsteuer</h4>
             <table class="striped responsive-table" id="vst">
                 <thead>
-                    <tr>
-                        <th>Monat</th>
-                        <th>Summe</th>
-                    </tr>
+                <tr>
+                    <th>Monat</th>
+                    <th>Summe</th>
+                </tr>
                 </thead>
                 <tbody *ngFor="let vatEntry of vatReport">
-                    <tr class="hoverable">
-                        <td>{{ vatEntry.month }}</td>
-                        <td>€ {{ vatEntry.vatOut | number:'1.2' }}</td>
-                    </tr>
+                <tr class="hoverable">
+                    <td>{{ vatEntry.month }}</td>
+                    <td>€ {{ vatEntry.vatOut | number:'1.2' }}</td>
+                </tr>
                 </tbody>
             </table>
         </div>
 
-        <div class="col m4">
+        <div class="col s12 l4">
             <h4>Ust. Zahllast</h4>
             <table class="striped responsive-table" id="tax">
                 <thead>
-                    <tr>
-                        <th>Monat</th>
-                        <th>Betrag</th>
-                    </tr>
+                <tr>
+                    <th>Monat</th>
+                    <th>Betrag</th>
+                </tr>
                 </thead>
                 <tbody *ngFor="let vatEntry of vatReport">
-                    <tr class="hoverable">
-                        <td>{{ vatEntry.month }}</td>
-                        <td
-                            [ngClass]="{'green-text text-darken-2' : (vatEntry.vatIn - vatEntry.vatOut) < 0, 'red-text text-darken-2' : (vatEntry.vatIn - vatEntry.vatOut) > 0}">
-                            € {{ vatEntry.vatIn - vatEntry.vatOut | number:'1.2' }}</td>
-                    </tr>
+                <tr class="hoverable">
+                    <td>{{ vatEntry.month }}</td>
+                    <td [ngClass]="{'green-text text-darken-2' : (vatEntry.vatIn - vatEntry.vatOut) < 0, 'red-text text-darken-2' : (vatEntry.vatIn - vatEntry.vatOut) > 0}">
+                        € {{ vatEntry.vatIn - vatEntry.vatOut | number:'1.2' }}</td>
+                </tr>
                 </tbody>
             </table>
         </div>
     </div>
     <p class="center" *ngIf="!companyService.getCompanyToken()">Zuerst eine <a routerLink="/firmen">Firma
-            auswählen</a></p>
+        auswählen</a></p>
 </div>
 
 <div class="fixed-action-btn" *ngIf="companyService.getCompanyToken()">
     <a class="btn-floating btn-large waves-effect waves-light blue darken-3"
-        (click)="exportexcel('ust', 'vst', 'tax', 'Ust-Abgabe.xlsx')" title="Export"><i
+       (click)="exportexcel('ust', 'vst', 'tax', 'Ust-Abgabe.xlsx')" title="Export"><i
             class="material-icons">save_alt</i></a>
 </div>

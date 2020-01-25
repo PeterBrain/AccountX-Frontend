@@ -6,44 +6,34 @@
     </div>
 
     <div class="row">
-        <form [formGroup]="loginFormGroup" (ngSubmit)="login()" class="col s12">
-            <div class="row">
-                <div class="col s3"></div>
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="username" type="text" class="validate" formControlName="username" autofocus required>
-                    <label for="username">Benutzername</label>
+        <div class="container">
+            <form [formGroup]="loginFormGroup" (ngSubmit)="login()" class="col s12">
+                <div class="row">
+                    <div class="input-field col s12 l6 offset-l3">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="username" type="text" class="validate" formControlName="username" autofocus required>
+                        <label for="username">Benutzername</label>
+                    </div>
                 </div>
-                <div class="col s3"></div>
-            </div>
-            <div class="row">
-                <div class="col s3"></div>
-
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">lock</i>
-                    <input id="password" type="password" class="validate" formControlName="password" required>
-                    <label for="password">Passwort</label>
+                <div class="row">
+                    <div class="input-field col s12 l6 offset-l3">
+                        <i class="material-icons prefix">lock</i>
+                        <input id="password" type="password" class="validate" formControlName="password" required>
+                        <label for="password">Passwort</label>
+                    </div>
                 </div>
 
-                <div class="col s3"></div>
-            </div>
-
-            <div class="row">
-                <div class="col s3"></div>
-
-                <div class="input-field col s6 center">
-                    <button class="btn btn-large waves-effect indigo" type="submit">Login</button>
-                    <br>
-                    <br>
-                    <div class="divider"></div>
-                    <p>
-                        Noch nicht registriert? <a title="Konto erstellen" href="#"
-                            routerLink="/registration">Erstellen</a> Sie ein Konto
-                    </p>
+                <div class="row">
+                    <div class="input-field col s12 l6 offset-l3 center">
+                        <div class="row">
+                            <button class="btn btn-large waves-effect indigo" type="submit">Login</button>
+                        </div>
+                        <div class="divider"></div>
+                        <p>Noch nicht registriert? <a title="Konto erstellen" href="#" routerLink="/registration">Erstellen</a>
+                            Sie ein Konto</p>
+                    </div>
                 </div>
-
-                <div class="col s3"></div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </section>
