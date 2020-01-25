@@ -43,7 +43,7 @@ export class UserService {
 
                 this.router.navigate(['firmen']);
             }, () => {
-                this.showToastRed('Wrong username or password');
+                this.showToastRed('Benutzername oder Passwort falsch');
             });
     }
 
