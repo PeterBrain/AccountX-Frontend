@@ -35,9 +35,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
         result => {
           this.companyService.currentCompany = JSON.parse(JSON.stringify(result));
         },
-        error => {
-          // this.userService.showToast('Keine Firma ausgewählt');
-        },
+        error => {},
         () => {}
       );
     }
@@ -87,7 +85,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           const companies = user.companies;
           const isAdminOf = user.isAdminOf;
 
-          //this.userService.isAdmin = this.compareArrays(companies, isAdminOf);
           this.userService.isAdmin = this.intersect(companies, isAdminOf);
         },
         error => {},
@@ -105,22 +102,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
       error => {},
       () => {}
     );
-  }
-
-  compareArrays(arr1, arr2) {
-    // Check if the arrays are the same length
-    if (arr1.length !== arr2.length) {
-      return false;
-    }
-
-    // Check if all items exist and are in the same order
-    for (let i = 0; i < arr1.length; i++) {
-      if (arr1[i] !== arr2[i]) {
-        return false;
-      }
-    }
-
-    return true;
   }
 
   intersect(arr1, arr2) {
