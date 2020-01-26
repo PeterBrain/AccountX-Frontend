@@ -87,7 +87,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
           const companies = user.companies;
           const isAdminOf = user.isAdminOf;
 
-          this.userService.isAdmin = this.compareArrays(companies, isAdminOf);
+          //this.userService.isAdmin = this.compareArrays(companies, isAdminOf);
+          this.userService.isAdmin = this.intersect(companies, isAdminOf);
         },
         error => {},
         () => {}
@@ -121,4 +122,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnChanges {
 
     return true;
   }
+
+  intersect(arr1, arr2) {
+    const result = arr1.filter(value => arr2.includes(value));
+    return result.length === 0 ? false : true;
+  }
+
 }
