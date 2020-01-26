@@ -2,5 +2,14 @@
 
 ## Setup Guide
 
+### Dependencies
+Install all dependencies.
+```bash
+npm install
+```
+
 ### Server
-Run `ng serve` for a dev server and navigate to [http://localhost:4200/](http://localhost:4200/).
+Start the dev server and navigate to [http://localhost:4200/](http://localhost:4200/).
+```bash
+ng serve
+```
