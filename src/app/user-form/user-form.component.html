@@ -62,8 +62,7 @@
                         <i class="material-icons prefix">group</i>
                         <select id="groups" formControlName="groups" multiple>
                             <option value="" disabled>Wählen Sie eine Option</option>
-                            <option *ngFor="let groupOption of companyGroups" [value]="groupOption.id">
-                                {{ groupOption.companyName }} - {{ groupOption.name }}</option>
+                            <option *ngFor="let groupOption of companyGroups" [value]="groupOption.id">{{ groupOption.name }}</option>
                         </select>
                         <label [ngClass]="{ 'active' : isData }" for="groups">Berechtigung *</label>
                     </div>
